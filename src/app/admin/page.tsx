@@ -45,11 +45,11 @@ async function OverviewCards() {
       detail: "companies offering activities",
     },
     {
-      href: null,
+      href: "/admin/requests",
       icon: ClipboardList,
       title: "Pending booking requests",
       value: String(o.pendingRequests),
-      detail: "Request review screen is coming in the next update",
+      detail: o.pendingRequests > 0 ? "waiting for a reply" : "all caught up",
     },
   ];
 

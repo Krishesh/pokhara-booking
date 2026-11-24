@@ -11,14 +11,15 @@ const LINKS = [
   { href: "/admin/activities", label: "Activities" },
   { href: "/admin/offers", label: "Offers" },
   { href: "/admin/providers", label: "Providers" },
+  { href: "/admin/requests", label: "Requests" },
 ];
 
-export function AdminNav() {
-  return <AdminNavView pathname={usePathname()} />;
+export function AdminNav({ pendingCount }: { pendingCount?: number }) {
+  return <AdminNavView pathname={usePathname()} pendingCount={pendingCount} />;
 }
 
 /** Nav without the active highlight; used as the Suspense fallback. */
-export function AdminNavView({ pathname }: { pathname: string }) {
+export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string; pendingCount?: number }) {
   return (
     <nav aria-label="Admin" className="flex flex-wrap items-center gap-1 border-b pb-3">
       <span className="mr-2 rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
@@ -37,6 +38,12 @@ export function AdminNavView({ pathname }: { pathname: string }) {
             )}
           >
             {label}
+            {href === "/admin/requests" && pendingCount > 0 && (
+              <span className="ml-1.5 rounded-full bg-destructive/10 px-1.5 text-xs font-medium text-destructive tabular-nums">
+                <span className="sr-only">, pending: </span>
+                {pendingCount}
+              </span>
+            )}
           </Link>
         );
       })}
