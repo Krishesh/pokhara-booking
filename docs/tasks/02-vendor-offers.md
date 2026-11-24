@@ -43,7 +43,7 @@ Done as the first step of this task. The public (anon / publishable) key is read
 - `providers`: only providers with at least one such offer.
 - No insert, update or delete for anon. Admin writes (task 04) must use the service-role key from server code only (`SUPABASE_SERVICE_ROLE_KEY`, never `NEXT_PUBLIC_`).
 
-Column-level hiding (e.g. `notes`) is done in queries only; the anon key can still read those columns on visible rows. Move them behind a view if that becomes sensitive.
+Anon also has column-level SELECT grants: it can read only the columns listed above. `notes`, `source_url`, `booking_url` and provider contact details are refused (`permission denied`), so `select=*` with the anon key fails by design.
 
 ## Commission
 

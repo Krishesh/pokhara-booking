@@ -64,7 +64,16 @@ alter table public.price_listings enable row level security;
 -- Table privileges: anon is read-only
 grant usage on schema public to anon;
 revoke insert, update, delete, truncate on public.providers, public.activities, public.price_listings from anon;
-grant select on public.providers, public.activities, public.price_listings to anon;
+-- Column-level SELECT: anon reads only what the public site shows.
+-- Private columns (providers contact details and notes, price_listings source/booking URLs and notes) are not granted.
+revoke select on public.providers, public.activities, public.price_listings from anon;
+grant select (id, name, slug, category, description, location, image_url, is_published, created_at)
+  on public.activities to anon;
+grant select (id, activity_id, provider_id, package_name, price, currency, pricing_unit, duration,
+              inclusions, booking_conditions, verification_status, retrieved_at, source_domain)
+  on public.price_listings to anon;
+grant select (id, name, google_rating, google_review_count)
+  on public.providers to anon;
 
 drop policy if exists "anon full access" on public.providers;
 drop policy if exists "anon full access" on public.activities;
