@@ -1,3 +1,13 @@
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->
+
 ## MVP Guardrails
 - **No Auth:** Do not implement login, signup, or Supabase Auth. Treat the app as a single-user demo.
 - **Database:** Always read `supabase/schema.sql` before writing any Supabase queries or TypeScript types. Never guess table or column names. If a feature needs a new column or table, update `supabase/schema.sql` first and tell the user to run the SQL in Supabase.
