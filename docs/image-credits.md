@@ -17,6 +17,11 @@ Activity photos are freely licensed images from [Wikimedia Commons](https://comm
 |---|---|---|---|
 | Poon Hill sunrise weekend | [Sunrise from Poon Hill, Ghorepani.jpg](https://commons.wikimedia.org/wiki/File:Sunrise_from_Poon_Hill,_Ghorepani.jpg) | Aditya Pal | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | Begnas Lake walk and picnic | [Begnas Lake, Pokhara, Kaski.jpg](https://commons.wikimedia.org/wiki/File:Begnas_Lake,_Pokhara,_Kaski.jpg) | Shadow Ayush | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Ghandruk village weekend | [Ghandruk an Annapurna South.jpg](https://commons.wikimedia.org/wiki/File:Ghandruk_an_Annapurna_South.jpg) | Kondephy | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Bandipur heritage day trip | [Ganesh Temple Bandipur …](https://commons.wikimedia.org/wiki/File:Ganesh_Temple_Bandipur_Bandipur_VDC_Tanahau_Gandak_Pradesh_Nepal_Rajesh_Dhungana.jpg) | Rajesh Dhungana | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Rupa Lake cycling day | [Rupa Lake.jpg](https://commons.wikimedia.org/wiki/File:Rupa_Lake.jpg) | Pursob64 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Sarangkot sunrise hike | [Sarangkot, Nepal-WLV-1689.jpg](https://commons.wikimedia.org/wiki/File:Sarangkot,_Nepal-WLV-1689.jpg) | Bijay Chaurasia | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Annapurna Base Camp group trek | [Annapurna Base Camp with snow.jpg](https://commons.wikimedia.org/wiki/File:Annapurna_Base_Camp_with_snow.jpg) | Samdesherpa | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 
 No freely licensed photos of the Sarangkot zipline or a Pokhara ultralight were found on Commons, so those two use scenery of the same area. Replace them with the providers' own photos (with permission) when available.
 
