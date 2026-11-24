@@ -8,6 +8,8 @@ Staff can add, edit and publish activities, providers and price listings from si
 
 Per `AGENTS.md` there is no login: `/admin` is open in the single-user demo. The PRD's staff authentication is deferred.
 
+Since task 02 the public (anon) key is read-only and cannot see unpublished activities or outdated offers. Admin reads and writes must use a server-only Supabase client with `SUPABASE_SERVICE_ROLE_KEY` (Server Actions / Server Components only, never `NEXT_PUBLIC_`).
+
 ## User Flow
 
 1. Staff opens `/admin` and sees links to Activities, Providers and Offers.

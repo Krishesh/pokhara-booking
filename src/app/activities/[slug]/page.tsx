@@ -1,9 +1,11 @@
+import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin } from "lucide-react";
 
 import { ActivityImage } from "@/components/activity-image";
+import { OfferList, OfferListSkeleton } from "@/components/offer-list";
 import { Badge } from "@/components/ui/badge";
 import { getPublishedActivityBySlug } from "@/lib/activities";
 
@@ -55,6 +57,10 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
       {activity.description && (
         <p className="leading-relaxed whitespace-pre-line">{activity.description}</p>
       )}
+
+      <Suspense fallback={<OfferListSkeleton />}>
+        <OfferList activityId={activity.id} />
+      </Suspense>
     </article>
   );
 }
