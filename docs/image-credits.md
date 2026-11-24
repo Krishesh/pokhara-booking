@@ -11,6 +11,13 @@ Activity photos are freely licensed images from [Wikimedia Commons](https://comm
 | World Peace Pagoda Hike | [World Peace Pagoda, Pokhara by Y7.jpg](https://commons.wikimedia.org/wiki/File:World_Peace_Pagoda,_Pokhara_by_Y7.jpg) | Yallu007 | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
 | Bungee Jump at Hemja | none (placeholder; activity is hidden) | | |
 
+## Group outings
+
+| Outing | Photo | Author | Licence |
+|---|---|---|---|
+| Poon Hill sunrise weekend | [Sunrise from Poon Hill, Ghorepani.jpg](https://commons.wikimedia.org/wiki/File:Sunrise_from_Poon_Hill,_Ghorepani.jpg) | Aditya Pal | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| Begnas Lake walk and picnic | [Begnas Lake, Pokhara, Kaski.jpg](https://commons.wikimedia.org/wiki/File:Begnas_Lake,_Pokhara,_Kaski.jpg) | Shadow Ayush | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+
 No freely licensed photos of the Sarangkot zipline or a Pokhara ultralight were found on Commons, so those two use scenery of the same area. Replace them with the providers' own photos (with permission) when available.
 
 When adding photos through the admin, fill in **Photo credit** with the author and licence.

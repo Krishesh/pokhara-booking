@@ -2,7 +2,7 @@
 
 This guide is for staff who keep the website's activities, prices and companies up to date. No technical knowledge needed.
 
-**In short:** you add **activities** (things to do), **providers** (the companies that run them) and **offers** (a provider's price for an activity). Visitors compare offers and send booking requests. Nothing you do here deletes anything: you hide things instead.
+**In short:** you add **activities** (things to do), **providers** (the companies that run them) and **offers** (a provider's price for an activity). Visitors compare offers and send booking requests. You can also publish **group outings** (hikes and trips) that visitors register interest in. Nothing you do here deletes anything: you hide things instead.
 
 ---
 
@@ -15,11 +15,12 @@ This guide is for staff who keep the website's activities, prices and companies 
 5. [Providers](#5-providers)
 6. [Offers and prices](#6-offers-and-prices)
 7. [Booking requests](#7-booking-requests)
-8. [Everyday tasks, step by step](#8-everyday-tasks-step-by-step)
-9. [Booking requests and price changes](#9-booking-requests-and-price-changes)
-10. [Something went wrong?](#10-something-went-wrong)
-11. [Do and don't](#11-do-and-dont)
-12. [For developers](#12-for-developers)
+8. [Group outings](#8-group-outings)
+9. [Everyday tasks, step by step](#9-everyday-tasks-step-by-step)
+10. [Booking requests and price changes](#10-booking-requests-and-price-changes)
+11. [Something went wrong?](#11-something-went-wrong)
+12. [Do and don't](#12-do-and-dont)
+13. [For developers](#13-for-developers)
 
 ---
 
@@ -33,9 +34,9 @@ This guide is for staff who keep the website's activities, prices and companies 
 
 There is no "Admin" link on the public website on purpose. Bookmark `/admin`.
 
-> If you see **"Admin is disabled"**, the password hasn't been set up on this server yet. Ask your developer (see [For developers](#12-for-developers)).
+> If you see **"Admin is disabled"**, the password hasn't been set up on this server yet. Ask your developer (see [For developers](#13-for-developers)).
 
-Every admin page has the same menu at the top: **Overview · Activities · Offers · Providers · Requests** (with the number of pending requests in red), and **View site** on the right, which opens the public website in a new tab.
+Every admin page has the same menu at the top: **Overview · Activities · Offers · Providers · Outings · Requests** (with the number of pending requests in red), and **View site** on the right, which opens the public website in a new tab.
 
 ---
 
@@ -288,7 +289,71 @@ Changing the status doesn't take or refund any payment. Payment is handled outsi
 
 ---
 
-## 8. Everyday tasks, step by step
+## 8. Group outings
+
+Group outings are hikes and trips (Poon Hill weekend, Begnas Lake picnic…) that visitors can **register interest** in. There are no seats, bookings or payments on the website: interest is a "please contact me". The organizer follows up and handles everything else.
+
+Visitors find outings through **Group outings** in the website header.
+
+![A group outing as visitors see it, with the interest form](images/admin/outing-visitor-view.png)
+
+### The outings table
+
+![Group outings table](images/admin/outings.png)
+
+Each row shows the date ("Date to be confirmed" if empty), the status and **Interested**: how many registrations, and how many people in total when people registered for more than one (e.g. *2 (4 people)*). ↗ opens the public page; ✎ edits.
+
+### Statuses
+
+| Status | Visitors see | Interest form |
+|---|---|---|
+| **Draft** | Nothing (hidden) | — |
+| **Published** | The outing in the list and its page | On |
+| **Cancelled** | The outing with a red **Cancelled** label and notice | Off |
+
+Outings whose date has passed **drop off the list automatically**. Their page still opens, says "This outing has already taken place", and the form is off. You don't need to tidy them up.
+
+### Adding or editing an outing
+
+Click **New outing**, or an outing's name. The page has the form on the left and the interested people on the right.
+
+| Field | Tips |
+|---|---|
+| **Title** | e.g. *Poon Hill sunrise weekend*. The web address fills itself in. |
+| **Destination** | Where you're going. |
+| **Date** | Leave empty while it's not fixed: visitors see "Date to be confirmed". |
+| **Description** | What the outing is, how hard it is, what to bring. |
+| **Meeting point and time** | Empty shows "To be confirmed". |
+| **Cost** | A description, e.g. *Around NPR 3,500 per person (transport + food)*. Visitors never pay on the website. Empty shows "To be confirmed". |
+| **Organizer name** | Shown to visitors. |
+| **Organizer contact** | **Staff only**, never shown on the website. Visitors contact the organizer through the interest form. |
+| **Image link / Photo credit** | Same as for activities ([Photos](#photos)). |
+| **Status** | Start with **Draft**; switch to **Published** when the details are ready. |
+
+### Who's interested
+
+![An outing in the admin with interested people and message templates](images/admin/outing-detail.png)
+
+The **Interested people** card lists everyone who registered: name, how many people, the date they registered, their phone or email, and **Call / WhatsApp / Email** buttons. The same phone or email can only register once per outing; a second try is told "You're already on the list".
+
+- **Copy all contacts** copies everyone as `Name: number` lines, ready to paste into a WhatsApp broadcast list or group.
+- **Message everyone** has three ready messages filled in with the outing's details:
+
+| Message | When to send it |
+|---|---|
+| **Thanks for your interest** | Soon after people register. |
+| **Details confirmed** | When the date, meeting point and cost are fixed. |
+| **Outing cancelled** | After setting the status to Cancelled. |
+
+### Cancelling an outing
+
+1. Open the outing and set **Status** to **Cancelled**. **Save changes**.
+2. The website now shows it as cancelled and stops taking interest.
+3. Click **Copy all contacts**, then copy the **Outing cancelled** message (it's selected automatically) and send it to everyone.
+
+---
+
+## 9. Everyday tasks, step by step
 
 ### A new company wants to list its paragliding prices
 1. **Providers → New provider**: name, Google rating, phone (staff only). **Create provider**.
@@ -298,7 +363,7 @@ Changing the status doesn't take or refund any payment. Payment is handled outsi
 ### A provider changed its price
 1. **Offers**, filter by the activity, click the offer.
 2. Change the price, set Status to **Verified**, set **Price checked on** to today. **Save changes**.
-   Requests visitors already sent keep the old price ([why](#9-booking-requests-and-price-changes)).
+   Requests visitors already sent keep the old price ([why](#10-booking-requests-and-price-changes)).
 
 ### A provider stopped offering a package
 Click **Outdated** on that row. It vanishes from the website immediately. Don't edit it into a different package; create a new offer instead, so history stays correct.
@@ -317,12 +382,17 @@ Click **Outdated** on that row. It vanishes from the website immediately. Don't 
 2. Open a request, copy the **We're checking** message and send it to the customer.
 3. Call the provider. Then mark the request **Confirmed**, **Rejected** (with the reason) or **Cancelled**, and send the matching message.
 
+### Planning a group outing
+1. **Outings → New outing**, status **Draft**. Fill in what you know; leave date, meeting point and cost empty if they're not fixed yet.
+2. When it's ready to share, set **Published**. Share the page link (↗) on social media.
+3. Send **Thanks for your interest** to new registrations, and **Details confirmed** once everything is fixed.
+
 ### Pausing an activity for the monsoon
 Switch it to **Hidden** in the Activities table. Its offers are kept. Switch it back to **Live** when the season starts. Refresh prices if needed.
 
 ---
 
-## 9. Booking requests and price changes
+## 10. Booking requests and price changes
 
 When a visitor sends a booking request, the website saves **a copy of the offer exactly as they saw it**: price, total, what's included, conditions. Editing or outdating the offer later **never changes requests that were already sent**. So:
 
@@ -332,7 +402,7 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 
 ---
 
-## 10. Something went wrong?
+## 11. Something went wrong?
 
 | You see | What to do |
 |---|---|
@@ -352,11 +422,13 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 | "Add a short reason…" | Rejecting or cancelling needs a reason; the customer message uses it. |
 | "Enter your name…" | Type your name so the team knows who made the change. |
 | The **WhatsApp** button is missing | The number has no country code and isn't a Nepali mobile. Use **Call**, or the copy icon. |
+| "You're already on the list for this outing" (visitor) | That phone or email already registered for this outing. Nothing to do. |
+| An outing doesn't appear on the website | It's a **Draft**, or its date has passed. |
 | A request was rejected by mistake | Rejected is final. Contact the customer and ask them to send a new request on the website. |
 
 ---
 
-## 11. Do and don't
+## 12. Do and don't
 
 **Do**
 - Keep new activities **Hidden** until their photo, description and at least one offer are ready.
@@ -366,6 +438,7 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 - Fill in **Included** and **Conditions**: visitors compare what's included, not just the price.
 - Reply to pending requests within a day, and always send the customer a message after changing a status.
 - Confirm only at the price the customer saw.
+- Keep outings as **Draft** until the organizer has agreed to run them, and message everyone promptly if an outing is cancelled.
 
 **Don't**
 - Don't put prices, phone numbers or private notes in public fields (name, description, included, conditions).
@@ -378,7 +451,7 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 
 ---
 
-## 12. For developers
+## 13. For developers
 
 - **Access:** `/admin` uses the browser's built-in password prompt (HTTP Basic Auth) with one shared password from `ADMIN_PASSWORD` in `.env.local` (8+ characters; any username). With no password set, `/admin` returns 503 and stays locked. There are no user accounts or Supabase Auth (see `AGENTS.md`).
 - **Server Actions** can be called from any URL, so every admin action and admin data read re-checks the password (`requireAdmin()` in `src/lib/admin/guard.ts`), not just `src/proxy.ts`.
