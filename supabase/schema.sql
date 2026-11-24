@@ -21,14 +21,15 @@ create table if not exists public.providers (
 
 -- Things to do in Pokhara
 create table if not exists public.activities (
-  id          uuid primary key default gen_random_uuid(),
-  name        text not null,
-  slug        text not null unique,
-  category    text not null,
-  description text,
-  location    text,
-  image_url   text,
-  created_at  timestamptz default now()
+  id           uuid primary key default gen_random_uuid(),
+  name         text not null,
+  slug         text not null unique,
+  category     text not null,
+  description  text,
+  location     text,
+  image_url    text,
+  is_published boolean not null default false,  -- only published rows are shown publicly
+  created_at   timestamptz default now()
 );
 
 -- A price offered for an activity, optionally by a specific provider
@@ -58,6 +59,12 @@ create table if not exists public.price_listings (
 alter table public.providers      enable row level security;
 alter table public.activities     enable row level security;
 alter table public.price_listings enable row level security;
+
+-- Table privileges for anon (policies only filter rows; anon also needs these grants)
+grant usage on schema public to anon;
+grant select, insert, update, delete on public.providers      to anon;
+grant select, insert, update, delete on public.activities     to anon;
+grant select, insert, update, delete on public.price_listings to anon;
 
 drop policy if exists "anon full access" on public.providers;
 create policy "anon full access" on public.providers

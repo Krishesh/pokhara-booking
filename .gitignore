@@ -42,3 +42,6 @@ next-env.d.ts
 
 # IDE
 .idea/workspace.xml
+
+# Playwright MCP screenshots and logs
+/.playwright-mcp/
