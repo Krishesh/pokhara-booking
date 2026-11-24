@@ -10,6 +10,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## MVP Guardrails
 - **No Auth:** Do not implement login, signup, or Supabase Auth. Treat the app as a single-user demo.
+  - Exception (task 04): `/admin` is protected by one shared password (`ADMIN_PASSWORD`, browser Basic Auth in `src/proxy.ts`). Keep it, and call `requireAdmin()` at the start of every admin Server Action and admin data read. Admin uses the server-only `SUPABASE_SERVICE_ROLE_KEY`; the public key is read-only.
 - **Database:** Always read `supabase/schema.sql` before writing any Supabase queries or TypeScript types. Never guess table or column names. If a feature needs a new column or table, update `supabase/schema.sql` first and tell the user to run the SQL in Supabase.
 - **Stack:** Next.js App Router, TypeScript, Tailwind CSS, shadcn/ui, `@supabase/supabase-js`.
 - **Testing:** Use Vitest (`npm test`). Do NOT install Playwright or Cypress. Write unit tests for pure business logic

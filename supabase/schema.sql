@@ -28,6 +28,7 @@ create table if not exists public.activities (
   description  text,
   location     text,
   image_url    text,
+  image_credit text,  -- photographer and licence, shown under the photo (e.g. "Photo: Jane Doe, CC BY-SA 4.0")
   is_published boolean not null default false,  -- only published rows are shown publicly
   created_at   timestamptz default now()
 );
@@ -90,7 +91,7 @@ revoke insert, update, delete, truncate on public.providers, public.activities, 
 -- Column-level SELECT: anon reads only what the public site shows.
 -- Private columns (providers contact details and notes, price_listings source/booking URLs and notes) are not granted.
 revoke select on public.providers, public.activities, public.price_listings from anon;
-grant select (id, name, slug, category, description, location, image_url, is_published, created_at)
+grant select (id, name, slug, category, description, location, image_url, image_credit, is_published, created_at)
   on public.activities to anon;
 grant select (id, activity_id, provider_id, package_name, price, currency, pricing_unit, duration,
               inclusions, booking_conditions, verification_status, retrieved_at, source_domain)

@@ -37,7 +37,12 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
         All activities
       </Link>
 
-      <ActivityImage src={activity.image_url} alt={activity.name} className="rounded-xl" priority />
+      <figure className="space-y-2">
+        <ActivityImage src={activity.image_url} alt={activity.name} className="rounded-xl" priority />
+        {activity.image_url && activity.image_credit && (
+          <figcaption className="text-xs text-muted-foreground">{activity.image_credit}</figcaption>
+        )}
+      </figure>
 
       <header className="space-y-3">
         <h1 className="text-3xl font-bold tracking-tight">{activity.name}</h1>
