@@ -4,7 +4,7 @@ Compare and request adventure activities in Pokhara, Nepal, from several local c
 
 Visitors browse activities (paragliding, boating, ziplining…), compare offers from different providers side by side, and send a **booking request**. Staff check availability with the provider, contact the customer, and record the outcome in a small password-protected admin. Visitors can also register interest in **group outings** that an organizer follows up on.
 
-> **Status:** MVP / single-user demo. All companies, clubs, people and prices in the seed data are **fictional** (names checked against real Pokhara businesses; websites use `example.com`). The site footer says so.
+> **Status:** MVP / single-user demo. It ships with realistic **fictional** demo data: 10 companies, 25 offers and 10 group outings (see [Demo data](#demo-data)). The site footer says so.
 
 ![Home page with activity cards](docs/images/home.png)
 
@@ -17,6 +17,7 @@ Visitors browse activities (paragliding, boating, ziplining…), compare offers 
 - [Getting started](#getting-started)
 - [Environment variables](#environment-variables)
 - [Database](#database)
+- [Demo data](#demo-data)
 - [Scripts](#scripts)
 - [Project structure](#project-structure)
 - [Security model](#security-model)
@@ -97,9 +98,9 @@ In the Supabase dashboard, open **SQL Editor** and run these files **in this ord
 2. [`supabase/seed.sql`](supabase/seed.sql): 6 demo activities (5 with photos)
 3. [`supabase/seed-offers.sql`](supabase/seed-offers.sql): demo providers and offers
 4. [`supabase/seed-outings.sql`](supabase/seed-outings.sql): demo group outings
-5. [`supabase/seed-demo-more.sql`](supabase/seed-demo-more.sql): realistic-looking demo data: 10 providers, 25 offers across every activity, 10 outings and some outing interests
+5. [`supabase/seed-demo-more.sql`](supabase/seed-demo-more.sql): gives the demo providers realistic names and adds the rest of the [demo data](#demo-data)
 
-All five are safe to run more than once. Make sure the dashboard is on the same project as `NEXT_PUBLIC_SUPABASE_URL`.
+All five are safe to run more than once. Skip the seed files for an empty site. Make sure the dashboard is on the same project as `NEXT_PUBLIC_SUPABASE_URL`.
 
 ### 4. Run
 
@@ -151,6 +152,70 @@ Restart `npm run dev` after changing `.env.local`.
 | `booking_requests`, `group_interests` | **No access** | Full |
 
 The public key can't insert, update or delete anything.
+
+---
+
+## Demo data
+
+The seed files fill the site with **realistic but fictional** data, so every feature can be tried straight away.
+
+> **Nothing in the demo data is real.** Company, club and people names were invented and checked against web search to avoid real Pokhara businesses (real operators such as ZipFlyer or Paddle Nepal are deliberately not used). Websites use the reserved `example.com` domain, staff-only phone numbers are marked "(demo)", and outing sign-ups use `example.com` email addresses only. Prices are in line with typical published Pokhara prices for 2026, but they are not quotes from any operator. Every page shows a footer saying the data is fictional.
+
+### Activities and offers
+
+![Paragliding offers compared side by side](docs/images/offers.png)
+
+| Activity | Offers shown | Providers | Price range |
+|---|---|---|---|
+| Paragliding at Sarangkot | 6 (+1 outdated, hidden) | Fewa Wings Paragliding, Machhapuchhre Air Sports, Sarangkot Skyline Adventures, Annapurna Sky Tandem | NPR 8,800 – 16,000 per person, cross-country USD 150 |
+| Boating on Phewa Lake | 5 | Phewa Rowing Cooperative, Lakeside Kayak & SUP | NPR 900 kayak hire – NPR 3,500 SUP lesson; boats NPR 1,000 – 1,500 per group |
+| Ultralight Flight | 4 (+1 without a price, hidden) | Kaski Ultralight Flights, Machhapuchhre Air Sports, Sarangkot Skyline Adventures | NPR 16,500 – 46,000 per flight, 15-minute flight USD 125 |
+| Zipline at Sarangkot | 3 | Seti River Zipline, one "Listed on" offer with no provider | NPR 6,000 – 8,800 per person |
+| Bungee Jump at Hemja | 3 | Hemja Gorge Bungee | NPR 10,500 – 18,000 per person |
+| World Peace Pagoda Hike | 2 | Pokhara Valley Guides | NPR 2,500 per person, private sunrise hike NPR 6,000 per group |
+
+The offers cover every case the site handles: verified and unverified prices, NPR and USD, per person, per group, per flight and **per hour** (the guided kayak tour, shown as "Online requests aren't available"), an offer without a provider, an outdated offer and an offer without a price (both hidden). Providers have Google ratings from 4.2 to 4.9.
+
+Five activities have Wikimedia Commons photos. Bungee Jump at Hemja has none (placeholder) and is **hidden** by the seed; switch it to Live in the admin to show it.
+
+### Group outings
+
+![Group outings list](docs/images/outings.png)
+
+| Outing | Date | Organizer | Status |
+|---|---|---|---|
+| Sarangkot sunrise hike | 5 Dec 2026 | Lakeside Trekking Circle | Published |
+| Australian Camp overnight | 6 Dec 2026 | Lakeside Trekking Circle | **Cancelled** (shown with a label, form off) |
+| Poon Hill sunrise weekend | 12 Dec 2026 | Lakeside Trekking Circle | Published |
+| Bandipur heritage day trip | 20 Dec 2026 | Lakeside Trekking Circle | Published |
+| Ghandruk village weekend | 9 Jan 2027 | Pokhara Weekend Walkers | Published |
+| Annapurna Base Camp group trek | 15 Mar 2027 | Himalayan Trail Friends | Published |
+| Begnas Lake walk and picnic | to be confirmed | Pokhara Weekend Walkers | Published |
+| Rupa Lake cycling day | to be confirmed | Pokhara Weekend Walkers | Published |
+| Mardi Himal trek, Panchase overnight trek | to be confirmed | | **Draft** (hidden) |
+
+Seven sign-ups are spread over four outings (for example 3 for Annapurna Base Camp, 6 people in total), so the admin's "Interested people" list and templates have data.
+
+The dates are fixed, and outings drop off the public list once their date passes. Edit the dates in the admin (or in `supabase/seed-demo-more.sql`) to keep the demo fresh.
+
+### Booking requests
+
+The seed files don't create booking requests. Send one from any activity page (**Request booking**), then review it under **Admin → Requests**.
+
+### Removing the demo data
+
+Before using the site for real, remove the seed data in the Supabase SQL editor, children first:
+
+```sql
+delete from public.group_interests;
+delete from public.group_outings;
+delete from public.booking_requests;
+delete from public.price_listings;
+delete from public.providers;
+delete from public.activities;
+```
+
+**This permanently deletes every row in those tables**, including any real data added since. Then add real activities, providers and offers through the admin, and remove the "fictional" footer from `src/app/layout.tsx`.
 
 ---
 
@@ -229,7 +294,7 @@ The app deploys like any Next.js app (e.g. on [Vercel](https://vercel.com/docs/f
 1. Add the four [environment variables](#environment-variables) in the hosting provider's settings.
 2. Use a **long, unique `ADMIN_PASSWORD`**, serve the site over **HTTPS only**, and change the password when staff leave.
 3. Use a **fresh service-role (secret) key** that has never been in a `NEXT_PUBLIC_` variable or shared anywhere.
-4. Replace the demo data with real, approved activities, providers and offers, and resolve the open business questions in the PRD (commission, payments, cancellations and refunds, privacy notice).
+4. [Remove the demo data](#removing-the-demo-data), add real, approved activities, providers and offers, remove the "fictional" footer, and resolve the open business questions in the PRD (commission, payments, cancellations and refunds, privacy notice).
 
 ---
 
