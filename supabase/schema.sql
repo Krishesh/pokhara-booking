@@ -70,7 +70,8 @@ create table if not exists public.booking_requests (
   currency          text not null check (currency in ('NPR', 'USD', 'INR', 'EUR')),
   status            text not null default 'pending'
                     check (status in ('pending', 'confirmed', 'rejected', 'cancelled')),
-  staff_note        text,
+  staff_note        text check (char_length(staff_note) <= 1000),
+  updated_by        text check (char_length(updated_by) <= 80),  -- staff name typed on the status form (no accounts)
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now()
 );

@@ -14,11 +14,12 @@ This guide is for staff who keep the website's activities, prices and companies 
 4. [Activities](#4-activities)
 5. [Providers](#5-providers)
 6. [Offers and prices](#6-offers-and-prices)
-7. [Everyday tasks, step by step](#7-everyday-tasks-step-by-step)
-8. [Booking requests and price changes](#8-booking-requests-and-price-changes)
-9. [Something went wrong?](#9-something-went-wrong)
-10. [Do and don't](#10-do-and-dont)
-11. [For developers](#11-for-developers)
+7. [Booking requests](#7-booking-requests)
+8. [Everyday tasks, step by step](#8-everyday-tasks-step-by-step)
+9. [Booking requests and price changes](#9-booking-requests-and-price-changes)
+10. [Something went wrong?](#10-something-went-wrong)
+11. [Do and don't](#11-do-and-dont)
+12. [For developers](#12-for-developers)
 
 ---
 
@@ -32,9 +33,9 @@ This guide is for staff who keep the website's activities, prices and companies 
 
 There is no "Admin" link on the public website on purpose. Bookmark `/admin`.
 
-> If you see **"Admin is disabled"**, the password hasn't been set up on this server yet. Ask your developer (see [For developers](#11-for-developers)).
+> If you see **"Admin is disabled"**, the password hasn't been set up on this server yet. Ask your developer (see [For developers](#12-for-developers)).
 
-Every admin page has the same menu at the top: **Overview · Activities · Offers · Providers**, and **View site** on the right, which opens the public website in a new tab.
+Every admin page has the same menu at the top: **Overview · Activities · Offers · Providers · Requests** (with the number of pending requests in red), and **View site** on the right, which opens the public website in a new tab.
 
 ---
 
@@ -47,7 +48,7 @@ Every admin page has the same menu at the top: **Overview · Activities · Offer
 | **Activities** | How many are live on the website, out of all you've added. |
 | **Offers** | All prices, with how many are unverified, outdated or missing a price. |
 | **Providers** | How many companies you've added. |
-| **Pending booking requests** | Requests from visitors waiting for a reply. (The screen to review them is coming in the next update.) |
+| **Pending booking requests** | Requests from visitors waiting for a reply. Click to review them. |
 
 Click a card to jump to that section.
 
@@ -218,7 +219,76 @@ Offers on an activity page are sorted by currency (NPR first), then cheapest fir
 
 ---
 
-## 7. Everyday tasks, step by step
+## 7. Booking requests
+
+When a visitor clicks **Request booking** on an offer, the request lands here. **A request is not a booking:** the visitor was told "Confirmation is pending. This request does not reserve capacity or guarantee a booking." Your job is to check with the provider, reply to the customer, and record what happened.
+
+### The list
+
+![Booking requests list](images/admin/requests.png)
+
+- **Tabs:** Pending (opens first) · Confirmed · Rejected · Cancelled · All, each with a count.
+- **Pending requests show oldest first**, so the longest-waiting customer is at the top. A request still pending after **2 days** turns red with a ⚠ icon. Reply to these first.
+- **Search** by reference (`PKR-7EV5GB`), customer name, phone number (spaces are fine: `980 111 2222`) or email. Use it when a customer calls quoting their reference.
+- Click a reference to open the request.
+
+### One request
+
+![A booking request with customer details, the offer, message templates and the status form](images/admin/request-detail.png)
+
+**Customer:** name, phone or email, requested date, number of people and the estimated total. Buttons:
+- **Call** opens your phone app.
+- **WhatsApp** opens a chat (for phone numbers with a country code, or Nepali mobiles starting 97/98).
+- **Email** opens your mail app.
+- The copy icons copy the reference or the contact.
+
+**Offer as the customer saw it:** the exact package, price, inclusions and conditions at the moment they sent the request. This never changes, even if the offer is edited later.
+
+If the offer **has changed since then**, a red box says what changed, for example *"The price is now NPR 8,500 per person (the customer saw NPR 9,000 per person)"*, or that the offer is now outdated or its activity hidden. **Only confirm at the price the customer saw.** If the provider won't honour it, reject the request with the reason and ask the customer to send a new request.
+
+**Message the customer:** ready-made messages with the customer's name, reference, activity, date, people and total filled in:
+
+| Message | When to send it |
+|---|---|
+| **We're checking** | Right away, so the customer knows you're on it. |
+| **Confirmed** | After the provider accepted and the customer agreed to the price. |
+| **Can't confirm** | After rejecting. Includes your reason. |
+| **Cancelled** | After cancelling. Includes your reason. |
+
+Click **Copy message** and paste it into WhatsApp, SMS or email. The website never sends messages by itself.
+
+### Recording the outcome
+
+1. Contact the provider about the date and number of people.
+2. Choose the new status on the right:
+
+| Status | Use it when | Reason needed? |
+|---|---|---|
+| **Confirmed** | The provider accepted, **and** the customer agreed to the price and terms. | No (optional note) |
+| **Rejected** | The provider can't do it: fully booked, weather, price changed… | **Yes** |
+| **Cancelled** | The customer or provider called it off after the request. | **Yes** |
+
+3. Write the reason (or an optional note), and **your name** (remembered in your browser after the first time).
+4. Click **Mark …**. For Rejected and Cancelled you'll be asked to confirm, because **these are final**: the request can't be reopened. If the customer wants to try again, they send a new request.
+5. Send the customer the matching message.
+
+What can change into what:
+
+| From | Can become |
+|---|---|
+| Pending | Confirmed, Rejected or Cancelled |
+| Confirmed | Cancelled |
+| Rejected, Cancelled | Nothing (final) |
+
+The box above the form shows the latest note, **who** made the last change and **when**.
+
+**Two people working at once:** if a colleague changed the request after you opened it, your change is not saved and you'll see *"This request was updated by someone else"*. Click **Reload** to see their update first.
+
+Changing the status doesn't take or refund any payment. Payment is handled outside the website.
+
+---
+
+## 8. Everyday tasks, step by step
 
 ### A new company wants to list its paragliding prices
 1. **Providers → New provider**: name, Google rating, phone (staff only). **Create provider**.
@@ -228,7 +298,7 @@ Offers on an activity page are sorted by currency (NPR first), then cheapest fir
 ### A provider changed its price
 1. **Offers**, filter by the activity, click the offer.
 2. Change the price, set Status to **Verified**, set **Price checked on** to today. **Save changes**.
-   Requests visitors already sent keep the old price ([why](#8-booking-requests-and-price-changes)).
+   Requests visitors already sent keep the old price ([why](#9-booking-requests-and-price-changes)).
 
 ### A provider stopped offering a package
 Click **Outdated** on that row. It vanishes from the website immediately. Don't edit it into a different package; create a new offer instead, so history stays correct.
@@ -242,12 +312,17 @@ Click **Outdated** on that row. It vanishes from the website immediately. Don't 
 2. Add its offers (they'll show *Hidden: activity not published*).
 3. When it's ready, switch the activity to **Live** in the Activities table.
 
+### Handling today's booking requests
+1. **Requests** (the red number in the menu shows how many are waiting). Start with any red, overdue rows.
+2. Open a request, copy the **We're checking** message and send it to the customer.
+3. Call the provider. Then mark the request **Confirmed**, **Rejected** (with the reason) or **Cancelled**, and send the matching message.
+
 ### Pausing an activity for the monsoon
 Switch it to **Hidden** in the Activities table. Its offers are kept. Switch it back to **Live** when the season starts. Refresh prices if needed.
 
 ---
 
-## 8. Booking requests and price changes
+## 9. Booking requests and price changes
 
 When a visitor sends a booking request, the website saves **a copy of the offer exactly as they saw it**: price, total, what's included, conditions. Editing or outdating the offer later **never changes requests that were already sent**. So:
 
@@ -257,7 +332,7 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 
 ---
 
-## 9. Something went wrong?
+## 10. Something went wrong?
 
 | You see | What to do |
 |---|---|
@@ -273,10 +348,15 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 | A provider doesn't appear | They have no visible offers yet. |
 | "Something went wrong while saving" | Try again. If it keeps happening, tell your developer the time it happened. |
 | "Admin password required. Reload the page…" | Your sign-in expired: reload and enter the password again. |
+| "This request was updated by someone else" | A colleague changed it first. Click **Reload** and check their note. |
+| "Add a short reason…" | Rejecting or cancelling needs a reason; the customer message uses it. |
+| "Enter your name…" | Type your name so the team knows who made the change. |
+| The **WhatsApp** button is missing | The number has no country code and isn't a Nepali mobile. Use **Call**, or the copy icon. |
+| A request was rejected by mistake | Rejected is final. Contact the customer and ask them to send a new request on the website. |
 
 ---
 
-## 10. Do and don't
+## 11. Do and don't
 
 **Do**
 - Keep new activities **Hidden** until their photo, description and at least one offer are ready.
@@ -284,6 +364,8 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 - Mark prices **Verified** only after confirming them with the provider, and keep the price-checked date honest.
 - Use **Outdated** for prices that no longer apply.
 - Fill in **Included** and **Conditions**: visitors compare what's included, not just the price.
+- Reply to pending requests within a day, and always send the customer a message after changing a status.
+- Confirm only at the price the customer saw.
 
 **Don't**
 - Don't put prices, phone numbers or private notes in public fields (name, description, included, conditions).
@@ -291,10 +373,12 @@ When a visitor sends a booking request, the website saves **a copy of the offer 
 - Don't change the web address of a live activity unless you must.
 - Don't use photos you found online without permission or a free licence.
 - Don't share the admin password in group chats.
+- Don't mark a request Confirmed before both the provider and the customer have agreed.
+- Don't copy customers' phone numbers or emails anywhere else; use them only to arrange their booking.
 
 ---
 
-## 11. For developers
+## 12. For developers
 
 - **Access:** `/admin` uses the browser's built-in password prompt (HTTP Basic Auth) with one shared password from `ADMIN_PASSWORD` in `.env.local` (8+ characters; any username). With no password set, `/admin` returns 503 and stays locked. There are no user accounts or Supabase Auth (see `AGENTS.md`).
 - **Server Actions** can be called from any URL, so every admin action and admin data read re-checks the password (`requireAdmin()` in `src/lib/admin/guard.ts`), not just `src/proxy.ts`.
