@@ -5,7 +5,7 @@ import { createClient } from "@/utils/supabase/server";
 import type { Activity } from "@/lib/types";
 
 const ACTIVITY_COLUMNS =
-  "id, name, slug, category, description, location, image_url, is_published";
+  "id, name, slug, category, description, location, image_url, image_credit, is_published";
 
 async function getSupabase() {
   return createClient(await cookies());

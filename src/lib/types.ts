@@ -8,6 +8,7 @@ export type Activity = {
   description: string | null;
   location: string | null;
   image_url: string | null;
+  image_credit: string | null;
   is_published: boolean;
 };
 

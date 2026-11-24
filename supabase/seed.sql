@@ -3,6 +3,7 @@
 
 -- Schema change from task 01 (also recorded in schema.sql)
 alter table public.activities add column if not exists is_published boolean not null default false;
+alter table public.activities add column if not exists image_credit text;
 
 insert into public.activities (name, slug, category, location, description, is_published)
 values
@@ -55,3 +56,20 @@ values
     false
   )
 on conflict (slug) do nothing;
+
+-- Photos (task 04). Freely licensed images from Wikimedia Commons; credits in docs/image-credits.md.
+update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Sarangkot_pokhara.jpg',
+  image_credit = 'Photo: Thoplo.1, CC BY-SA 4.0, via Wikimedia Commons'
+where slug = 'paragliding-sarangkot' and image_url is null;
+update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Phewa_Lake_2602.jpg/1280px-Phewa_Lake_2602.jpg',
+  image_credit = 'Photo: Bijay Chaurasia, CC BY-SA 4.0, via Wikimedia Commons'
+where slug = 'boating-phewa-lake' and image_url is null;
+update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Sarangkot%2C_Nepal-WLV-1689.jpg/1280px-Sarangkot%2C_Nepal-WLV-1689.jpg',
+  image_credit = 'Photo: Sarangkot hillside by Bijay Chaurasia, CC BY-SA 4.0, via Wikimedia Commons'
+where slug = 'zipline-sarangkot' and image_url is null;
+update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Sarangkot%2C_Nepal-WLV-1691.jpg/1280px-Sarangkot%2C_Nepal-WLV-1691.jpg',
+  image_credit = 'Photo: Pokhara and Phewa Lake from above by Bijay Chaurasia, CC BY-SA 4.0, via Wikimedia Commons'
+where slug = 'ultralight-flight' and image_url is null;
+update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/World_Peace_Pagoda%2C_Pokhara_by_Y7.jpg/1280px-World_Peace_Pagoda%2C_Pokhara_by_Y7.jpg',
+  image_credit = 'Photo: Yallu007, CC BY-SA 4.0, via Wikimedia Commons'
+where slug = 'world-peace-pagoda-hike' and image_url is null;
