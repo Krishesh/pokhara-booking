@@ -4,7 +4,7 @@ Compare and request adventure activities in Pokhara, Nepal, from several local c
 
 Visitors browse activities (paragliding, boating, ziplining…), compare offers from different providers side by side, and send a **booking request**. Staff check availability with the provider, contact the customer, and record the outcome in a small password-protected admin. Visitors can also register interest in **group outings** that an organizer follows up on.
 
-> **Status:** MVP / single-user demo. All companies, prices and outings in the seed data are fictional ("Demo …").
+> **Status:** MVP / single-user demo. All companies, clubs, people and prices in the seed data are **fictional** (names checked against real Pokhara businesses; websites use `example.com`). The site footer says so.
 
 ![Home page with activity cards](docs/images/home.png)
 
@@ -97,8 +97,9 @@ In the Supabase dashboard, open **SQL Editor** and run these files **in this ord
 2. [`supabase/seed.sql`](supabase/seed.sql): 6 demo activities (5 with photos)
 3. [`supabase/seed-offers.sql`](supabase/seed-offers.sql): demo providers and offers
 4. [`supabase/seed-outings.sql`](supabase/seed-outings.sql): demo group outings
+5. [`supabase/seed-demo-more.sql`](supabase/seed-demo-more.sql): realistic-looking demo data: 10 providers, 25 offers across every activity, 10 outings and some outing interests
 
-All four are safe to run more than once. Make sure the dashboard is on the same project as `NEXT_PUBLIC_SUPABASE_URL`.
+All five are safe to run more than once. Make sure the dashboard is on the same project as `NEXT_PUBLIC_SUPABASE_URL`.
 
 ### 4. Run
 

@@ -48,6 +48,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </div>
         </header>
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>
+        <footer className="border-t">
+          <p className="mx-auto w-full max-w-6xl px-4 py-4 text-xs text-muted-foreground">
+            Demo site: the companies, prices and group outings shown are fictional. Photos from Wikimedia Commons, credited
+            under each image.
+          </p>
+        </footer>
         <Toaster richColors position="top-center" />
       </body>
     </html>
