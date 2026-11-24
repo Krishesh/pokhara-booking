@@ -54,6 +54,29 @@ create table if not exists public.price_listings (
   created_at          timestamptz default now()
 );
 
+-- A visitor's request to book an offer (task 03). Written only by server code with the service-role key.
+create table if not exists public.booking_requests (
+  id                uuid primary key default gen_random_uuid(),
+  reference         text not null unique check (reference ~ '^PKR-[A-Z0-9]{6}$'),
+  price_listing_id  uuid references public.price_listings (id) on delete set null,
+  customer_name     text not null check (char_length(customer_name) between 2 and 100),
+  contact_type      text not null check (contact_type in ('phone', 'email')),
+  contact_value     text not null check (char_length(contact_value) between 3 and 254),
+  requested_date    date not null,
+  participant_count integer not null check (participant_count between 1 and 20),
+  offer_snapshot    jsonb not null,  -- copy of the offer as shown at submission; never updated
+  total_price       numeric(12, 2) not null check (total_price >= 0),
+  currency          text not null check (currency in ('NPR', 'USD', 'INR', 'EUR')),
+  status            text not null default 'pending'
+                    check (status in ('pending', 'confirmed', 'rejected', 'cancelled')),
+  staff_note        text,
+  created_at        timestamptz not null default now(),
+  updated_at        timestamptz not null default now()
+);
+
+create index if not exists booking_requests_status_created_idx
+  on public.booking_requests (status, created_at);
+
 -- Row Level Security
 -- Public visitors use the anon (publishable) key and may only READ what the site shows.
 -- All writes (admin, task 04) go through server code using the service-role key, which bypasses RLS.
@@ -111,3 +134,8 @@ create policy "anon reads providers with public offers" on public.providers
         and a.is_published
     )
   );
+
+-- Booking requests hold customer contact details: no access at all for anon or authenticated.
+-- Only the service role (server code) reads and writes them. RLS on with no policies = deny all.
+alter table public.booking_requests enable row level security;
+revoke all on public.booking_requests from anon, authenticated;
