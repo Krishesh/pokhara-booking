@@ -34,6 +34,17 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <Link href="/" className="text-lg font-semibold tracking-tight">
               Pokhara Booking
             </Link>
+            <nav aria-label="Main" className="ml-auto flex items-center gap-1 text-sm">
+              <Link href="/" className="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                Activities
+              </Link>
+              <Link
+                href="/outings"
+                className="rounded-md px-3 py-1.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+              >
+                Group outings
+              </Link>
+            </nav>
           </div>
         </header>
         <main className="mx-auto w-full max-w-6xl flex-1 px-4 py-8">{children}</main>

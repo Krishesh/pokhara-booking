@@ -11,6 +11,7 @@ const LINKS = [
   { href: "/admin/activities", label: "Activities" },
   { href: "/admin/offers", label: "Offers" },
   { href: "/admin/providers", label: "Providers" },
+  { href: "/admin/outings", label: "Outings" },
   { href: "/admin/requests", label: "Requests" },
 ];
 
