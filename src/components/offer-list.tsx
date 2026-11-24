@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { getAvailableOffersForActivity } from "@/lib/offers";
 
-export async function OfferList({ activityId }: { activityId: string }) {
+export async function OfferList({ activityId, activityName }: { activityId: string; activityName: string }) {
   const offers = await getAvailableOffersForActivity(activityId);
 
   return (
@@ -24,7 +24,7 @@ export async function OfferList({ activityId }: { activityId: string }) {
           <ul className="space-y-4">
             {offers.map((offer) => (
               <li key={offer.id}>
-                <OfferCard offer={offer} />
+                <OfferCard offer={offer} activityName={activityName} />
               </li>
             ))}
           </ul>

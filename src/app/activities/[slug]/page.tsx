@@ -59,7 +59,7 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
       )}
 
       <Suspense fallback={<OfferListSkeleton />}>
-        <OfferList activityId={activity.id} />
+        <OfferList activityId={activity.id} activityName={activity.name} />
       </Suspense>
     </article>
   );

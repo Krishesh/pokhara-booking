@@ -1,7 +1,9 @@
 import { BadgeCheck, CalendarCheck, Clock, Star } from "lucide-react";
 
+import { BookingDialog } from "@/components/booking-dialog";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { isRequestableUnit } from "@/lib/booking";
 import {
   formatCheckedDate,
   formatPrice,
@@ -10,7 +12,7 @@ import {
 } from "@/lib/offer-format";
 import type { AvailableOffer } from "@/lib/types";
 
-export function OfferCard({ offer }: { offer: AvailableOffer }) {
+export function OfferCard({ offer, activityName }: { offer: AvailableOffer; activityName: string }) {
   const unit = formatPricingUnit(offer.pricing_unit);
   const rating = offer.provider
     ? formatRating(offer.provider.google_rating, offer.provider.google_review_count)
@@ -72,6 +74,24 @@ export function OfferCard({ offer }: { offer: AvailableOffer }) {
           <OfferDetail title="Conditions" text={offer.booking_conditions} />
         )}
       </CardContent>
+
+      <CardFooter>
+        {isRequestableUnit(offer.pricing_unit) ? (
+          <BookingDialog
+            activityName={activityName}
+            offer={{
+              id: offer.id,
+              price: offer.price,
+              currency: offer.currency,
+              pricing_unit: offer.pricing_unit,
+              package_name: offer.package_name,
+              vendor,
+            }}
+          />
+        ) : (
+          <p className="text-sm text-muted-foreground">Online requests aren&apos;t available for this offer.</p>
+        )}
+      </CardFooter>
     </Card>
   );
 }
