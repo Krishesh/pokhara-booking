@@ -98,12 +98,15 @@ This is what a visitor sees on an activity page: the photo with its credit, the 
 
 ![Activities table with Live switches](images/admin/activities.png)
 
-The table lists every activity with its category, location, number of offers and a **Live / Hidden** switch.
+The table lists every activity with its photo, category, location, number of offers and a **Live / Hidden** switch.
+
+- **All / Live / Hidden tabs:** show every activity, only the ones on the website, or only the hidden ones. Each tab shows its count.
+- **Search box:** finds activities by name, web address (slug), category or place. Click **×** to clear it.
 
 - **Live / Hidden switch:** click to publish or hide an activity straight away. A message confirms the change. Hiding an activity also hides all its offers. Nothing is deleted, and you can switch it back on any time.
 - **↗ icon:** opens the live page (only for Live activities).
 - **✎ icon or the name:** edit the activity.
-- **Offers number:** shows the offers for that activity.
+- **Offers number:** shows the offers for that activity. **No offers** in orange means visitors can't request it yet.
 
 ### Adding an activity
 
@@ -171,13 +174,15 @@ An offer is one provider's price for one activity. One activity can (and should)
 
 ### Filtering
 
-Use the **Activity** and **Status** drop-downs above the table to narrow the list, for example *all unverified offers* when you do your weekly price check.
+Use the **All / Verified / Unverified / Outdated** tabs and the **Activity** drop-down above the table to narrow the list, for example *all unverified offers* when you do your weekly price check. Each tab shows how many offers it holds for the chosen activity. **Clear** resets both.
+
+The **On the website** box at the top shows how many offers visitors can currently see, out of all offers.
 
 ### Columns
 
 | Column | Meaning |
 |---|---|
-| **Offer** | Package name, then activity · provider. |
+| **Offer** | Package name, then activity and provider. |
 | **Price** | What visitors see, or *No price*. |
 | **Status** | **Verified** (you confirmed the price with the provider), **Unverified** (found it, not confirmed yet), **Outdated** (no longer valid, hidden). |
 | **On website** | *Visible on site*, or why it's hidden. |
