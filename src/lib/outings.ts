@@ -77,6 +77,32 @@ export function outingDateParts(date: string | null): { day: string; month: stri
   };
 }
 
+/**
+ * Groups already-sorted outings by calendar month for the public list:
+ * [{ key: "2026-12", label: "December 2026", outings }], with undated outings last
+ * under "Date to be confirmed". Keeps the input order inside each group.
+ */
+export function groupOutingsByMonth<T extends { outing_date: string | null }>(
+  outings: readonly T[],
+): { key: string; label: string; outings: T[] }[] {
+  const monthLabel = new Intl.DateTimeFormat("en-GB", { month: "long", year: "numeric", timeZone: "UTC" });
+  const groups = new Map<string, { key: string; label: string; outings: T[] }>();
+  const undated: T[] = [];
+  for (const o of outings) {
+    const d = o.outing_date ? new Date(`${o.outing_date}T00:00:00Z`) : null;
+    if (!d || Number.isNaN(d.getTime())) {
+      undated.push(o);
+      continue;
+    }
+    const key = o.outing_date!.slice(0, 7);
+    if (!groups.has(key)) groups.set(key, { key, label: monthLabel.format(d), outings: [] });
+    groups.get(key)!.outings.push(o);
+  }
+  const result = [...groups.values()];
+  if (undated.length > 0) result.push({ key: "tbc", label: "Date to be confirmed", outings: undated });
+  return result;
+}
+
 export type InterestField = "customerName" | "contactType" | "contactValue" | "participantCount";
 export type ValidInterest = {
   outingId: string;
