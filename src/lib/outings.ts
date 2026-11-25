@@ -62,6 +62,21 @@ export function formatOutingDate(date: string | null): string {
   return Number.isNaN(d.getTime()) ? "Date to be confirmed" : outingDateFormatter.format(d);
 }
 
+/** Parts for a calendar-style date block: { day: "13", month: "Dec", weekday: "Sat", year: "2026" }, or null. */
+export function outingDateParts(date: string | null): { day: string; month: string; weekday: string; year: string } | null {
+  if (!date) return null;
+  const d = new Date(`${date}T00:00:00Z`);
+  if (Number.isNaN(d.getTime())) return null;
+  const part = (options: Intl.DateTimeFormatOptions) =>
+    new Intl.DateTimeFormat("en-GB", { ...options, timeZone: "UTC" }).format(d);
+  return {
+    day: part({ day: "numeric" }),
+    month: part({ month: "short" }),
+    weekday: part({ weekday: "short" }),
+    year: part({ year: "numeric" }),
+  };
+}
+
 export type InterestField = "customerName" | "contactType" | "contactValue" | "participantCount";
 export type ValidInterest = {
   outingId: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState, useEffect, useId, useState } from "react";
-import { CircleCheck, Info, Loader2 } from "lucide-react";
+import { CircleCheck, Info, Loader2, Mail, Phone } from "lucide-react";
 import { toast } from "sonner";
 
 import { registerInterest, type InterestState } from "@/app/outings/[slug]/actions";
@@ -28,12 +28,14 @@ export function InterestForm({ outingId }: { outingId: string }) {
 
   if (state.status === "success") {
     return (
-      <div role="status" className="space-y-2 rounded-xl border p-5">
-        <p className="flex items-center gap-2 font-semibold">
-          <CircleCheck className="size-5 text-primary" aria-hidden="true" />
+      <div role="status" className="space-y-3 rounded-3xl bg-card p-6 sm:p-8">
+        <span className="grid size-12 place-items-center rounded-full bg-teal-soft text-primary motion-safe:animate-in motion-safe:zoom-in-50">
+          <CircleCheck className="size-6" aria-hidden="true" />
+        </span>
+        <p className="text-2xl font-bold tracking-tight">
           {state.alreadyRegistered ? "You're already on the list for this outing" : "Interest received"}
         </p>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           {state.alreadyRegistered
             ? "We already have your details for this outing. The organizer will contact you."
             : "Interest received. This does not confirm participation or reserve a place. The organizer will contact you."}
@@ -44,7 +46,7 @@ export function InterestForm({ outingId }: { outingId: string }) {
 
   if (state.status === "error" && state.closed) {
     return (
-      <p role="alert" className="flex gap-2 rounded-xl border border-dashed p-5 text-sm text-muted-foreground">
+      <p role="alert" className="flex gap-2 rounded-3xl bg-card p-6 text-base text-muted-foreground">
         <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
         {state.message}
       </p>
@@ -62,10 +64,10 @@ export function InterestForm({ outingId }: { outingId: string }) {
     );
 
   return (
-    <form action={formAction} className="grid gap-4 rounded-xl border p-5" noValidate>
-      <div className="space-y-1">
-        <h2 className="text-lg font-semibold">I&apos;m interested</h2>
-        <p className="text-sm text-muted-foreground">
+    <form action={formAction} className="grid gap-5 rounded-3xl bg-card p-6 sm:p-8" noValidate>
+      <div className="space-y-2">
+        <h2 className="text-2xl font-bold tracking-tight">I&apos;m interested</h2>
+        <p className="text-[15px] text-muted-foreground">
           Leave your details and the organizer will contact you. This doesn&apos;t reserve a place.
         </p>
       </div>
@@ -99,20 +101,27 @@ export function InterestForm({ outingId }: { outingId: string }) {
             setContactType(value as ContactType);
             setContactValue("");
           }}
-          className="flex gap-6"
+          className="grid grid-cols-2 gap-3"
           aria-label="Contact method"
         >
-          {(["phone", "email"] as const).map((type) => (
-            <Label key={type} className="flex items-center gap-2 font-normal">
-              <RadioGroupItem value={type} />
-              {type === "phone" ? "Phone" : "Email"}
-            </Label>
-          ))}
+          {(["phone", "email"] as const).map((type) => {
+            const Icon = type === "phone" ? Phone : Mail;
+            return (
+              <Label
+                key={type}
+                className="flex h-12 cursor-pointer items-center gap-3 rounded-xl border border-input bg-card px-3.5 font-medium transition-colors has-data-checked:border-primary has-data-checked:bg-teal-soft"
+              >
+                <RadioGroupItem value={type} />
+                <Icon className="size-4 text-primary" aria-hidden="true" />
+                {type === "phone" ? "Phone" : "Email"}
+              </Label>
+            );
+          })}
         </RadioGroup>
         {error("contactType")}
       </fieldset>
 
-      <div className="grid gap-4 sm:grid-cols-[1fr_8rem]">
+      <div className="grid gap-4 sm:grid-cols-[1fr_8rem] lg:grid-cols-1 xl:grid-cols-[1fr_8rem]">
         <div className="grid content-start gap-2">
           <Label htmlFor={`${ids}-contactValue`}>{contactType === "phone" ? "Phone number" : "Email address"}</Label>
           <Input
@@ -145,12 +154,12 @@ export function InterestForm({ outingId }: { outingId: string }) {
         </div>
       </div>
 
-      <p className="text-xs text-muted-foreground">
+      <p className="text-sm text-muted-foreground">
         We only share your contact details with the organizer of this outing.
       </p>
 
       <div>
-        <Button type="submit" disabled={pending}>
+        <Button type="submit" size="lg" className="w-full" disabled={pending}>
           {pending && <Loader2 className="animate-spin" aria-hidden="true" />}
           {pending ? "Sending…" : "Register interest"}
         </Button>

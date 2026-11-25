@@ -17,7 +17,7 @@ export default function AdminActivitiesPage() {
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight">Activities</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Activities</h1>
           <p className="text-muted-foreground">Only activities switched to Live appear on the website.</p>
         </div>
         <Button nativeButton={false} render={<Link href="/admin/activities/new" />}>
@@ -37,14 +37,14 @@ async function ActivitiesTable() {
 
   if (activities.length === 0) {
     return (
-      <p className="rounded-xl border border-dashed p-10 text-center text-muted-foreground">
+      <p className="rounded-2xl border-2 border-dashed border-input bg-card/60 p-10 text-center text-muted-foreground">
         No activities yet. Click <strong>New activity</strong> to add the first one.
       </p>
     );
   }
 
   return (
-    <div className="rounded-xl border">
+    <div className="overflow-hidden rounded-2xl bg-card border border-border">
       <Table>
         <TableHeader>
           <TableRow>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={theme: {extend: {colors: {"on-surface": "#0f172a", "on-surface-variant": "#475569", "outline-variant": "#e2e8f0", outline: "#94a3b8", primary: "#088395", "primary-container": "#0a97ab", "on-primary": "#ffffff", "on-primary-container": "#ffffff", "primary-fixed": "#cffafe", "on-primary-fixed": "#083344", secondary: "#ea580c", "secondary-fixed": "#ffedd5", "on-secondary-fixed": "#7c2d12", error: "#dc2626", "error-container": "#fee2e2", "on-error-container": "#991b1b", background: "#eef6fb", surface: "#eef6fb", "surface-container": "#e0f2fe", "surface-container-low": "#f8fafc", "surface-container-lowest": "#ffffff", "surface-container-high": "#bae6fd", "surface-container-highest": "#7dd3fc"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {margin: "3rem", "space-lg": "1.5rem", "space-xs": "0.25rem", gutter: "1.5rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-xl": "2.5rem", "margin-mobile": "1.25rem", "space-sm": "0.5rem"}, fontFamily: {"headline-sm": ["Space Grotesk", "sans-serif"], "label-lg": ["JetBrains Mono", "monospace"], "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"], "title-sm": ["Plus Jakarta Sans", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "sans-serif"], "label-sm": ["JetBrains Mono", "monospace"], "headline-lg": ["Space Grotesk", "sans-serif"], "title-md": ["Plus Jakarta Sans", "sans-serif"], "body-lg": ["Plus Jakarta Sans", "sans-serif"], "headline-md": ["Space Grotesk", "sans-serif"], "label-md": ["JetBrains Mono", "monospace"], "headline-lg-mobile": ["Space Grotesk", "sans-serif"], "body-md": ["Plus Jakarta Sans", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "sans-serif"], display: ["Space Grotesk", "sans-serif"]}}}}</script></head><body class="bg-[#EEF6FB] font-body-md text-[#0F172A]"><header class="fixed top-0 w-full z-50 bg-white border-b border-[#BAE6FD]/80 shadow-[0_2px_10px_rgba(8,131,149,0.06)]"><div class="h-16 max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-sm shrink-0" data-path="overview" href="#"><span class="material-symbols-outlined text-[#088395] text-[24px]">landscape</span><span class="font-title-sm text-title-sm text-[#0F172A] tracking-tight font-bold">Pokhara Booking <span class="font-label-md text-label-md text-[#088395] ml-1 px-2 py-0.5 rounded-full bg-[#E0F2FE]">Staff Admin</span></span></a><nav class="hidden md:flex items-center gap-space-xs"><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="overview" href="#">Overview</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="activities" href="#">Activities</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="offers" href="#">Offers</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="providers" href="#">Providers</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors flex items-center gap-space-xs" data-path="outings" href="#">Outings<span class="px-2 py-0.5 rounded-full bg-[#FFEDD5] text-[#9A3412] font-label-sm text-label-sm font-semibold">Pending 4</span></a></nav></div><div class="flex items-center gap-space-lg shrink-0"><a class="font-label-lg text-label-lg text-[#088395] hover:text-[#0a97ab] font-semibold transition-colors flex items-center gap-1" href="#" rel="noopener noreferrer" target="_blank"><span>View site</span><span class="material-symbols-outlined text-[16px]">open_in_new</span></a><div class="w-9 h-9 rounded-full bg-[#088395] text-white flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div></div></div></header><main class="w-full pt-16 bg-[#EEF6FB] min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<div class="max-w-[1320px] w-full mx-auto px-margin-mobile lg:px-margin py-space-lg flex flex-col gap-space-lg">
+<!-- Operations Triage Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-space-xs text-primary font-label-md text-label-md uppercase tracking-wider">
+<span class="inline-block w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>OPERATIONS TRIAGE · Pokhara Valley Dispatch</span>
+</div>
+<div class="flex items-center gap-space-sm">
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Booking Requests</h1>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm">
+            Live Feed
+          </span>
+</div>
+</div>
+<!-- Triage Velocity Metric Badge -->
+<div class="bg-surface-container-lowest rounded-xl p-space-sm pl-space-md shadow-sm flex items-center gap-space-md self-start md:self-auto">
+<div class="flex flex-col">
+<span class="text-on-surface-variant font-label-sm text-label-sm">Today's Triage Velocity</span>
+<span class="text-on-surface font-title-sm text-title-sm font-bold flex items-center gap-1.5">
+            14 mins <span class="font-body-sm text-body-sm text-on-surface-variant font-normal">avg. response</span>
+</span>
+</div>
+<div class="h-8 w-px bg-surface-container-high"></div>
+<div class="flex items-center gap-1.5">
+<!-- Sparkline representation -->
+<svg class="w-16 h-8 text-primary overflow-visible" fill="none" viewbox="0 0 64 32">
+<path d="M2 24 L14 18 L26 22 L38 10 L50 14 L62 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<circle cx="62" cy="4" fill="currentColor" r="3"></circle>
+</svg>
+<span class="font-label-sm text-label-sm text-primary flex items-center font-bold">
+<span class="material-symbols-outlined text-[16px]">arrow_downward</span>8%
+          </span>
+</div>
+</div>
+</div>
+<!-- Conflict Alert Banner -->
+<div class="rounded-xl bg-error-container text-on-error-container p-space-md shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-error text-on-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">sync_problem</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+<span class="font-title-sm text-title-sm font-bold">Updated by someone else — Reload required:</span>
+<span class="font-body-md text-body-md">Aarav modified <span class="font-label-md font-bold px-1.5 py-0.5 rounded bg-surface-container-lowest/80 text-error">PKR-7EV5GB</span> while your session was open.</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs shrink-0 self-end sm:self-auto">
+<button class="px-space-md py-1.5 rounded-lg bg-error text-on-error font-label-md text-label-md font-bold shadow-sm hover:opacity-90 transition-opacity flex items-center gap-1" onclick="location.reload()">
+<span class="material-symbols-outlined text-[16px]">refresh</span>
+<span>Reload</span>
+</button>
+<button class="px-space-sm py-1.5 rounded-lg hover:bg-on-error-container/10 text-on-error-container font-label-md text-label-md transition-colors" onclick="this.closest('.bg-error-container').style.display='none'">
+          Dismiss
+        </button>
+</div>
+</div>
+<!-- Status Filter Tabs & Search Bar -->
+<div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-space-md">
+<!-- Tabs -->
+<div class="flex items-center gap-1.5 p-1 bg-surface-container rounded-xl overflow-x-auto no-scrollbar">
+<button class="px-space-md py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm flex items-center gap-1.5 shrink-0">
+<span>Pending</span>
+<span class="w-5 h-5 rounded-full bg-on-primary/20 text-on-primary flex items-center justify-center text-[10px] font-bold">4</span>
+</button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors shrink-0">
+          Confirmed (12)
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors shrink-0">
+          Rejected (2)
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors shrink-0">
+          Cancelled (1)
+        </button>
+<button class="px-space-md py-2 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low font-label-md text-label-md transition-colors shrink-0">
+          All (19)
+        </button>
+</div>
+<!-- Search Input -->
+<div class="relative flex-1 max-w-md">
+<div class="absolute inset-y-0 left-0 pl-space-md flex items-center pointer-events-none text-on-surface-variant">
+<span class="material-symbols-outlined text-[20px]">search</span>
+</div>
+<input class="w-full h-11 pl-11 pr-24 rounded-xl bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant/60 font-body-sm text-body-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20" placeholder="Search by phone or PKR-... reference" type="text"/>
+<div class="absolute inset-y-0 right-0 pr-space-sm flex items-center">
+<span class="px-2 py-0.5 rounded bg-surface-container font-label-sm text-label-sm text-on-surface-variant cursor-pointer hover:bg-surface-container-high transition-colors">
+            Try "PKR-999"
+          </span>
+</div>
+</div>
+</div>
+<!-- Two-Column Triage Workspace -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Request Queue List (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">4 INCOMING PENDING</span>
+<span class="font-label-sm text-label-sm text-primary flex items-center gap-1 cursor-pointer">
+<span class="material-symbols-outlined text-[14px]">sort</span> Oldest first
+          </span>
+</div>
+<!-- Card 1: Selected / Active -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-md cursor-pointer transition-all relative overflow-hidden ring-2 ring-primary">
+<div class="absolute left-0 top-0 bottom-0 w-1.5 bg-primary"></div>
+<div class="flex items-start justify-between gap-space-sm mb-2">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">PKR-7EV5GB</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Pending
+              </span>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-bold flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[14px]">schedule</span> 12 mins ago
+            </span>
+</div>
+<div class="font-title-md text-title-md font-bold text-on-surface mb-1">Maya Sharma</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mb-3">Sarangkot Tandem Paragliding</div>
+<div class="flex items-center justify-between pt-2 text-on-surface-variant font-label-md text-label-md bg-surface-container-low -mx-space-md -mb-space-md px-space-md py-2 mt-2">
+<div class="flex items-center gap-1 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">paragliding</span>
+<span>3 gliders</span>
+</div>
+<span class="text-primary font-bold">NPR 25,500</span>
+</div>
+</div>
+<!-- Card 2: Queued Item -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md cursor-pointer transition-all">
+<div class="flex items-start justify-between gap-space-sm mb-2">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">PKR-9KL2MP</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Pending
+              </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">
+              28 mins ago
+            </span>
+</div>
+<div class="font-title-md text-title-md font-bold text-on-surface mb-1">Liam Vance</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mb-3">Annapurna Base Camp Heli</div>
+<div class="flex items-center justify-between pt-2 text-on-surface-variant font-label-md text-label-md bg-surface-container-low -mx-space-md -mb-space-md px-space-md py-2 mt-2">
+<div class="flex items-center gap-1 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">helicopter</span>
+<span>2 seats</span>
+</div>
+<span class="text-on-surface font-bold">NPR 98,000</span>
+</div>
+</div>
+<!-- Card 3: Queued Item -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md cursor-pointer transition-all">
+<div class="flex items-start justify-between gap-space-sm mb-2">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">PKR-4TR8WN</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Pending
+              </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">
+              45 mins ago
+            </span>
+</div>
+<div class="font-title-md text-title-md font-bold text-on-surface mb-1">Elena Rostova</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mb-3">Seti River Upper Rafting</div>
+<div class="flex items-center justify-between pt-2 text-on-surface-variant font-label-md text-label-md bg-surface-container-low -mx-space-md -mb-space-md px-space-md py-2 mt-2">
+<div class="flex items-center gap-1 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">kayaking</span>
+<span>4 rafters</span>
+</div>
+<span class="text-on-surface font-bold">NPR 18,000</span>
+</div>
+</div>
+<!-- Card 4: Queued Item -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm hover:shadow-md cursor-pointer transition-all opacity-80 hover:opacity-100">
+<div class="flex items-start justify-between gap-space-sm mb-2">
+<div class="flex items-center gap-2">
+<span class="font-label-lg text-label-lg font-bold text-on-surface">PKR-3BC9GH</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span> Pending
+              </span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant shrink-0">
+              58 mins ago
+            </span>
+</div>
+<div class="font-title-md text-title-md font-bold text-on-surface mb-1">Carlos Mendez</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm mb-3">Panchase Eco Trek Day Hike</div>
+<div class="flex items-center justify-between pt-2 text-on-surface-variant font-label-md text-label-md bg-surface-container-low -mx-space-md -mb-space-md px-space-md py-2 mt-2">
+<div class="flex items-center gap-1 text-on-surface font-semibold">
+<span class="material-symbols-outlined text-[16px] text-primary">hiking</span>
+<span>1 hiker</span>
+</div>
+<span class="text-on-surface font-bold">NPR 7,000</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Detail & Action Panel (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md flex flex-col gap-space-lg">
+<!-- Detail Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-space-md gap-space-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-2">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">PKR-7EV5GB</span>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed-variant font-label-sm text-label-sm font-bold">
+                  Pending Triage
+                </span>
+</div>
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] text-primary">edit_note</span>
+<span>Last updated by <strong class="text-on-surface">Aarav</strong> · 10 mins ago</span>
+</div>
+</div>
+<!-- Call & WhatsApp Action Buttons -->
+<div class="flex items-center gap-space-xs">
+<a class="px-space-md h-10 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md font-semibold transition-colors flex items-center gap-1.5" href="tel:+9779841234567">
+<span class="material-symbols-outlined text-[18px] text-primary">call</span>
+<span>Call</span>
+</a>
+<a class="px-space-md h-10 rounded-lg bg-[#25D366]/15 hover:bg-[#25D366]/25 text-[#128C7E] font-label-md text-label-md font-bold transition-colors flex items-center gap-1.5" href="https://wa.me/9779841234567" rel="noreferrer" target="_blank">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+<span>WhatsApp</span>
+</a>
+</div>
+</div>
+<!-- Customer Info Card -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col sm:flex-row items-start sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-md">
+<div class="w-12 h-12 rounded-full bg-primary-fixed text-on-primary-fixed font-title-md text-title-md font-bold flex items-center justify-center shrink-0 shadow-sm">
+                MS
+              </div>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-on-surface">Maya Sharma</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">phone</span> +977 9841234567
+                  <span class="inline-block mx-1">·</span>
+<span class="material-symbols-outlined text-[14px]">event</span> Requested for Tomorrow, 09:30 AM
+                </span>
+</div>
+</div>
+<div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-container-lowest shadow-sm self-start sm:self-auto">
+<span class="material-symbols-outlined text-[18px] text-secondary">pin_drop</span>
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Lakeside Pickup</span>
+</div>
+</div>
+<!-- Warning Callout: Offer Price Changed -->
+<div class="rounded-xl bg-secondary-fixed/50 p-space-md flex items-start gap-space-sm text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[20px] text-secondary shrink-0 mt-0.5">warning</span>
+<div class="flex flex-col gap-0.5">
+<span class="font-title-sm text-title-sm font-bold text-on-secondary-fixed">Offer price has changed since request submission</span>
+<p class="font-body-sm text-body-sm text-on-secondary-fixed-variant leading-relaxed">
+                Current live vendor rate is <strong class="text-on-secondary-fixed">NPR 9,200/glider</strong>. The frozen snapshot below reflects the confirmed contractual rate of NPR 8,500/glider at customer submission.
+              </p>
+</div>
+</div>
+<!-- Frozen Offer Snapshot (Elevated Container) -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between pb-space-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-primary">lock_clock</span>
+<span class="font-label-sm text-label-sm font-bold tracking-wider text-primary uppercase">LOCKED AT SUBMISSION</span>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Version #1 · Oct 24, 08:42</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Activity &amp; Package</span>
+<span class="font-title-sm text-title-sm font-bold text-on-surface">Sarangkot Tandem Paragliding</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">30-Min Thermal Flight + GoPro Video</span>
+</div>
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Fulfillment Vendor</span>
+<span class="font-title-sm text-title-sm font-bold text-on-surface flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+                  Himalayan Skyways Pokhara
+                </span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">License #AV-PKR-2021</span>
+</div>
+</div>
+<div class="flex items-center justify-between pt-space-sm bg-surface-container-lowest rounded-lg p-space-md shadow-sm">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rate Calculation</span>
+<span class="font-body-md text-body-md font-semibold text-on-surface">NPR 8,500 × 3 gliders</span>
+</div>
+<div class="flex flex-col items-end">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Total Payable</span>
+<span class="font-headline-md text-headline-md font-bold text-primary">NPR 25,500</span>
+</div>
+</div>
+</div>
+<!-- Handled by Staff & Operational Assignment -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-space-md bg-surface-container rounded-xl p-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant">badge</span>
+<label class="font-title-sm text-title-sm font-bold text-on-surface" for="handledBy">Handled by staff name:</label>
+</div>
+<div class="flex items-center gap-2">
+<input class="h-10 px-space-md rounded-lg bg-surface-container-lowest text-on-surface font-title-sm text-title-sm font-bold shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/20 w-44" id="handledBy" type="text" value="Aarav"/>
+<button class="h-10 px-space-sm rounded-lg bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-md text-label-md transition-colors" title="Save assigner">
+<span class="material-symbols-outlined text-[18px]">check</span>
+</button>
+</div>
+</div>
+<!-- Decision Actions -->
+<div class="flex flex-col sm:flex-row items-center gap-space-sm pt-space-xs">
+<button class="w-full sm:flex-1 h-12 rounded-lg bg-primary hover:bg-primary-container text-on-primary font-title-sm text-title-sm font-bold shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">check_circle</span>
+<span>Confirm request</span>
+</button>
+<button class="w-full sm:w-auto h-12 px-space-lg rounded-lg bg-error hover:bg-error/90 text-on-error font-title-sm text-title-sm font-bold shadow-sm transition-all flex items-center justify-center gap-1.5" onclick="document.getElementById('rejectModal').classList.toggle('hidden')">
+<span class="material-symbols-outlined text-[20px]">cancel</span>
+<span>Reject</span>
+</button>
+<button class="w-full sm:w-auto h-12 px-space-md rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-label-md text-label-md transition-colors flex items-center justify-center gap-1 text-center" title="Override transition">
+<span>Confirmed → Cancelled</span>
+</button>
+</div>
+<!-- Reject Reason Inline Disclosure / Modal simulation -->
+<div class="hidden bg-error-container/30 rounded-xl p-space-md flex-col gap-space-sm" id="rejectModal">
+<span class="font-title-sm text-title-sm font-bold text-error">Mandatory Rejection Reason</span>
+<div class="grid grid-cols-2 gap-2">
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest cursor-pointer font-body-sm text-body-sm">
+<input class="text-error focus:ring-error" name="rejectReason" type="radio"/>
+<span>Adverse Wind/Weather</span>
+</label>
+<label class="flex items-center gap-2 p-2 rounded-lg bg-surface-container-lowest cursor-pointer font-body-sm text-body-sm">
+<input class="text-error focus:ring-error" name="rejectReason" type="radio"/>
+<span>Vendor Capacity Full</span>
+</label>
+</div>
+<button class="self-end px-space-md py-1.5 rounded-lg bg-error text-on-error font-label-md text-label-md font-bold shadow-sm">
+              Confirm Rejection
+            </button>
+</div>
+<!-- Quick Message Template Box -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-xs">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px] text-primary">drive_file_rename_outline</span>
+                “Can't confirm” message template
+              </span>
+<button class="px-space-sm py-1 rounded bg-surface-container-lowest hover:bg-primary hover:text-on-primary text-primary font-label-sm text-label-sm font-bold transition-all shadow-sm flex items-center gap-1" id="copyTemplateBtn" onclick="copyTemplate()">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+<div class="bg-surface-container-lowest rounded-lg p-space-sm font-body-sm text-body-sm text-on-surface select-all leading-relaxed shadow-inner" id="templateText">
+              Namaste Maya, thank you for booking Sarangkot Tandem Paragliding (PKR-7EV5GB). Unfortunately we can't confirm your 09:30 AM slot due to weather/capacity. Would you like us to move your 3 gliders to 11:30 AM?
+            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function copyTemplate() {
+      const text = document.getElementById('templateText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById('copyTemplateBtn');
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<span class="material-symbols-outlined text-[14px]">check</span><span>Copied!</span>';
+        btn.classList.add('bg-primary', 'text-on-primary');
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove('bg-primary', 'text-on-primary');
+        }, 2000);
+      });
+    }
+  </script>
+</div></main><footer class="w-full bg-white border-t border-[#BAE6FD] py-space-lg"><div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-[#475569]"><span>© 2025 Pokhara Booking. Staff Admin Portal.</span><span>Internal Operations &amp; Expedition Management</span></div></footer></body></html>

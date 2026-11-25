@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 
 import { createClient } from "@/utils/supabase/server";
-import { isOfferAvailable, sortOffers } from "@/lib/offer-format";
+import { isOfferAvailable, sortOffers, summarizeOffers, type OfferSummary } from "@/lib/offer-format";
 import type { AvailableOffer, Offer } from "@/lib/types";
 
 // Public columns only. notes, source_url and booking_url are never selected.
@@ -43,4 +43,21 @@ function normalizeNumbers(offer: Offer): Offer {
         offer.provider.google_rating === null ? null : Number(offer.provider.google_rating),
     },
   };
+}
+
+/** Offer count and lowest "from" price for every published activity, keyed by activity id. */
+export async function getOfferSummaries(): Promise<Map<string, OfferSummary>> {
+  const supabase = createClient(await cookies());
+  const { data, error } = await supabase
+    .from("price_listings")
+    .select("activity_id, price, currency")
+    .neq("verification_status", "outdated")
+    .not("price", "is", null)
+    .not("currency", "is", null);
+
+  if (error) throw new Error(`Failed to load offer prices: ${error.message}`);
+  const rows = (data as { activity_id: string; price: number | string; currency: string }[])
+    .map((r) => ({ ...r, price: Number(r.price) }))
+    .filter((r) => Number.isFinite(r.price) && r.price >= 0);
+  return summarizeOffers(rows);
 }

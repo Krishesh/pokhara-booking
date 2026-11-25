@@ -19,7 +19,7 @@ export default function AdminRequestsPage({ searchParams }: PageProps<"/admin/re
   return (
     <section className="space-y-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-bold tracking-tight">Booking requests</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Booking requests</h1>
         <p className="text-muted-foreground">
           Requests from visitors. Check with the provider, contact the customer, then record the outcome.
         </p>
@@ -48,7 +48,7 @@ async function RequestsSection({ searchParams }: { searchParams: Promise<Record<
       <RequestFilters status={status} q={q} counts={counts} />
 
       {requests.length === 0 ? (
-        <p className="rounded-xl border border-dashed p-10 text-center text-muted-foreground">
+        <p className="rounded-2xl border-2 border-dashed border-input bg-card/60 p-10 text-center text-muted-foreground">
           {q
             ? `No requests match “${q}”.`
             : status === "pending"
@@ -58,7 +58,7 @@ async function RequestsSection({ searchParams }: { searchParams: Promise<Record<
                 : `No ${STATUS_LABELS[status].toLowerCase()} requests.`}
         </p>
       ) : (
-        <div className="rounded-xl border">
+        <div className="overflow-hidden rounded-2xl bg-card border border-border">
           <Table>
             <TableHeader>
               <TableRow>
@@ -77,9 +77,9 @@ async function RequestsSection({ searchParams }: { searchParams: Promise<Record<
               {requests.map((r) => {
                 const age = requestAge(r.created_at, r.status, now);
                 return (
-                  <TableRow key={r.id} className={cn(age.overdue && "bg-destructive/5")}>
+                  <TableRow key={r.id} className={cn(age.overdue && "bg-sunrise-soft/60")}>
                     <TableCell className="max-w-64 whitespace-normal">
-                      <Link href={`/admin/requests/${r.id}`} className="font-mono font-medium hover:underline">
+                      <Link href={`/admin/requests/${r.id}`} className="font-semibold tracking-wide text-primary tabular-nums hover:underline">
                         {r.reference}
                       </Link>
                       <div className="text-xs text-muted-foreground">

@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 
 import { AdminNav, AdminNavView } from "@/components/admin/admin-nav";
+import { Container } from "@/components/container";
 import { countPendingRequests } from "@/lib/admin/requests-data";
 
 export const metadata: Metadata = {
@@ -11,12 +12,12 @@ export const metadata: Metadata = {
 
 export default function AdminLayout({ children }: LayoutProps<"/admin">) {
   return (
-    <div className="space-y-6">
+    <Container className="space-y-8 pb-6">
       <Suspense fallback={<AdminNavView pathname="" />}>
         <AdminNavWithCount />
       </Suspense>
       {children}
-    </div>
+    </Container>
   );
 }
 

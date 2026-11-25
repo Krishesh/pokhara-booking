@@ -66,7 +66,7 @@ async function RequestDetail({ params }: { params: Promise<{ id: string }> }) {
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="space-y-1">
           <div className="flex flex-wrap items-center gap-3">
-            <h1 className="font-mono text-2xl font-bold tracking-tight">{r.reference}</h1>
+            <h1 className="text-2xl font-extrabold tracking-wide tabular-nums sm:text-3xl">{r.reference}</h1>
             <CopyButton text={r.reference} label="Copy reference" copiedMessage="Reference copied" size="icon-sm" variant="ghost" />
             <RequestStatusBadge status={r.status} />
           </div>

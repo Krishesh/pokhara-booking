@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "outline-variant": "#bdc8cb",
+          "on-tertiary-fixed-variant": "#3f465c",
+          "primary": "#088395",
+          "on-tertiary-fixed": "#131b2e",
+          "error-container": "#ffdad6",
+          "on-background": "#0F172A",
+          "surface-container": "#e5eff5",
+          "primary-fixed": "#a3eeff",
+          "inverse-primary": "#76d4e7",
+          "surface-container-low": "#ebf5fb",
+          "on-primary": "#ffffff",
+          "on-secondary-fixed-variant": "#7a2f00",
+          "surface-tint": "#088395",
+          "surface-container-lowest": "#ffffff",
+          "primary-container": "#0D9488",
+          "secondary-container": "#ea580c",
+          "on-error": "#ffffff",
+          "on-primary-fixed-variant": "#004e5a",
+          "on-primary-fixed": "#001f25",
+          "secondary-fixed": "#ffdbcc",
+          "on-tertiary-container": "#fefcff",
+          "surface-bright": "#f3faff",
+          "on-surface": "#0F172A",
+          "on-error-container": "#93000a",
+          "surface-variant": "#dae4ea",
+          "tertiary-fixed-dim": "#bec6e0",
+          "inverse-surface": "#283236",
+          "background": "#EEF6FB",
+          "on-secondary-container": "#ffffff",
+          "secondary-fixed-dim": "#ffb694",
+          "on-surface-variant": "#475569",
+          "tertiary-fixed": "#dae2fd",
+          "secondary": "#d97706",
+          "tertiary": "#545c72",
+          "primary-fixed-dim": "#76d4e7",
+          "surface-container-high": "#e0eaf0",
+          "error": "#dc2626",
+          "surface": "#ffffff",
+          "on-primary-container": "#ffffff",
+          "surface-container-highest": "#dae4ea",
+          "outline": "#94a3b8",
+          "surface-dim": "#d1dce1",
+          "on-secondary-fixed": "#351000",
+          "on-secondary": "#ffffff",
+          "on-tertiary": "#ffffff",
+          "inverse-on-surface": "#e8f2f8",
+          "tertiary-container": "#6c748b"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-xs": "0.25rem",
+          "gutter": "1.5rem",
+          "margin": "3rem",
+          "margin-mobile": "1.25rem",
+          "space-lg": "1.5rem",
+          "space-xl": "2.5rem",
+          "space-sm": "0.5rem",
+          "gutter-mobile": "1rem",
+          "space-md": "1rem"
+        },
+        "fontFamily": {
+          "label-sm": ["JetBrains Mono"],
+          "label-md": ["JetBrains Mono"],
+          "headline-lg": ["Space Grotesk"],
+          "body-md": ["Plus Jakarta Sans"],
+          "display": ["Space Grotesk"],
+          "headline-md": ["Space Grotesk"],
+          "display-mobile": ["Space Grotesk"],
+          "headline-sm": ["Space Grotesk"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "label-lg": ["JetBrains Mono"],
+          "headline-lg-mobile": ["Space Grotesk"],
+          "body-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+          "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.06em", "fontWeight": "500" }],
+          "headline-lg": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+          "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+          "display": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+          "headline-md": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+          "display-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+          "headline-sm": ["22px", { "lineHeight": "30px", "letterSpacing": "0em", "fontWeight": "500" }],
+          "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400" }],
+          "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+          "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+          "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400" }]
+        }
+      }
+    }
+  };</script></head><body class="bg-[#EEF6FB] font-body-md text-[#0F172A] antialiased selection:bg-[#088395]/20 selection:text-[#088395]"><div class="fixed inset-0 pointer-events-none bg-[radial-gradient(ellipse_80%_60%_at_50%_-20%,rgba(8,131,149,0.12),rgba(238,246,251,0))] z-0"></div><header class="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-xl border-b border-[#D0E2EC] shadow-sm"><div class="h-20 max-w-7xl mx-auto px-6 flex items-center justify-between gap-6"><div class="flex items-center gap-8"><a class="flex items-center gap-3 group" data-path="activities" href="#"><img alt="Pokhara Booking Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrD16jqKIvrri1eSL3kgvoeqCmGmZo8UMezJvrcA5IQYpU9uJOtWWj7V9xTGDmtH7_8IiJ-kXEx9gQpU5Pc3rzW9HOyjBwctT612F1Eff2kpozukpm_IqvPoNOFTyaMcoWlwpzBgt5DKm-ojDTeKbM6n8S-tp16FP1xCvgrujczlvikYdxoEqfchgjDdEstGbJCWXYegWO8OjrwOTG4_6jDZRdFM3piHMnC3TBBWj7VW2w"/><span class="font-headline-md text-headline-md text-[#088395] tracking-tight font-bold group-hover:text-[#0a6c7b] transition-colors">Pokhara Booking</span></a><nav class="hidden md:flex items-center gap-2" data-active-classes="bg-[#088395]/10 border border-[#088395]/30 text-[#088395] font-label-lg text-label-lg rounded-xl"><a aria-current="page" class="px-4 py-2 transition-all bg-[#088395]/10 border border-[#088395]/30 text-[#088395] font-label-lg text-label-lg rounded-xl font-semibold shadow-sm" data-path="activities" href="#">Activities</a><a class="px-4 py-2 text-[#475569] font-label-lg text-label-lg transition-colors hover:text-[#0F172A] hover:bg-[#E0F2FE]/60 rounded-xl" data-path="group-outings" href="#">Group outings</a></nav></div><div class="flex items-center gap-3"><a class="flex items-center gap-3 py-1.5 px-3 rounded-full bg-white hover:bg-[#F1F7FB] text-[#0F172A] border border-[#D0E2EC] hover:border-[#088395]/40 transition-all shadow-sm" data-path="chat-guide" href="#"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-[#088395]/30" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsTaZE5OeZK-ldWo9nq7ATOzv-B1xpgZ3MZZRaUwqvTKce5sz3Qh6sGwaRyMlhePWJYmls5FNqz1sIcVTMs1LPFlHkqEAPtSedjJXNHCUkY31JVJoqoS3VcnSs-FEoYiHkyfl4zQbn2unniATwrwYuGSFGlnG6Q9xj4d5pYqxQ_e2l1hmwZvvh18wW71tgWbi4NS7lBEeALEkrVqihs1xOGgmqZNuqU05GFujx7aTV"/><div class="hidden sm:flex flex-col text-left"><span class="font-label-sm text-label-sm text-[#ea580c] tracking-wider uppercase font-semibold">Need local advice?</span><span class="font-label-md text-label-md text-[#0F172A]">Chat with a guide</span></div></a></div></div></header><main class="relative z-10 w-full max-w-7xl mx-auto px-6 pt-12 pb-16"><div class="flex flex-col w-full">
+<!-- Backdrop Background Simulated Canvas -->
+<div class="relative w-full rounded-3xl overflow-hidden bg-gradient-to-b from-[#F0F8FD] to-[#E3F2FC] p-6 md:p-10 shadow-xl border border-[#CFE4F3]">
+<div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#088395]/10 rounded-full blur-[120px] pointer-events-none"></div>
+<!-- Top Editorial Header & State Controller Tab Bar -->
+<div class="relative z-10 flex flex-col md:flex-row md:items-end justify-between gap-6 pb-8 border-b border-[#CFE4F3] mb-8">
+<div class="space-y-2.5">
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#088395]/10 border border-[#088395]/25 text-[#088395] font-label-sm text-label-sm uppercase tracking-wider shadow-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-[#088395] animate-pulse"></span>
+            Booking Engine · Screen 03
+          </span>
+<span class="font-label-sm text-label-sm text-[#475569] uppercase tracking-widest">Interactive Specimen</span>
+</div>
+<h1 class="font-headline-lg md:text-[36px] md:leading-[44px] text-[#0F172A] tracking-tight font-bold">Request Booking Dialog</h1>
+<p class="font-body-md text-body-md text-[#475569] max-w-2xl leading-relaxed">
+          Complete state orchestration for the Himalayan tandem expedition booking flow. Review live user inputs, pricing updates, pilot scarcity handling, and verified dispatch slips.
+        </p>
+</div>
+<!-- State Switcher Pills -->
+<div class="flex items-center p-1.5 bg-white rounded-2xl shadow-md border border-[#CFE4F3] gap-1.5 overflow-x-auto" id="state-tabs">
+<button class="state-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all bg-[#088395] text-white font-bold shadow-md shadow-[#088395]/20 flex items-center gap-1.5" data-target="state-form" onclick="switchState('state-form')" type="button">
+<span class="material-symbols-outlined text-[16px]">edit_calendar</span>
+<span>1. Active Form</span>
+</button>
+<button class="state-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF6FB] flex items-center gap-1.5" data-target="state-ratechange" onclick="switchState('state-ratechange')" type="button">
+<span class="material-symbols-outlined text-[16px]">price_change</span>
+<span>2. Price Update</span>
+</button>
+<button class="state-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF6FB] flex items-center gap-1.5" data-target="state-unavailable" onclick="switchState('state-unavailable')" type="button">
+<span class="material-symbols-outlined text-[16px]">cloud_off</span>
+<span>3. Unavailable</span>
+</button>
+<button class="state-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF6FB] flex items-center gap-1.5" data-target="state-confirmation" onclick="switchState('state-confirmation')" type="button">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>4. Confirmed</span>
+</button>
+<button class="px-3.5 py-2 rounded-xl font-label-md text-label-md transition-all text-[#ea580c] hover:bg-[#FFF4ED] flex items-center gap-1.5 font-bold ml-1 border border-[#ea580c]/30 shadow-sm" id="toggle-all-btn" onclick="toggleAllCards()" type="button">
+<span class="material-symbols-outlined text-[16px]">grid_view</span>
+<span>All States View</span>
+</button>
+</div>
+</div>
+<!-- MAIN INTERACTIVE CONTAINER -->
+<div class="relative w-full" id="states-wrapper">
+<!-- ========================================================================= -->
+<!-- STATE 1: ACTIVE INTERACTIVE FORM (DEFAULT) -->
+<!-- ========================================================================= -->
+<div class="state-card block max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-[#CFE4F3] overflow-hidden transition-all duration-300 ring-1 ring-[#088395]/20" id="state-form">
+<!-- Modal Top Context Bar with rich teal theme -->
+<div class="bg-gradient-to-r from-[#E6F5F8] via-[#EFF8FC] to-white px-6 py-4 flex items-center justify-between gap-4 border-b border-[#D8EAF4]">
+<div class="flex items-center gap-3 overflow-hidden">
+<div class="w-8 h-8 rounded-lg bg-[#088395]/15 border border-[#088395]/30 text-[#088395] flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">paragliding</span>
+</div>
+<div class="flex items-center gap-2 truncate">
+<span class="font-label-md text-label-md text-[#0F172A] font-bold tracking-wide truncate">Sarangkot Tandem Paragliding</span>
+<span class="text-[#94a3b8] font-label-sm text-label-sm">·</span>
+<span class="font-body-sm text-body-sm text-[#475569] truncate">Standard Thermal Glide</span>
+<span class="text-[#94a3b8] font-label-sm text-label-sm hidden sm:inline">·</span>
+<span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-[#088395]/10 text-[#088395] border border-[#088395]/25 font-label-sm text-label-sm font-semibold hidden sm:inline-flex">Himalayan Sky Gliders</span>
+</div>
+</div>
+<button aria-label="Close dialog" class="w-8 h-8 rounded-full flex items-center justify-center text-[#475569] hover:bg-[#EEF6FB] hover:text-[#0F172A] transition-colors shrink-0" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Modal Body Content -->
+<div class="p-6 md:p-8 space-y-6">
+<div class="flex items-start justify-between gap-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#ea580c] font-bold">Step 1 of 2</span>
+<span class="w-1 h-1 rounded-full bg-[#94a3b8]"></span>
+<span class="font-label-sm text-label-sm text-[#475569]">Non-binding inquiry</span>
+</div>
+<h2 class="font-headline-md md:text-[32px] md:leading-[38px] text-[#0F172A] font-bold tracking-tight">Request booking</h2>
+</div>
+<div class="px-3.5 py-1.5 rounded-full bg-[#088395]/10 border border-[#088395]/25 flex items-center gap-1.5 text-[#088395] shadow-sm">
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span class="font-label-sm text-label-sm font-bold tracking-wide">30-45 min flight</span>
+</div>
+</div>
+<form class="space-y-5" id="booking-form" novalidate="" onsubmit="event.preventDefault(); simulateSubmit();">
+<!-- Field 1: Name -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-[#0F172A] font-semibold" for="client-name">
+                Your full name <span class="text-[#ea580c] font-bold">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 px-3.5 bg-white border border-[#088395] rounded-xl text-[#0F172A] font-body-md text-body-md placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#088395] focus:border-[#088395] transition-all shadow-sm" id="client-name" placeholder="e.g. Maya Sharma" type="text" value="Maya Sharma"/>
+<span class="material-symbols-outlined absolute right-3 top-3 text-[18px] text-[#088395]">check_circle</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px] text-[#088395]">info</span>
+                Lead passenger matching passport or national ID for rescue insurance.
+              </p>
+</div>
+<!-- Field 2: Contact Method -->
+<div class="space-y-2.5">
+<label class="block font-label-md text-label-md text-[#0F172A] font-semibold">
+                Preferred communication channel <span class="text-[#ea580c] font-bold">*</span>
+</label>
+<div class="grid grid-cols-2 gap-3">
+<label class="relative flex items-center gap-3 p-3.5 rounded-xl border-2 border-[#088395] bg-[#088395]/5 cursor-pointer shadow-sm transition-all">
+<input checked="" class="w-4 h-4 text-[#088395] accent-[#088395]" name="contact-method" onchange="toggleContactInput('whatsapp')" type="radio" value="whatsapp"/>
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-[#088395]/15 text-[#088395] flex items-center justify-center border border-[#088395]/25">
+<span class="material-symbols-outlined text-[16px]">chat</span>
+</div>
+<span class="font-label-md text-label-md text-[#0F172A] font-bold">WhatsApp / SMS</span>
+</div>
+</label>
+<label class="relative flex items-center gap-3 p-3.5 rounded-xl border border-[#D0E2EC] bg-white hover:bg-[#F8FAFC] hover:border-[#94a3b8] cursor-pointer transition-all">
+<input class="w-4 h-4 text-[#088395] accent-[#088395]" name="contact-method" onchange="toggleContactInput('email')" type="radio" value="email"/>
+<div class="flex items-center gap-2.5">
+<div class="w-7 h-7 rounded-lg bg-[#E2E8F0] text-[#475569] flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]">mail</span>
+</div>
+<span class="font-label-md text-label-md text-[#475569] font-medium">Email Dispatch</span>
+</div>
+</label>
+</div>
+<!-- Dynamic Phone Input -->
+<div class="space-y-1.5" id="phone-container">
+<div class="flex rounded-xl overflow-hidden shadow-sm border border-[#D0E2EC] focus-within:ring-2 focus-within:ring-[#088395] focus-within:border-[#088395] transition-all bg-white">
+<span class="inline-flex items-center px-4 bg-[#F1F7FB] text-[#088395] font-label-md text-label-md font-semibold border-r border-[#D0E2EC]">
+                    +977
+                  </span>
+<input class="w-full h-11 px-3.5 bg-white text-[#0F172A] font-body-md text-body-md placeholder:text-[#94a3b8] focus:outline-none transition-all" id="client-phone" placeholder="98XXXXXXXX" type="tel" value="9841234567"/>
+</div>
+<p class="font-body-sm text-body-sm text-[#088395] flex items-center gap-1.5 font-medium">
+<span class="material-symbols-outlined text-[14px]">lock</span>
+                  Used only for pre-flight weather dispatch and hotel Jeep pickup.
+                </p>
+</div>
+<!-- Dynamic Email Input (Hidden initially) -->
+<div class="space-y-1.5 hidden" id="email-container">
+<input class="w-full h-11 px-3.5 bg-white border border-[#D0E2EC] rounded-xl text-[#0F172A] font-body-md text-body-md placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#088395] shadow-sm" id="client-email" placeholder="name@expedition.com" type="email"/>
+<p class="font-body-sm text-body-sm text-[#475569]">We send immediate e-voucher confirmation details.</p>
+</div>
+</div>
+<!-- Field 3 & 4: Date and Participants 2-Col Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+<!-- Date Picker Input -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-[#0F172A] font-semibold" for="flight-date">
+                  Expedition Date <span class="text-[#ea580c] font-bold">*</span>
+</label>
+<div class="relative">
+<input class="w-full h-11 pl-10 pr-3.5 bg-white border border-[#D0E2EC] hover:border-[#088395]/60 focus:border-[#088395] rounded-xl text-[#0F172A] font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395] shadow-sm cursor-pointer transition-all" id="flight-date" readonly="" type="text" value="Tomorrow, Nov 14, 2025"/>
+<span class="material-symbols-outlined absolute left-3 top-3 text-[18px] text-[#088395]">calendar_month</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-[#088395]"></span>
+                  Morning slot (09:00 - 11:30 AM)
+                </p>
+</div>
+<!-- Stepper / Participants -->
+<div class="space-y-1.5">
+<label class="block font-label-md text-label-md text-[#0F172A] font-semibold">
+                  Number of Gliders <span class="text-[#ea580c] font-bold">*</span>
+</label>
+<div class="flex items-center justify-between h-11 px-2 bg-white border border-[#D0E2EC] rounded-xl shadow-sm">
+<button aria-label="Decrease participants" class="w-8 h-8 rounded-lg bg-[#EEF6FB] text-[#0F172A] hover:bg-[#E0F2FE] hover:text-[#088395] transition-all flex items-center justify-center font-bold text-label-lg shadow-sm active:scale-95" onclick="adjustParticipants(-1)" type="button">
+                    -
+                  </button>
+<span class="font-headline-sm text-headline-sm text-[#0F172A] font-bold" id="participants-count">3</span>
+<button aria-label="Increase participants" class="w-8 h-8 rounded-lg bg-[#EEF6FB] text-[#0F172A] hover:bg-[#E0F2FE] hover:text-[#088395] transition-all flex items-center justify-center font-bold text-label-lg shadow-sm active:scale-95" onclick="adjustParticipants(1)" type="button">
+                    +
+                  </button>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569]">1 to 20 pax max per group</p>
+</div>
+</div>
+<!-- Honeypot Field (Anti-Bot Hidden) -->
+<div aria-hidden="true" class="hidden">
+<label for="honeypot-trail-code">Do not fill this altitude input</label>
+<input autocomplete="off" id="honeypot-trail-code" name="trail_code_val" tabindex="-1" type="text"/>
+</div>
+<!-- Price Calculation Display Box (Light Card) -->
+<div class="p-5 rounded-2xl bg-gradient-to-br from-[#F6FBFD] via-white to-[#F0F8FC] border border-[#ea580c]/30 shadow-sm space-y-3">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-[#475569] uppercase tracking-wider font-semibold">Estimated Calculation</span>
+<span class="px-2.5 py-1 rounded-full text-label-sm font-label-sm bg-[#ea580c]/10 text-[#ea580c] uppercase font-bold tracking-wider border border-[#ea580c]/30 shadow-sm">Official Rate</span>
+</div>
+<div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+<div class="font-body-md text-body-md text-[#475569]">
+<span class="font-bold text-[#0F172A]">NPR 8,500</span> per person × <span class="font-bold text-[#088395]" id="formula-pax">3</span>
+</div>
+<div class="font-headline-md md:text-[34px] md:leading-[40px] text-[#ea580c] font-bold tracking-tight" id="total-price-display">
+                  NPR 25,500
+                </div>
+</div>
+<div class="pt-2.5 border-t border-[#DCEBF4] flex items-start gap-2.5 text-[#475569] font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-[18px] text-[#088395] shrink-0 mt-0.5">verified_user</span>
+<span>Includes ACAP alpine clearance, transport from Pokhara Lakeside, and GoPro flight video recording.</span>
+</div>
+</div>
+<!-- Reassurance Note -->
+<div class="p-3.5 rounded-xl bg-[#088395]/10 border border-[#088395]/25 flex items-start gap-3">
+<span class="material-symbols-outlined text-[#088395] text-[20px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-[#0F172A] leading-relaxed">
+<strong class="text-[#0F172A]">Zero upfront risk:</strong> This is a request, not an instant charge. We only use your contact details to arrange tandem wing slots with Himalayan Sky Gliders.
+              </p>
+</div>
+<!-- Form Actions Row & Spinner State Variant -->
+<div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-xl text-[#475569] hover:text-[#0F172A] font-label-lg text-label-lg hover:bg-[#EEF6FB] transition-all order-2 sm:order-1" onclick="switchState('state-unavailable')" type="button">
+                Cancel
+              </button>
+<div class="flex items-center gap-3 w-full sm:w-auto order-1 sm:order-2">
+<!-- Standard Button with vibrant coral gradient styling -->
+<button class="flex-1 sm:flex-initial px-8 py-3.5 rounded-xl bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white font-label-lg text-label-lg shadow-md shadow-[#ea580c]/25 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 font-bold" id="submit-btn" type="submit">
+<span class="font-bold">Send request</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+<!-- Submitting Variant (Simulated Preview Button) -->
+<button class="hidden sm:flex px-5 py-3.5 rounded-xl bg-[#088395]/10 border border-[#088395]/30 text-[#088395] hover:bg-[#088395]/15 font-label-lg text-label-lg items-center gap-2 shadow-sm" id="submitting-spinner-demo" onclick="simulateSubmit()" title="Click to simulate processing" type="button">
+<svg class="animate-spin h-4 w-4 text-[#088395]" fill="none" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+<path class="opacity-75" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" fill="currentColor"></path>
+</svg>
+<span>Sending request...</span>
+</button>
+</div>
+</div>
+</form>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- STATE 2: PRICE / TERMS CHANGE WARNING BANNER -->
+<!-- ========================================================================= -->
+<div class="state-card hidden max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-[#CFE4F3] overflow-hidden transition-all duration-300" id="state-ratechange">
+<!-- Context Bar -->
+<div class="bg-[#F1F7FB] px-6 py-4 flex items-center justify-between gap-4 border-b border-[#D8EAF4]">
+<div class="flex items-center gap-2.5 overflow-hidden">
+<span class="material-symbols-outlined text-[#088395] text-[20px] shrink-0">paragliding</span>
+<div class="flex items-center gap-2 truncate">
+<span class="font-label-md text-label-md text-[#0F172A] font-bold truncate">Sarangkot Tandem Paragliding</span>
+<span class="text-[#94a3b8] font-label-sm text-label-sm">·</span>
+<span class="font-body-sm text-body-sm text-[#475569]">Price Revision Review</span>
+</div>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#ea580c]/15 border border-[#ea580c]/30 text-[#ea580c] uppercase font-bold tracking-wider">Action Needed</span>
+</div>
+<!-- Prominent Warning Banner -->
+<div class="bg-[#FFF7ED] border-b border-[#FED7AA] p-5 flex items-start gap-4">
+<div class="w-10 h-10 rounded-full bg-[#ea580c] text-white flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+<span class="material-symbols-outlined text-[22px]">price_change</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<h3 class="font-headline-sm text-headline-sm text-[#0F172A] font-bold">Price adjusted by flight operator</h3>
+<span class="font-label-sm text-label-sm px-2 py-0.5 bg-[#ea580c] text-white rounded-full uppercase font-bold">Rate updated</span>
+</div>
+<p class="font-body-md text-body-md text-[#475569] leading-relaxed">
+              The vendor adjusted rates from <strong class="text-[#0F172A] line-through">NPR 8,500</strong> to <strong class="text-[#ea580c] font-bold">NPR 9,200</strong> per person for tomorrow's morning high-thermal window due to peak thermals and fuel logistics. Please review your recalculated total below.
+            </p>
+</div>
+</div>
+<div class="p-6 md:p-8 space-y-6">
+<!-- Recalculated Summary Card -->
+<div class="p-5 rounded-xl bg-[#F8FAFC] border border-[#D0E2EC] space-y-4">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-[#475569] uppercase tracking-wider font-semibold">Recalculated Reservation</span>
+<span class="font-label-md text-label-md text-[#088395] font-bold">3 Passengers</span>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center text-body-md font-body-md text-[#475569]">
+<span>Updated flight rate: NPR 9,200 × 3 persons</span>
+<span class="font-label-lg text-label-lg text-[#0F172A] font-bold">NPR 27,600</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md text-[#475569]">
+<span>Lakeside 4x4 Jeep pick-up &amp; drop</span>
+<span class="font-label-sm text-label-sm text-[#088395] uppercase font-bold">Included Free</span>
+</div>
+<div class="flex justify-between items-center text-body-md font-body-md text-[#475569]">
+<span>Civil Aviation Authority (CAAN) passenger levy</span>
+<span class="font-label-sm text-label-sm text-[#088395] uppercase font-bold">Included</span>
+</div>
+<div class="pt-3 border-t border-[#D0E2EC] flex justify-between items-baseline">
+<span class="font-headline-sm text-headline-sm text-[#0F172A] font-bold">New Total Amount:</span>
+<div class="text-right">
+<span class="font-headline-md md:text-[32px] md:leading-[38px] text-[#ea580c] font-bold">NPR 27,600</span>
+<p class="font-body-sm text-body-sm text-[#475569]">+ NPR 2,100 total variance</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Explanation Reassurance -->
+<div class="flex items-start gap-3 p-4 rounded-xl bg-[#EEF6FB] border border-[#CFE4F3]">
+<span class="material-symbols-outlined text-[#088395] text-[20px] shrink-0 mt-0.5">verified</span>
+<p class="font-body-sm text-body-sm text-[#0F172A] leading-relaxed">
+              If you decline the updated pricing, we will automatically cancel this specific request and check alternative certified schools (such as Blue Sky Paragliding) with your original budget parameters.
+            </p>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row items-center justify-end gap-3 pt-2">
+<button class="w-full sm:w-auto px-5 py-2.5 rounded-xl text-[#475569] hover:text-[#0F172A] font-label-lg text-label-lg hover:bg-[#EEF6FB] transition-all" onclick="switchState('state-form')" type="button">
+              Keep original / Cancel
+            </button>
+<button class="w-full sm:w-auto px-7 py-3 rounded-xl bg-gradient-to-r from-[#ea580c] to-[#f97316] hover:from-[#c2410c] hover:to-[#ea580c] text-white font-label-lg text-label-lg shadow-md shadow-[#ea580c]/25 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2 font-bold" onclick="switchState('state-confirmation')" type="button">
+<span class="material-symbols-outlined text-[18px]">check</span>
+<span>Accept &amp; Proceed (NPR 27,600)</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- STATE 3: OFFER UNAVAILABLE STATE -->
+<!-- ========================================================================= -->
+<div class="state-card hidden max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-[#CFE4F3] overflow-hidden transition-all duration-300" id="state-unavailable">
+<!-- Context Bar -->
+<div class="bg-[#F1F7FB] px-6 py-4 flex items-center justify-between border-b border-[#D8EAF4]">
+<div class="flex items-center gap-2 truncate">
+<span class="material-symbols-outlined text-[#94a3b8] text-[20px]">block</span>
+<span class="font-label-md text-label-md text-[#0F172A] font-bold truncate">Sarangkot Tandem Paragliding</span>
+</div>
+<span class="px-2.5 py-0.5 rounded-full text-label-sm font-label-sm bg-[#FEE2E2] border border-[#FCA5A5] text-[#dc2626] uppercase font-bold tracking-wider">Capacity Reached</span>
+</div>
+<!-- Warning Card State Inside Dialog -->
+<div class="p-8 md:p-12 text-center space-y-6">
+<div class="w-16 h-16 mx-auto rounded-full bg-[#EEF6FB] border border-[#CFE4F3] flex items-center justify-center text-[#94a3b8] shadow-inner">
+<span class="material-symbols-outlined text-[36px]">cloud_off</span>
+</div>
+<div class="max-w-md mx-auto space-y-2">
+<h2 class="font-headline-md md:text-[32px] md:leading-[38px] text-[#0F172A] font-bold">Offer currently unavailable</h2>
+<p class="font-body-md text-body-md text-[#475569] leading-relaxed">
+              This package has reached seasonal pilot capacity for your selected date (<strong class="text-[#0F172A]">Nov 14, 2025</strong>). To protect Annapurna airspace safety, tandem slots are strictly capped per weather window.
+            </p>
+</div>
+<!-- Alternative Suggestion Badges -->
+<div class="p-4 rounded-2xl bg-[#F8FAFC] border border-[#D0E2EC] max-w-lg mx-auto text-left space-y-3">
+<span class="font-label-sm text-label-sm text-[#ea580c] uppercase font-bold tracking-wider">Nearby Available Windows:</span>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+<button class="flex items-center justify-between p-3 rounded-xl bg-white hover:bg-[#EEF6FB] border border-[#D0E2EC] hover:border-[#088395]/50 transition-all group" onclick="switchState('state-form')" type="button">
+<div class="text-left">
+<p class="font-label-md text-label-md text-[#0F172A] group-hover:text-[#088395] transition-colors">Sat, Nov 15</p>
+<p class="font-body-sm text-body-sm text-[#475569]">4 slots free</p>
+</div>
+<span class="material-symbols-outlined text-[#088395] text-[18px]">chevron_right</span>
+</button>
+<button class="flex items-center justify-between p-3 rounded-xl bg-white hover:bg-[#EEF6FB] border border-[#D0E2EC] hover:border-[#088395]/50 transition-all group" onclick="switchState('state-form')" type="button">
+<div class="text-left">
+<p class="font-label-md text-label-md text-[#0F172A] group-hover:text-[#088395] transition-colors">Sun, Nov 16</p>
+<p class="font-body-sm text-body-sm text-[#475569]">Early thermal slot</p>
+</div>
+<span class="material-symbols-outlined text-[#088395] text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+<button class="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#088395] hover:bg-[#0D9488] text-white font-label-lg text-label-lg shadow-md shadow-[#088395]/25 hover:shadow-lg transition-all flex items-center justify-center gap-2 font-bold" onclick="switchState('state-form')" type="button">
+<span class="material-symbols-outlined text-[18px]">edit_calendar</span>
+<span>Choose another date</span>
+</button>
+<button class="w-full sm:w-auto px-5 py-3 rounded-xl bg-white hover:bg-[#EEF6FB] text-[#0F172A] border border-[#D0E2EC] font-label-lg text-label-lg transition-all flex items-center justify-center gap-2 shadow-sm" onclick="location.reload()" type="button">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+<span>Reload offer</span>
+</button>
+</div>
+</div>
+</div>
+<!-- ========================================================================= -->
+<!-- STATE 4: REQUEST RECEIVED / CONFIRMATION STATE -->
+<!-- ========================================================================= -->
+<div class="state-card hidden max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border border-[#CFE4F3] overflow-hidden transition-all duration-300" id="state-confirmation">
+<!-- Confirmation Success Header -->
+<div class="p-6 md:p-8 space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-12 h-12 rounded-2xl bg-[#088395]/15 border border-[#088395]/30 text-[#088395] flex items-center justify-center shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[28px]">verified</span>
+</div>
+<div class="space-y-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#088395] font-bold">Request Dispatched to Pilot Roster</span>
+<h2 class="font-headline-md md:text-[32px] md:leading-[38px] text-[#0F172A] font-bold">Request received. Confirmation pending.</h2>
+</div>
+</div>
+<!-- Important Clarity Notice -->
+<div class="p-4 rounded-xl bg-[#FFF7ED] border border-[#FED7AA] flex items-start gap-3">
+<span class="material-symbols-outlined text-[#ea580c] text-[20px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-[#0F172A] leading-relaxed">
+<strong class="text-[#0F172A]">Notice:</strong> This request records your party's availability with the flight school. <em>It does not reserve capacity or guarantee a booking</em> until Himalayan Sky Gliders confirms weather feasibility within 30 minutes.
+            </p>
+</div>
+<!-- Booking Summary Card -->
+<div class="rounded-2xl p-5 bg-[#F8FAFC] border border-[#D0E2EC] shadow-sm space-y-4">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-[#D0E2EC] gap-2">
+<span class="font-label-md text-label-md text-[#475569] uppercase tracking-wider font-semibold">Reference Slip</span>
+<div class="flex items-center gap-2">
+<span class="px-3 py-1 rounded-lg bg-white border border-[#088395]/30 font-mono font-bold text-[#088395] text-label-md tracking-wider shadow-sm">
+                  PKR-7EV5GB
+                </span>
+<button class="p-1.5 text-[#088395] hover:bg-[#EEF6FB] rounded-lg transition-colors border border-transparent hover:border-[#088395]/30" onclick="copyReference('PKR-7EV5GB', this)" title="Copy Reference Code" type="button">
+<span class="material-symbols-outlined text-[18px]">content_copy</span>
+</button>
+</div>
+</div>
+<!-- Metadata Key-Value List -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-body-md font-body-md">
+<div class="space-y-0.5">
+<span class="text-[#475569] font-label-sm text-label-sm uppercase">Activity</span>
+<p class="font-semibold text-[#0F172A]">Sarangkot Tandem Paragliding</p>
+</div>
+<div class="space-y-0.5">
+<span class="text-[#475569] font-label-sm text-label-sm uppercase">Offer &amp; Vendor</span>
+<p class="text-[#0F172A]">Standard Thermal Glide · <span class="text-[#088395] font-medium">Himalayan Sky Gliders</span></p>
+</div>
+<div class="space-y-0.5">
+<span class="text-[#475569] font-label-sm text-label-sm uppercase">Date &amp; Window</span>
+<p class="text-[#0F172A]">Nov 14, 2025 (Morning slot 9:30 AM)</p>
+</div>
+<div class="space-y-0.5">
+<span class="text-[#475569] font-label-sm text-label-sm uppercase">Party Size</span>
+<p class="text-[#0F172A] font-semibold">3 Gliders (Maya Sharma + 2)</p>
+</div>
+</div>
+<!-- Price Breakdown Line -->
+<div class="pt-4 border-t border-[#D0E2EC] flex items-baseline justify-between">
+<div>
+<span class="font-label-sm text-label-sm text-[#475569] uppercase tracking-wider block font-semibold">Estimated Total</span>
+<span class="font-body-sm text-body-sm text-[#475569]">Payable directly upon vendor confirmation</span>
+</div>
+<div class="text-right">
+<span class="font-headline-md md:text-[30px] md:leading-[36px] text-[#ea580c] font-bold">NPR 25,500</span>
+</div>
+</div>
+</div>
+<!-- Next Steps Flow -->
+<div class="space-y-3">
+<span class="font-label-md text-label-md text-[#0F172A] font-bold uppercase tracking-wider">What happens next?</span>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+<div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#D0E2EC] space-y-1">
+<div class="flex items-center gap-1.5 text-[#088395]">
+<span class="font-mono text-label-sm font-bold">01</span>
+<span class="font-label-sm text-label-sm font-bold">Pilot Assignment</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] leading-relaxed">Lead tandem captain checks morning thermal stability.</p>
+</div>
+<div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#D0E2EC] space-y-1">
+<div class="flex items-center gap-1.5 text-[#088395]">
+<span class="font-mono text-label-sm font-bold">02</span>
+<span class="font-label-sm text-label-sm font-bold">WhatsApp Dispatch</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] leading-relaxed">Driver pickup details sent to +977 9841234567.</p>
+</div>
+<div class="p-3.5 rounded-xl bg-[#F8FAFC] border border-[#D0E2EC] space-y-1">
+<div class="flex items-center gap-1.5 text-[#088395]">
+<span class="font-mono text-label-sm font-bold">03</span>
+<span class="font-label-sm text-label-sm font-bold">Lakeside Launch</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] leading-relaxed">Payment collected directly at office prior to take-off.</p>
+</div>
+</div>
+</div>
+<!-- Secondary Actions -->
+<div class="pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+<a class="w-full sm:w-auto px-5 py-2.5 rounded-xl text-[#475569] hover:text-[#0F172A] font-label-lg text-label-lg hover:bg-[#EEF6FB] transition-all text-center" data-path="activities" href="#">
+              Back to Activities
+            </a>
+<div class="flex items-center gap-2 w-full sm:w-auto">
+<button class="flex-1 sm:flex-initial px-4 py-2.5 rounded-xl bg-white hover:bg-[#EEF6FB] text-[#0F172A] border border-[#D0E2EC] font-label-lg text-label-lg transition-all flex items-center justify-center gap-1.5 shadow-sm" onclick="window.print()" type="button">
+<span class="material-symbols-outlined text-[16px]">print</span>
+<span>Print Slip</span>
+</button>
+<button class="flex-1 sm:flex-initial px-6 py-2.5 rounded-xl bg-[#088395] hover:bg-[#0D9488] text-white font-label-lg text-label-lg shadow-md shadow-[#088395]/25 hover:shadow-lg transition-all flex items-center justify-center gap-2 font-bold" id="save-ref-btn" onclick="saveConfirmationRef()" type="button">
+<span class="material-symbols-outlined text-[16px]">bookmark_add</span>
+<span>Save reference</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Himalayan Context Snapshot (Visual Underlay Banner) -->
+<div class="mt-12 rounded-2xl bg-white border border-[#CFE4F3] p-6 md:p-7 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-[#088395]/15 border border-[#088395]/30 flex items-center justify-center text-[#088395] shrink-0 shadow-sm">
+<span class="material-symbols-outlined text-[24px]">thermostat</span>
+</div>
+<div>
+<div class="flex items-center gap-2 mb-0.5">
+<h4 class="font-headline-sm text-headline-sm text-[#0F172A] font-bold">Annapurna Basin Flying Conditions</h4>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#088395]/15 text-[#088395] text-label-sm font-label-sm font-bold uppercase tracking-wider border border-[#088395]/30 shadow-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-[#088395] animate-pulse"></span>
+OPTIMAL
+</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569]">Sarangkot Launchpad 1,450m · Wind: 8-12 kt NW · Sky: Clear cloud base 3,200m</p>
+</div>
+</div>
+<div class="flex items-center gap-8 bg-[#EEF6FB] px-5 py-3 rounded-xl border border-[#D0E2EC]">
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-[#475569] uppercase tracking-wider block">Permit Status</span>
+<p class="font-label-md text-label-md text-[#088395] font-bold flex items-center gap-1.5 justify-end">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+CAAN Registered
+</p>
+</div>
+<div class="w-px h-8 bg-[#D0E2EC]"></div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-[#475569] uppercase tracking-wider block">Next Departure</span>
+<p class="font-label-md text-label-md text-[#ea580c] font-bold">09:30 AM Tomorrow</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Logic Script -->
+<script>
+    let participants = 3;
+    const baseRate = 8500;
+    let isAllView = false;
+
+    function switchState(stateId) {
+      if (isAllView) {
+        toggleAllCards(); // Return to single view first
+      }
+
+      // Update Tab Styles
+      const buttons = document.querySelectorAll('.state-tab-btn');
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-target') === stateId) {
+          btn.className = 'state-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all bg-[#088395] text-white font-bold shadow-md shadow-[#088395]/20 flex items-center gap-1.5';
+        } else {
+          btn.className = 'state-tab-btn px-4 py-2 rounded-xl font-label-md text-label-md transition-all text-[#475569] hover:text-[#0F172A] hover:bg-[#EEF6FB] flex items-center gap-1.5';
+        }
+      });
+
+      // Show Selected Card, Hide Others
+      const cards = ['state-form', 'state-ratechange', 'state-unavailable', 'state-confirmation'];
+      cards.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          if (id === stateId) {
+            el.classList.remove('hidden');
+            el.classList.add('block');
+          } else {
+            el.classList.remove('block');
+            el.classList.add('hidden');
+          }
+        }
+      });
+    }
+
+    function toggleAllCards() {
+      const cards = ['state-form', 'state-ratechange', 'state-unavailable', 'state-confirmation'];
+      const wrapper = document.getElementById('states-wrapper');
+      const toggleBtn = document.getElementById('toggle-all-btn');
+      
+      isAllView = !isAllView;
+
+      if (isAllView) {
+        // Grid mode
+        wrapper.className = 'grid grid-cols-1 lg:grid-cols-2 gap-8 items-start w-full';
+        cards.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.classList.remove('hidden');
+            el.classList.add('block', 'w-full', 'max-w-none');
+          }
+        });
+        toggleBtn.className = 'px-3.5 py-2 rounded-xl font-label-md text-label-md transition-all bg-[#ea580c] text-white shadow-md shadow-[#ea580c]/25 flex items-center gap-1.5 font-bold ml-1';
+        toggleBtn.querySelector('span:last-child').textContent = 'Exit All View';
+      } else {
+        // Single modal view (default to state-form)
+        wrapper.className = 'relative w-full';
+        cards.forEach(id => {
+          const el = document.getElementById(id);
+          if (el) {
+            el.classList.remove('w-full', 'max-w-none');
+          }
+        });
+        toggleBtn.className = 'px-3.5 py-2 rounded-xl font-label-md text-label-md transition-all text-[#ea580c] hover:bg-[#FFF4ED] flex items-center gap-1.5 font-bold ml-1 border border-[#ea580c]/30 shadow-sm';
+        toggleBtn.querySelector('span:last-child').textContent = 'All States View';
+        switchState('state-form');
+      }
+    }
+
+    function adjustParticipants(delta) {
+      const newPax = participants + delta;
+      if (newPax >= 1 && newPax <= 20) {
+        participants = newPax;
+        document.getElementById('participants-count').textContent = participants;
+        document.getElementById('formula-pax').textContent = participants;
+        const total = participants * baseRate;
+        document.getElementById('total-price-display').textContent = 'NPR ' + total.toLocaleString('en-US');
+      }
+    }
+
+    function toggleContactInput(type) {
+      const phoneBox = document.getElementById('phone-container');
+      const emailBox = document.getElementById('email-container');
+      if (type === 'whatsapp') {
+        phoneBox.classList.remove('hidden');
+        emailBox.classList.add('hidden');
+      } else {
+        phoneBox.classList.add('hidden');
+        emailBox.classList.remove('hidden');
+      }
+    }
+
+    function simulateSubmit() {
+      const btn = document.getElementById('submit-btn');
+      const originalHTML = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = `
+        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        <span>Sending request...</span>
+      `;
+      setTimeout(() => {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+        switchState('state-confirmation');
+      }, 900);
+    }
+
+    function copyReference(text, button) {
+      navigator.clipboard?.writeText(text).then(() => {
+        const icon = button.querySelector('.material-symbols-outlined');
+        const oldText = icon.textContent;
+        icon.textContent = 'check';
+        setTimeout(() => {
+          icon.textContent = oldText;
+        }, 1500);
+      });
+    }
+
+    function saveConfirmationRef() {
+      const saveBtn = document.getElementById('save-ref-btn');
+      saveBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[16px]">bookmark_added</span>
+        <span>Saved to Vault</span>
+      `;
+      saveBtn.classList.remove('bg-[#088395]', 'text-white');
+      saveBtn.classList.add('bg-[#6c748b]', 'text-white');
+    }
+  </script>
+</div></main><footer class="w-full bg-white border-t border-[#D0E2EC] mt-space-xl relative z-10"><div class="max-w-7xl mx-auto px-6 py-12"><div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10"><div class="space-y-3"><span class="font-headline-sm text-headline-sm text-[#088395] tracking-tight font-bold">Pokhara Booking</span><p class="font-body-sm text-body-sm text-[#475569] leading-relaxed">Curated Annapurna alpine expeditions, ultralight paragliding, and guided Himalayan discoveries operating under local tourism standards.</p></div><div class="space-y-2"><h4 class="font-label-md text-label-md text-[#0F172A] uppercase tracking-wider font-semibold">Local Tourism</h4><ul class="space-y-1.5 font-body-sm text-body-sm text-[#475569]"><li><a class="hover:text-[#088395] transition-colors" data-path="lakeside-information" href="#">Lakeside Visitor Hub</a></li><li><a class="hover:text-[#088395] transition-colors" data-path="permits-registration" href="#">ACAP &amp; TIMS Permits</a></li><li><a class="hover:text-[#088395] transition-colors" data-path="weather-altitudes" href="#">Live Altitude Weather</a></li></ul></div><div class="space-y-2"><h4 class="font-label-md text-label-md text-[#0F172A] uppercase tracking-wider font-semibold">Safety Advisories</h4><ul class="space-y-1.5 font-body-sm text-body-sm text-[#475569]"><li><a class="hover:text-[#088395] transition-colors" data-path="paragliding-safety" href="#">Flight Certification Rules</a></li><li><a class="hover:text-[#088395] transition-colors" data-path="monsoon-seasons" href="#">Seasonal Route Notices</a></li><li><a class="hover:text-[#088395] transition-colors" data-path="emergency-dispatch" href="#">Himalayan Rescue Dispatch</a></li></ul></div><div class="space-y-2"><h4 class="font-label-md text-label-md text-[#0F172A] uppercase tracking-wider font-semibold">Base Camp Office</h4><p class="font-body-sm text-body-sm text-[#475569]">Baidam Road 6, Lakeside, Pokhara 33700, Nepal</p><p class="font-label-md text-label-md text-[#088395] mt-2 font-bold">+977 61 465221</p></div></div><div class="pt-8 border-t border-[#E2E8F0] flex flex-col sm:flex-row items-center justify-between gap-4 font-body-sm text-body-sm text-[#475569]"><p>© 2025 Pokhara Booking Platform. All rights reserved.</p><div class="flex items-center gap-6 font-label-sm text-label-sm uppercase tracking-wider"><a class="hover:text-[#088395] transition-colors" data-path="terms-conditions" href="#">Terms &amp; Wilderness Waiver</a><a class="hover:text-[#088395] transition-colors" data-path="privacy-policy" href="#">Privacy Policy</a></div></div></div></footer>
+</body></html>

@@ -22,9 +22,12 @@ export function AdminNav({ pendingCount }: { pendingCount?: number }) {
 /** Nav without the active highlight; used as the Suspense fallback. */
 export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string; pendingCount?: number }) {
   return (
-    <nav aria-label="Admin" className="flex flex-wrap items-center gap-1 border-b pb-3">
-      <span className="mr-2 rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
-        Admin
+    <nav
+      aria-label="Admin"
+      className="flex items-center gap-1 overflow-x-auto rounded-2xl bg-card p-1.5 border border-border"
+    >
+      <span className="mr-1 hidden shrink-0 rounded-xl bg-ink px-3 py-2 text-sm font-semibold text-white sm:block">
+        Staff admin
       </span>
       {LINKS.map(({ href, label, exact }) => {
         const active = exact ? pathname === href : pathname.startsWith(href);
@@ -34,13 +37,13 @@ export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string;
             href={href}
             aria-current={active ? "page" : undefined}
             className={cn(
-              "rounded-md px-3 py-1.5 text-sm transition-colors hover:bg-muted",
-              active ? "bg-muted font-medium text-foreground" : "text-muted-foreground",
+              "flex shrink-0 items-center rounded-xl px-3.5 py-2 text-sm font-medium transition-colors hover:bg-mist focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+              active ? "bg-muted font-semibold text-foreground" : "text-muted-foreground",
             )}
           >
             {label}
             {href === "/admin/requests" && pendingCount > 0 && (
-              <span className="ml-1.5 rounded-full bg-destructive/10 px-1.5 text-xs font-medium text-destructive tabular-nums">
+              <span className="ml-2 rounded-full bg-sunrise-soft px-2 py-0.5 text-xs font-bold text-sunrise tabular-nums">
                 <span className="sr-only">, pending: </span>
                 {pendingCount}
               </span>
@@ -51,7 +54,7 @@ export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string;
       <Link
         href="/"
         target="_blank"
-        className="ml-auto flex items-center gap-1 rounded-md px-3 py-1.5 text-sm text-muted-foreground hover:bg-muted"
+        className="ml-auto flex shrink-0 items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium text-primary hover:bg-mist focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
       >
         View site
         <ExternalLink className="size-3.5" aria-hidden="true" />

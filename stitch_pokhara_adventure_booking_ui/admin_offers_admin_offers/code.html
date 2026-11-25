@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_standard" name="shell-type"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#006574",
+            "primary-container": "#008092",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#f8fdff",
+            "primary-fixed": "#a3eeff",
+            "primary-fixed-dim": "#76d4e7",
+            "on-primary-fixed": "#001f25",
+            "on-primary-fixed-variant": "#004e5a",
+            "secondary": "#a14000",
+            "secondary-container": "#ff8342",
+            "on-secondary": "#ffffff",
+            "secondary-fixed": "#ffdbcc",
+            "secondary-fixed-dim": "#ffb694",
+            "on-secondary-fixed": "#351000",
+            "surface": "#f3faff",
+            "surface-dim": "#d1dce1",
+            "surface-bright": "#f3faff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#ebf5fb",
+            "surface-container": "#e5eff5",
+            "surface-container-high": "#e0eaf0",
+            "surface-container-highest": "#dae4ea",
+            "on-surface": "#131d21",
+            "on-surface-variant": "#3e494b",
+            "outline": "#6e797c",
+            "outline-variant": "#bdc8cb",
+            "background": "#f3faff",
+            "on-background": "#131d21",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            "on-error-container": "#93000a",
+            "sky-border": "#CFE2EE"
+          },
+          borderRadius: {
+            DEFAULT: "0.25rem",
+            lg: "0.5rem",
+            xl: "0.75rem",
+            full: "9999px"
+          },
+          spacing: {
+            margin: "3rem",
+            "space-lg": "1.5rem",
+            "space-xs": "0.25rem",
+            gutter: "1.5rem",
+            "gutter-mobile": "1rem",
+            "space-md": "1rem",
+            "space-xl": "2.5rem",
+            "margin-mobile": "1.25rem",
+            "space-sm": "0.5rem"
+          },
+          fontFamily: {
+            "headline-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "title-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "body-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "label-sm": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "title-md": ["Plus Jakarta Sans", "sans-serif"],
+            "body-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-md": ["Plus Jakarta Sans", "sans-serif"],
+            "label-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg-mobile": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          },
+          fontSize: {
+            "headline-sm": ["20px", {lineHeight: "28px", letterSpacing: "-0.01em", fontWeight: "600"}],
+            "label-lg": ["14px", {lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "600"}],
+            "headline-xl-mobile": ["32px", {lineHeight: "40px", letterSpacing: "-0.02em", fontWeight: "800"}],
+            "title-sm": ["16px", {lineHeight: "24px", letterSpacing: "0em", fontWeight: "600"}],
+            "body-sm": ["13px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "400"}],
+            "label-sm": ["11px", {lineHeight: "14px", letterSpacing: "0.04em", fontWeight: "700"}],
+            "headline-lg": ["36px", {lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "700"}],
+            "title-md": ["18px", {lineHeight: "26px", letterSpacing: "-0.005em", fontWeight: "600"}],
+            "body-lg": ["18px", {lineHeight: "28px", letterSpacing: "0em", fontWeight: "400"}],
+            "headline-md": ["24px", {lineHeight: "32px", letterSpacing: "-0.015em", fontWeight: "700"}],
+            "label-md": ["12px", {lineHeight: "16px", letterSpacing: "0.03em", fontWeight: "600"}],
+            "headline-lg-mobile": ["26px", {lineHeight: "34px", letterSpacing: "-0.02em", fontWeight: "700"}],
+            "body-md": ["15px", {lineHeight: "24px", letterSpacing: "0em", fontWeight: "400"}],
+            "headline-xl": ["48px", {lineHeight: "56px", letterSpacing: "-0.03em", fontWeight: "800"}]
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#EEF6FB] font-body-md text-body-md text-slate-800 antialiased selection:bg-teal-100 selection:text-teal-900">
+<!-- Top Admin Navigation Header -->
+<header class="fixed top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-[#CFE2EE] shadow-[0_2px_12px_rgba(15,23,42,0.04)]">
+<div class="h-16 max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-gutter">
+<div class="flex items-center gap-space-xl">
+<a class="flex items-center gap-space-sm shrink-0 group" data-path="overview" href="#">
+<span class="material-symbols-outlined text-[#088395] text-[26px] group-hover:scale-105 transition-transform">landscape</span>
+<span class="font-title-sm text-title-sm text-slate-900 tracking-tight flex items-center font-bold">
+            Pokhara Booking
+            <span class="font-label-md text-label-md text-[#088395] font-semibold bg-[#E6F4F7] px-2 py-0.5 rounded ml-2">Staff Admin</span>
+</span>
+</a>
+<nav class="hidden md:flex items-center gap-1.5" data-active-classes="bg-[#088395] text-white font-semibold rounded-lg shadow-sm">
+<a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-slate-600 hover:text-slate-900 hover:bg-[#EEF6FB] transition-colors" data-path="overview" href="#">Overview</a>
+<a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-slate-600 hover:text-slate-900 hover:bg-[#EEF6FB] transition-colors" data-path="activities" href="#">Activities</a>
+<a aria-current="page" class="px-space-md py-space-sm transition-all bg-[#088395] text-white font-semibold rounded-lg shadow-sm" data-path="offers" href="#">Offers</a>
+<a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-slate-600 hover:text-slate-900 hover:bg-[#EEF6FB] transition-colors" data-path="providers" href="#">Providers</a>
+<a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-slate-600 hover:text-slate-900 hover:bg-[#EEF6FB] transition-colors flex items-center gap-space-xs" data-path="outings" href="#">
+            Outings
+            <span class="px-2 py-0.5 rounded-full bg-[#FFE6D5] text-[#9A3412] font-label-sm text-label-sm font-bold">Pending 4</span>
+</a>
+</nav>
+</div>
+<div class="flex items-center gap-space-lg shrink-0">
+<a class="font-label-lg text-label-lg text-[#088395] hover:text-[#06616e] font-semibold transition-colors flex items-center gap-1" href="#" rel="noopener noreferrer" target="_blank">
+          View site
+          <span class="material-symbols-outlined text-[16px]">open_in_new</span>
+</a>
+<div class="w-9 h-9 rounded-full bg-[#E0F2F5] text-[#088395] border border-[#B3E1E8] flex items-center justify-center font-bold text-sm shadow-sm cursor-pointer hover:bg-[#D1EDF2] transition-colors">
+<span class="material-symbols-outlined text-[20px]">person</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Container -->
+<main class="w-full pt-16 bg-[#EEF6FB] min-h-[calc(100vh-5rem)]">
+<div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin py-space-xl">
+<div class="flex flex-col w-full gap-space-xl">
+<!-- Page Header & Key Stat -->
+<section class="flex flex-col md:flex-row md:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#088395] bg-[#E0F2F5] border border-[#BDE3EB] px-2.5 py-0.5 rounded-full font-bold">02 / Pricing &amp; Inventory</span>
+<span class="font-body-sm text-body-sm text-slate-500 font-mono">/admin/offers</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-slate-900 mt-1 font-extrabold tracking-tight">Offers</h1>
+<p class="font-body-md text-body-md text-slate-600 max-w-2xl">Manage activity packages, verify live operator rates, and control website visibility across Pokhara expeditions.</p>
+</div>
+<div class="flex items-center gap-space-md shrink-0">
+<div class="hidden lg:flex items-center gap-space-md bg-white border border-[#CFE2EE] px-space-md py-space-sm rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.04)]">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-slate-500 uppercase font-semibold">Verified Rate Health</span>
+<span class="font-title-sm text-title-sm text-[#088395] font-bold" id="health-stat">4 of 6 Live</span>
+</div>
+<svg aria-hidden="true" class="w-16 h-8 text-[#088395]" fill="none" viewbox="0 0 64 32">
+<path d="M2 24 L14 20 L26 22 L38 12 L50 14 L62 6" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
+<circle cx="62" cy="6" fill="currentColor" r="3.5"></circle>
+</svg>
+</div>
+<button class="h-11 px-5 rounded-lg bg-[#088395] hover:bg-[#066a78] text-white font-label-lg text-label-lg font-semibold flex items-center gap-2 shadow-[0_2px_8px_rgba(8,131,149,0.25)] transition-all cursor-pointer" id="btn-add-offer" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>+ Add offer</span>
+</button>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="bg-white border border-[#CFE2EE] rounded-xl p-space-lg shadow-[0_2px_8px_rgba(15,23,42,0.04)] flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md flex-1">
+<div class="flex flex-col gap-1.5 min-w-0 sm:w-72">
+<label class="font-label-md text-label-md text-slate-700 font-semibold" for="filter-activity">Activity</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="filter-activity">
+<option value="all">All activities</option>
+<option selected="" value="sarangkot-paragliding">Sarangkot Tandem Paragliding</option>
+<option value="annapurna-base-camp">Annapurna Base Camp Trek</option>
+<option value="zipflyer-descent">Zipflyer High-Speed Descent (Hidden)</option>
+<option value="phewa-kayak">Phewa Lake Sunrise Kayak</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-1.5 min-w-0 sm:w-56">
+<label class="font-label-md text-label-md text-slate-700 font-semibold" for="filter-status">Status</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="filter-status">
+<option selected="" value="all">All statuses</option>
+<option value="verified">Verified</option>
+<option value="unverified">Unverified</option>
+<option value="outdated">Outdated</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-space-sm bg-[#EEF6FB] border border-[#CFE2EE] px-3.5 py-2 rounded-lg self-start lg:self-end">
+<span class="material-symbols-outlined text-[#088395] text-[18px]">link</span>
+<span class="font-label-sm text-label-sm text-slate-600 font-medium">URL Sync:</span>
+<code class="font-mono text-xs text-[#088395] font-semibold" id="url-sync-hint">?activity=sarangkot-paragliding&amp;status=all</code>
+</div>
+</section>
+<!-- Offers Table Section -->
+<section class="bg-white border border-[#CFE2EE] rounded-xl shadow-[0_2px_8px_rgba(15,23,42,0.04)] overflow-hidden">
+<div class="px-space-lg py-3.5 bg-[#F8FAFC] border-b border-[#CFE2EE] flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<h2 class="font-title-md text-title-md text-slate-900 font-bold">Active &amp; Queued Offers</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-[#E0F2F5] text-[#088395] font-label-sm text-label-sm font-bold" id="offers-count-badge">6 offers</span>
+</div>
+<span class="font-body-sm text-body-sm text-slate-500 hidden sm:inline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">touch_app</span> Click any row to load into editor
+            </span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F1F6FA] border-b border-[#CFE2EE] text-slate-700 font-label-md text-label-md uppercase tracking-wider font-semibold">
+<th class="py-3.5 px-space-lg">Offer</th>
+<th class="py-3.5 px-space-md">Price &amp; Unit</th>
+<th class="py-3.5 px-space-md">Status</th>
+<th class="py-3.5 px-space-md">On Website</th>
+<th class="py-3.5 px-space-md">Price-Checked</th>
+<th class="py-3.5 px-space-lg text-right">Quick Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-slate-800 divide-y divide-[#E2EDF5]" id="offers-table-body">
+</tbody>
+</table>
+</div>
+</section>
+<!-- Edit / Create Offer Form Card -->
+<section class="bg-white border border-[#CFE2EE] rounded-xl shadow-[0_4px_16px_rgba(15,23,42,0.06)] p-space-lg lg:p-space-xl flex flex-col gap-space-lg" id="offer-form-card">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md border-b border-[#E2EDF5] pb-space-md">
+<div class="flex flex-col gap-1">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-[#088395] font-bold" id="form-mode-badge">Editing Offer</span>
+<h2 class="font-headline-md text-headline-md text-slate-900 font-bold tracking-tight" id="form-title">Sunrise Tandem Flight — Sarangkot</h2>
+</div>
+<button class="self-start sm:self-auto px-4 py-2 rounded-lg bg-[#EEF6FB] border border-[#CFE2EE] text-slate-700 font-label-lg text-label-lg font-semibold hover:bg-[#E2EDF5] transition-colors cursor-pointer" id="btn-reset-form" type="button">
+              Clear / New Offer
+            </button>
+</div>
+<div class="bg-[#EEF6FB] border border-[#BDE3EB] rounded-xl p-space-md flex items-start gap-space-md" id="edit-info-banner">
+<span class="material-symbols-outlined text-[#088395] text-[22px] shrink-0 mt-0.5">info</span>
+<p class="font-body-sm text-body-sm text-slate-700 leading-relaxed">
+<strong class="text-slate-900 font-semibold">Note:</strong> Changes to price or terms apply to new booking requests only. Existing requests keep their frozen snapshot.
+            </p>
+</div>
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg" id="offer-editor-form">
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-activity">Activity</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="input-activity">
+<option value="sarangkot-paragliding">Sarangkot Tandem Paragliding</option>
+<option value="annapurna-base-camp">Annapurna Base Camp Trek</option>
+<option value="zipflyer-descent">Zipflyer High-Speed Descent (Hidden)</option>
+<option value="phewa-kayak">Phewa Lake Sunrise Kayak</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-provider">Provider</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="input-provider">
+<option value="pokhara-para">Pokhara Paragliding Club</option>
+<option value="himalayan-soar">Himalayan Soar Adventures</option>
+<option value="annapurna-guides">Annapurna Alpine Guides</option>
+<option value="none">No provider</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="lg:col-span-8 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-package">Package Name</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-package" placeholder="e.g. Sunrise Tandem Flight" type="text" value="Sunrise Tandem Flight"/>
+</div>
+<div class="lg:col-span-4 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-duration">Duration</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-duration" placeholder="e.g. 30 mins" type="text" value="30 mins flight / 2 hrs total"/>
+</div>
+<!-- Price, Currency, Unit Block -->
+<div class="lg:col-span-12 bg-[#F8FAFC] border border-[#CFE2EE] rounded-xl p-space-md lg:p-space-lg grid grid-cols-1 md:grid-cols-12 gap-space-md items-end">
+<div class="md:col-span-4 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-price">Price</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-white border border-[#CFE2EE] text-slate-900 font-body-md text-body-md font-medium focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-price" placeholder="0" type="number" value="8500"/>
+</div>
+<div class="md:col-span-4 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-currency">Currency</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-white border border-[#CFE2EE] text-slate-900 font-body-md text-body-md font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="input-currency">
+<option selected="" value="NPR">NPR (Nepalese Rupee)</option>
+<option value="USD">USD (US Dollar)</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="md:col-span-4 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-unit">Unit</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-white border border-[#CFE2EE] text-slate-900 font-body-md text-body-md font-medium appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="input-unit">
+<option selected="" value="per_person">per_person</option>
+<option value="per_group">per_group</option>
+<option value="per_flight">per_flight</option>
+<option value="per_hour">per_hour</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="md:col-span-12 bg-white border border-[#CFE2EE] rounded-lg px-4 py-3 flex items-center justify-between shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-[#088395] text-[20px]">visibility</span>
+<span class="font-label-md text-label-md text-slate-600 font-semibold">Visitors will see:</span>
+</div>
+<span class="font-title-sm text-title-sm text-[#088395] font-bold" id="price-preview">NPR 8,500 per person</span>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-inclusions">Inclusions</label>
+<textarea class="w-full p-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-inclusions" rows="3">Hotel pickup in Lakeside, GoPro video &amp; photos, certified tandem pilot, flight insurance.</textarea>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-conditions">Conditions</label>
+<textarea class="w-full p-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-conditions" rows="3">Weight limit 35kg–105kg. Weather dependent; free reschedule if wind conditions are unsafe.</textarea>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-status">Verification Status</label>
+<div class="relative">
+<select class="w-full h-11 pl-3.5 pr-10 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md appearance-none focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors cursor-pointer" id="input-status">
+<option selected="" value="verified">Verified</option>
+<option value="unverified">Unverified</option>
+<option value="outdated">Outdated</option>
+</select>
+<span class="material-symbols-outlined text-slate-400 text-[20px] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">expand_more</span>
+</div>
+<span class="font-body-sm text-body-sm text-[#088395] font-medium" id="status-visibility-hint">Visible on website when activity is public and price is set.</span>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-checked-date">Price-Checked Date</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-checked-date" type="date" value="2025-02-18"/>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-source-link">Source Link</label>
+<div class="relative">
+<input class="w-full h-11 pl-3.5 pr-36 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-source-link" placeholder="https://..." type="url" value="https://pokharapara.com/rates/tandem-sunrise"/>
+<span class="absolute right-2.5 top-1/2 -translate-y-1/2 px-2.5 py-1 rounded bg-[#E2EDF5] text-slate-700 font-mono text-xs font-medium" id="source-domain-pill">pokharapara.com</span>
+</div>
+</div>
+<div class="lg:col-span-6 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-booking-link">Booking Link</label>
+<input class="w-full h-11 px-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-booking-link" placeholder="https://..." type="url" value="https://pokharapara.com/book?slot=sunrise"/>
+</div>
+<div class="lg:col-span-12 flex flex-col gap-1.5">
+<label class="font-label-md text-label-md text-slate-800 font-semibold" for="input-notes">Internal Notes</label>
+<textarea class="w-full p-3.5 rounded-lg bg-[#F8FAFC] border border-[#CFE2EE] text-slate-800 font-body-md text-body-md focus:outline-none focus:ring-2 focus:ring-[#088395]/30 focus:border-[#088395] transition-colors" id="input-notes" placeholder="Staff-only notes..." rows="2">Confirmed with Bikash (Ops Manager) via WhatsApp. Peak season rate holds through May.</textarea>
+</div>
+<div class="lg:col-span-12 flex flex-col sm:flex-row items-center justify-end gap-space-md pt-2 border-t border-[#E2EDF5]">
+<span class="hidden font-label-md text-label-md text-[#088395] mr-auto flex items-center gap-1.5 font-semibold" id="save-toast">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+                Offer saved and table updated.
+              </span>
+<button class="w-full sm:w-auto h-11 px-5 rounded-lg bg-[#EEF6FB] border border-[#CFE2EE] text-slate-700 font-label-lg text-label-lg font-semibold hover:bg-[#E2EDF5] transition-colors cursor-pointer" id="btn-cancel-edit" type="button">
+                Cancel
+              </button>
+<button class="w-full sm:w-auto h-11 px-7 rounded-lg bg-[#088395] hover:bg-[#066a78] text-white font-label-lg text-label-lg font-semibold shadow-[0_2px_8px_rgba(8,131,149,0.25)] transition-all cursor-pointer" type="submit">
+                Save Offer Changes
+              </button>
+</div>
+</form>
+</section>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-white border-t border-[#CFE2EE] py-space-lg">
+<div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-slate-500">
+<span>© 2025 Pokhara Booking. Staff Admin Portal.</span>
+<span>Internal Operations &amp; Expedition Management</span>
+</div>
+</footer>
+<script>
+    (() => {
+      const offersData = [
+        {
+          id: 1,
+          package: "Sunrise Tandem Flight",
+          activity: "Sarangkot Tandem Paragliding",
+          activitySlug: "sarangkot-paragliding",
+          activityHidden: false,
+          provider: "Pokhara Paragliding Club",
+          price: 8500,
+          currency: "NPR",
+          unit: "per_person",
+          status: "verified",
+          checkedDate: "2025-02-18"
+        },
+        {
+          id: 2,
+          package: "Cross-Country Thermal (60m)",
+          activity: "Sarangkot Tandem Paragliding",
+          activitySlug: "sarangkot-paragliding",
+          activityHidden: false,
+          provider: "Himalayan Soar Adventures",
+          price: 12000,
+          currency: "NPR",
+          unit: "per_flight",
+          status: "unverified",
+          checkedDate: "2025-01-29"
+        },
+        {
+          id: 3,
+          package: "7-Day Sanctuary Trek",
+          activity: "Annapurna Base Camp Trek",
+          activitySlug: "annapurna-base-camp",
+          activityHidden: false,
+          provider: "Annapurna Alpine Guides",
+          price: 680,
+          currency: "USD",
+          unit: "per_person",
+          status: "verified",
+          checkedDate: "2025-02-15"
+        },
+        {
+          id: 4,
+          package: "Extreme Zipflyer + Photo",
+          activity: "Zipflyer High-Speed Descent (Hidden)",
+          activitySlug: "zipflyer-descent",
+          activityHidden: true,
+          provider: "No provider",
+          price: 9200,
+          currency: "NPR",
+          unit: "per_person",
+          status: "verified",
+          checkedDate: "2025-02-10"
+        },
+        {
+          id: 5,
+          package: "Group Kayak Charter (4 pax)",
+          activity: "Phewa Lake Sunrise Kayak",
+          activitySlug: "phewa-kayak",
+          activityHidden: false,
+          provider: "No provider",
+          price: null,
+          currency: "NPR",
+          unit: "per_group",
+          status: "outdated",
+          checkedDate: "2024-11-04"
+        },
+        {
+          id: 6,
+          package: "Acro Tandem Special",
+          activity: "Sarangkot Tandem Paragliding",
+          activitySlug: "sarangkot-paragliding",
+          activityHidden: false,
+          provider: "Pokhara Paragliding Club",
+          price: 10500,
+          currency: "NPR",
+          unit: "per_person",
+          status: "outdated",
+          checkedDate: "2024-12-12"
+        }
+      ];
+
+      const unitLabels = {
+        per_person: "person",
+        per_group: "group",
+        per_flight: "flight",
+        per_hour: "hour"
+      };
+
+      const tbody = document.getElementById("offers-table-body");
+      const filterActivity = document.getElementById("filter-activity");
+      const filterStatus = document.getElementById("filter-status");
+      const urlSyncHint = document.getElementById("url-sync-hint");
+      const offersCountBadge = document.getElementById("offers-count-badge");
+      const healthStat = document.getElementById("health-stat");
+
+      const inputPrice = document.getElementById("input-price");
+      const inputCurrency = document.getElementById("input-currency");
+      const inputUnit = document.getElementById("input-unit");
+      const pricePreview = document.getElementById("price-preview");
+      const inputSourceLink = document.getElementById("input-source-link");
+      const sourceDomainPill = document.getElementById("source-domain-pill");
+      const formTitle = document.getElementById("form-title");
+      const formModeBadge = document.getElementById("form-mode-badge");
+      const editInfoBanner = document.getElementById("edit-info-banner");
+      const saveToast = document.getElementById("save-toast");
+
+      function getVisibilityText(offer) {
+        if (offer.activityHidden) return { text: "Hidden: Activity is hidden", visible: false };
+        if (!offer.price || offer.price <= 0) return { text: "Hidden: Missing price", visible: false };
+        if (offer.status === "outdated") return { text: "Hidden: Outdated rate", visible: false };
+        return { text: "Visible", visible: true };
+      }
+
+      function getStatusBadge(status) {
+        if (status === "verified") {
+          return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#E0F2F5] text-[#088395] border border-[#BDE3EB] font-label-sm text-label-sm font-bold">Verified</span>`;
+        }
+        if (status === "unverified") {
+          return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FEF3C7] text-[#92400E] border border-[#FDE68A] font-label-sm text-label-sm font-bold">Unverified</span>`;
+        }
+        return `<span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-[#FEE2E2] text-[#991B1B] border border-[#FECACA] font-label-sm text-label-sm font-bold">Outdated</span>`;
+      }
+
+      function renderTable() {
+        const actVal = filterActivity.value;
+        const statVal = filterStatus.value;
+        urlSyncHint.textContent = `?activity=${actVal}&status=${statVal}`;
+
+        const filtered = offersData.filter(o => {
+          const matchAct = actVal === "all" || o.activitySlug === actVal;
+          const matchStat = statVal === "all" || o.status === statVal;
+          return matchAct && matchStat;
+        });
+
+        offersCountBadge.textContent = `${filtered.length} offer${filtered.length === 1 ? "" : "s"}`;
+        const visibleCount = offersData.filter(o => getVisibilityText(o).visible).length;
+        if (healthStat) healthStat.textContent = `${visibleCount} of ${offersData.length} Live`;
+
+        tbody.innerHTML = filtered.map((offer, idx) => {
+          const vis = getVisibilityText(offer);
+          const priceStr = offer.price
+            ? `<span class="font-semibold text-slate-900">${offer.currency} ${Number(offer.price).toLocaleString()}</span> <span class="text-slate-500 font-normal">/ ${unitLabels[offer.unit]}</span>`
+            : `<span class="text-rose-600 font-semibold text-xs bg-rose-50 px-2 py-0.5 rounded border border-rose-200">Missing price</span>`;
+          const rowBg = idx % 2 === 1 ? "bg-[#F8FAFC]/70" : "bg-white";
+
+          return `
+            <tr data-id="${offer.id}" class="${rowBg} hover:bg-[#EEF6FB] transition-colors cursor-pointer group">
+              <td class="py-3.5 px-space-lg">
+                <div class="flex flex-col">
+                  <span class="font-title-sm text-title-sm text-slate-900 font-bold group-hover:text-[#088395] transition-colors">${offer.package}</span>
+                  <span class="font-body-sm text-body-sm text-slate-500">${offer.activity} &bull; ${offer.provider}</span>
+                </div>
+              </td>
+              <td class="py-3.5 px-space-md whitespace-nowrap font-label-lg text-label-lg">${priceStr}</td>
+              <td class="py-3.5 px-space-md whitespace-nowrap">${getStatusBadge(offer.status)}</td>
+              <td class="py-3.5 px-space-md whitespace-nowrap">
+                <span class="font-body-sm text-body-sm ${vis.visible ? "text-[#088395] font-bold flex items-center gap-1" : "text-slate-500"}">
+                  ${vis.visible ? '<span class="material-symbols-outlined text-[16px]">check_circle</span>' : ''}
+                  ${vis.text}
+                </span>
+              </td>
+              <td class="py-3.5 px-space-md whitespace-nowrap font-body-sm text-body-sm text-slate-600">${offer.checkedDate}</td>
+              <td class="py-3.5 px-space-lg whitespace-nowrap text-right">
+                <div class="inline-flex items-center gap-1.5">
+                  <button type="button" data-action="verify" data-id="${offer.id}" class="px-3 py-1.5 rounded-lg bg-[#E0F2F5] hover:bg-[#088395] text-[#088395] hover:text-white border border-[#BDE3EB] hover:border-[#088395] font-label-sm text-label-sm font-semibold transition-all cursor-pointer">Verify / Re-check</button>
+                  <button type="button" data-action="outdated" data-id="${offer.id}" class="px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-[#FEE2E2] text-slate-600 hover:text-rose-700 border border-slate-200 hover:border-rose-300 font-label-sm text-label-sm font-semibold transition-all cursor-pointer">Outdated</button>
+                </div>
+              </td>
+            </tr>
+          `;
+        }).join("");
+      }
+
+      function updatePricePreview() {
+        const val = Number(inputPrice.value);
+        const curr = inputCurrency.value;
+        const unit = unitLabels[inputUnit.value] || "person";
+        pricePreview.textContent = val > 0 ? `${curr} ${val.toLocaleString()} per ${unit}` : `${curr} 0 per ${unit}`;
+      }
+
+      function updateSourceDomain() {
+        try {
+          const url = new URL(inputSourceLink.value);
+          sourceDomainPill.textContent = url.hostname.replace(/^www\./, "");
+        } catch {
+          sourceDomainPill.textContent = "invalid url";
+        }
+      }
+
+      tbody.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-action]");
+        if (btn) {
+          e.stopPropagation();
+          const id = Number(btn.dataset.id);
+          const offer = offersData.find(o => o.id === id);
+          if (!offer) return;
+          if (btn.dataset.action === "verify") {
+            offer.status = "verified";
+            offer.checkedDate = new Date().toISOString().slice(0, 10);
+          } else if (btn.dataset.action === "outdated") {
+            offer.status = "outdated";
+          }
+          renderTable();
+          return;
+        }
+
+        const row = e.target.closest("tr[data-id]");
+        if (row) {
+          const offer = offersData.find(o => o.id === Number(row.dataset.id));
+          if (!offer) return;
+          formModeBadge.textContent = "Editing Offer";
+          formTitle.textContent = `${offer.package} — ${offer.activity.replace(" (Hidden)", "")}`;
+          editInfoBanner.classList.remove("hidden");
+          document.getElementById("input-activity").value = offer.activitySlug;
+          document.getElementById("input-package").value = offer.package;
+          inputPrice.value = offer.price || "";
+          inputCurrency.value = offer.currency;
+          inputUnit.value = offer.unit;
+          document.getElementById("input-status").value = offer.status;
+          document.getElementById("input-checked-date").value = offer.checkedDate;
+          updatePricePreview();
+          document.getElementById("offer-form-card").scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+
+      document.getElementById("btn-add-offer").addEventListener("click", () => {
+        formModeBadge.textContent = "New Offer";
+        formTitle.textContent = "Create New Activity Offer";
+        editInfoBanner.classList.add("hidden");
+        document.getElementById("offer-editor-form").reset();
+        updatePricePreview();
+        document.getElementById("offer-form-card").scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+
+      document.getElementById("btn-reset-form").addEventListener("click", () => {
+        document.getElementById("btn-add-offer").click();
+      });
+
+      document.getElementById("btn-cancel-edit").addEventListener("click", () => {
+        document.getElementById("offer-editor-form").reset();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      document.getElementById("offer-editor-form").addEventListener("submit", (e) => {
+        e.preventDefault();
+        saveToast.classList.remove("hidden");
+        setTimeout(() => saveToast.classList.add("hidden"), 3000);
+      });
+
+      filterActivity.addEventListener("change", renderTable);
+      filterStatus.addEventListener("change", renderTable);
+      inputPrice.addEventListener("input", updatePricePreview);
+      inputCurrency.addEventListener("change", updatePricePreview);
+      inputUnit.addEventListener("change", updatePricePreview);
+      inputSourceLink.addEventListener("input", updateSourceDomain);
+
+      renderTable();
+      updatePricePreview();
+    })();
+  </script>
+</body></html>

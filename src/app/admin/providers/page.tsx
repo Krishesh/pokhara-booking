@@ -16,7 +16,7 @@ export default function AdminProvidersPage() {
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight">Providers</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Providers</h1>
           <p className="text-muted-foreground">
             Companies that run activities. Visitors see the name and Google rating; contact details stay private.
           </p>
@@ -38,14 +38,14 @@ async function ProvidersTable() {
 
   if (providers.length === 0) {
     return (
-      <p className="rounded-xl border border-dashed p-10 text-center text-muted-foreground">
+      <p className="rounded-2xl border-2 border-dashed border-input bg-card/60 p-10 text-center text-muted-foreground">
         No providers yet. Click <strong>New provider</strong> to add one.
       </p>
     );
   }
 
   return (
-    <div className="rounded-xl border">
+    <div className="overflow-hidden rounded-2xl bg-card border border-border">
       <Table>
         <TableHeader>
           <TableRow>
