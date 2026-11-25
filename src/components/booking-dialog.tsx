@@ -51,11 +51,11 @@ export function BookingDialog({ offer, activityName }: { offer: BookableOffer; a
         if (next) setSession((s) => s + 1); // fresh form each time it opens
       }}
     >
-      <DialogTrigger render={<Button size="lg" className="w-full" />}>
+      <DialogTrigger render={<Button className="w-full" />}>
         Request booking
         <ArrowRight aria-hidden="true" />
       </DialogTrigger>
-      <DialogContent className="max-h-[92dvh] overflow-y-auto sm:max-w-lg sm:p-8">
+      <DialogContent className="max-h-[92dvh] overflow-y-auto sm:max-w-lg">
         <BookingForm key={session} offer={offer} activityName={activityName} />
       </DialogContent>
     </Dialog>
@@ -115,7 +115,7 @@ function BookingForm({ offer, activityName }: { offer: BookableOffer; activityNa
     <form action={formAction} className="grid gap-5" noValidate>
       <DialogHeader className="pr-10">
         <DialogTitle>Request booking</DialogTitle>
-        <DialogDescription className="text-[15px] leading-snug">
+        <DialogDescription className="text-sm leading-snug">
           <span className="font-semibold text-foreground">{offer.package_name ?? "Standard package"}</span> with{" "}
           {offer.vendor}, for {activityName}.
         </DialogDescription>
@@ -175,7 +175,7 @@ function BookingForm({ offer, activityName }: { offer: BookableOffer; activityNa
             return (
               <Label
                 key={type}
-                className="flex h-12 cursor-pointer items-center gap-3 rounded-xl border border-input bg-card px-3.5 font-medium transition-colors has-data-checked:border-primary has-data-checked:bg-teal-soft"
+                className="flex h-11 cursor-pointer items-center gap-3 rounded-xl border border-input bg-card px-3.5 font-medium transition-colors has-data-checked:border-primary has-data-checked:bg-teal-soft"
               >
                 <RadioGroupItem value={type} />
                 <Icon className="size-4 text-primary" aria-hidden="true" />
@@ -237,10 +237,10 @@ function BookingForm({ offer, activityName }: { offer: BookableOffer; activityNa
         </Field>
       </div>
 
-      <div className="rounded-2xl bg-sunrise-soft p-5" aria-live="polite">
+      <div className="rounded-xl bg-sunrise-soft p-4" aria-live="polite">
         <div className="flex items-baseline justify-between gap-4">
-          <span className="text-[15px] font-semibold">Estimated total</span>
-          <span className="text-3xl font-extrabold tracking-tight text-sunrise tabular-nums">
+          <span className="text-sm font-semibold">Estimated total</span>
+          <span className="text-2xl font-bold tracking-tight text-sunrise tabular-nums">
             {total === null ? "—" : formatPrice(total, terms.currency)}
           </span>
         </div>
@@ -252,7 +252,7 @@ function BookingForm({ offer, activityName }: { offer: BookableOffer; activityNa
         </p>
       </div>
 
-      <p className="flex gap-2.5 rounded-2xl bg-teal-soft p-4 text-sm leading-snug text-accent-foreground">
+      <p className="flex gap-2.5 rounded-xl bg-teal-soft p-3.5 text-sm leading-snug text-accent-foreground">
         <Info className="mt-0.5 size-4 shrink-0" aria-hidden="true" />
         <span>
           This is a request, not a confirmed booking. Nothing is charged. We only use your contact details to arrange
@@ -261,8 +261,8 @@ function BookingForm({ offer, activityName }: { offer: BookableOffer; activityNa
       </p>
 
       <DialogFooter className="gap-3">
-        <DialogClose render={<Button type="button" size="lg" variant="ghost" />}>Cancel</DialogClose>
-        <Button type="submit" size="lg" disabled={pending}>
+        <DialogClose render={<Button type="button" variant="ghost" />}>Cancel</DialogClose>
+        <Button type="submit" disabled={pending}>
           {pending && <Loader2 className="animate-spin" aria-hidden="true" />}
           {pending ? "Sending…" : "Send request"}
         </Button>
@@ -299,7 +299,7 @@ function BookingConfirmation({ booking }: { booking: BookingSuccess }) {
   return (
     <>
       <DialogHeader className="items-start pr-10">
-        <span className="grid size-12 place-items-center rounded-full bg-teal-soft text-primary motion-safe:animate-in motion-safe:zoom-in-50">
+        <span className="grid size-10 place-items-center rounded-full bg-teal-soft text-primary">
           <CircleCheck className="size-6" aria-hidden="true" />
         </span>
         <DialogTitle>Request received</DialogTitle>
@@ -308,13 +308,13 @@ function BookingConfirmation({ booking }: { booking: BookingSuccess }) {
         </DialogDescription>
       </DialogHeader>
 
-      <div className="rounded-2xl bg-ink p-5 text-center text-white">
+      <div className="rounded-xl bg-ink p-4 text-center text-white">
         <p className="text-sm text-mist/80">Your reference</p>
-        <p className="pt-1 text-3xl font-extrabold tracking-[0.12em] tabular-nums">{booking.reference}</p>
+        <p className="pt-1 text-2xl font-bold tracking-[0.1em] tabular-nums">{booking.reference}</p>
         <p className="mt-1 text-sm text-mist/80">Quote it when we contact you.</p>
       </div>
 
-      <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-[15px]">
+      <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-1.5 text-sm">
         <dt className="text-muted-foreground">Activity</dt>
         <dd>{booking.activityName}</dd>
         <dt className="text-muted-foreground">Offer</dt>
@@ -330,7 +330,7 @@ function BookingConfirmation({ booking }: { booking: BookingSuccess }) {
       </dl>
 
       <DialogFooter>
-        <DialogClose render={<Button size="lg" />}>Done</DialogClose>
+        <DialogClose render={<Button />}>Done</DialogClose>
       </DialogFooter>
     </>
   );

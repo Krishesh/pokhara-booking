@@ -8,7 +8,6 @@ import { BackLink } from "@/components/back-link";
 import { Container } from "@/components/container";
 import { OfferList, OfferListSkeleton } from "@/components/offer-list";
 import { MoreStrip } from "@/components/more-strip";
-import { Reveal } from "@/components/reveal";
 import { getPublishedActivities, getPublishedActivityBySlug } from "@/lib/activities";
 
 export async function generateMetadata({
@@ -42,70 +41,63 @@ export default async function ActivityPage({ params }: PageProps<"/activities/[s
       <Container>
         <BackLink href="/" label="All activities" />
 
-        <figure className="pt-4">
-          <div className="relative isolate overflow-hidden rounded-[2rem] bg-ink text-white">
-            <ActivityImage
-              src={activity.image_url}
-              alt={activity.name}
-              priority
-              sizes="(min-width: 1280px) 1216px, 100vw"
-              aspect="none"
-              className="-z-10 h-[62svh] max-h-[720px] min-h-[420px] motion-safe:[&_img]:animate-drift"
-            />
-            <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
-            <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-10">
-              <h1 className="max-w-[18ch] text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.04em] motion-safe:animate-rise">
-                {activity.name}
-              </h1>
-              <p className="flex max-w-[48ch] items-start gap-2 text-lg font-medium text-white motion-safe:animate-rise motion-safe:[animation-delay:100ms] sm:text-xl">
-                <MapPin className="mt-1 size-5 shrink-0" aria-hidden="true" />
-                <span>
-                  {sentenceCase(activity.category)}
-                  {activity.location ? ` in ${activity.location}, Pokhara.` : " in Pokhara."} Compare offers from local
-                  companies and request a date.
-                </span>
-              </p>
-            </div>
-          </div>
+        <header className="space-y-2 pt-4 pb-6">
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{activity.name}</h1>
+          <p className="flex items-center gap-1.5 text-base text-muted-foreground">
+            <MapPin className="size-4 shrink-0" aria-hidden="true" />
+            {sentenceCase(activity.category)}
+            {activity.location ? `, ${activity.location}` : ""}, Pokhara
+          </p>
+        </header>
+
+        <figure>
+          <ActivityImage
+            src={activity.image_url}
+            alt={activity.name}
+            priority
+            sizes="(min-width: 1280px) 1216px, 100vw"
+            aspect="none"
+            className="aspect-[16/9] max-h-[480px] rounded-2xl"
+          />
           {activity.image_url && activity.image_credit && (
-            <figcaption className="px-2 pt-3 text-[13px] text-muted-foreground">Photo: {activity.image_credit}</figcaption>
+            <figcaption className="pt-2 text-xs text-muted-foreground">{activity.image_credit}</figcaption>
           )}
         </figure>
 
-        <div className="grid gap-10 pt-14 sm:pt-20 lg:grid-cols-12">
-          <Reveal as="section" className="space-y-5 lg:col-span-7">
-            <h2 id="about-heading" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <div className="grid gap-8 pt-10 lg:grid-cols-12">
+          <section aria-labelledby="about-heading" className="space-y-3 lg:col-span-7">
+            <h2 id="about-heading" className="text-xl font-semibold tracking-tight sm:text-2xl">
               About this activity
             </h2>
             {paragraphs.length > 0 ? (
               paragraphs.map((p) => (
-                <p key={p} className="max-w-[62ch] text-lg leading-relaxed">
+                <p key={p} className="max-w-[65ch] text-base leading-relaxed">
                   {p}
                 </p>
               ))
             ) : (
-              <p className="text-lg text-muted-foreground">The companies below describe what each package includes.</p>
+              <p className="text-muted-foreground">The companies below describe what each package includes.</p>
             )}
-          </Reveal>
+          </section>
 
           <aside aria-labelledby="request-heading" className="lg:col-span-4 lg:col-start-9">
-            <Reveal delay={1} className="space-y-5 rounded-3xl bg-card p-6 sm:p-8">
-              <h2 id="request-heading" className="text-xl font-bold tracking-tight">
+            <div className="space-y-4 rounded-2xl bg-card p-6">
+              <h2 id="request-heading" className="text-base font-semibold">
                 How requesting works
               </h2>
-              <ul className="space-y-4">
+              <ul className="space-y-3">
                 {REQUEST_NOTES.map(({ icon: Icon, text }) => (
-                  <li key={text} className="flex gap-3 text-base leading-snug">
-                    <Icon className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
+                  <li key={text} className="flex gap-3 text-sm leading-snug">
+                    <Icon className="size-4 shrink-0 text-primary" aria-hidden="true" />
                     {text}
                   </li>
                 ))}
               </ul>
-            </Reveal>
+            </div>
           </aside>
         </div>
 
-        <div className="pt-20 sm:pt-28">
+        <div className="pt-14">
           <Suspense fallback={<OfferListSkeleton />}>
             <OfferList activityId={activity.id} activityName={activity.name} />
           </Suspense>

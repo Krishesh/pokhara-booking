@@ -13,7 +13,10 @@ type ActivityImageProps = {
   aspect?: "video" | "none";
 };
 
-/** Activity or outing photo, or a quiet placeholder with a mountain icon when there is none. */
+/**
+ * Activity or outing photo, lazy-loaded unless `priority` is set (use it for images in the first screen).
+ * Shows a quiet placeholder with a mountain icon when there is no photo.
+ */
 export function ActivityImage({
   src,
   alt,
@@ -25,7 +28,17 @@ export function ActivityImage({
   return (
     <div className={cn("relative w-full overflow-hidden bg-muted", aspect === "video" && "aspect-video", className)}>
       {src ? (
-        <Image src={src} alt={alt} fill unoptimized priority={priority} sizes={sizes} className="object-cover" />
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          unoptimized
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
+          decoding="async"
+          sizes={sizes}
+          className="object-cover"
+        />
       ) : (
         <div
           role="img"

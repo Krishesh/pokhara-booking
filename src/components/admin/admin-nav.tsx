@@ -26,7 +26,7 @@ export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string;
       aria-label="Admin"
       className="flex items-center gap-1 overflow-x-auto rounded-2xl bg-card p-1.5 border border-border"
     >
-      <span className="mr-1 hidden shrink-0 rounded-xl bg-ink px-3 py-2 text-sm font-semibold text-white sm:block">
+      <span className="mr-1 hidden shrink-0 rounded-xl bg-primary px-3 py-2 text-sm font-semibold text-white sm:block">
         Staff admin
       </span>
       {LINKS.map(({ href, label, exact }) => {

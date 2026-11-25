@@ -20,7 +20,7 @@ export default function AdminOutingsPage() {
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Group outings</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Group outings</h1>
           <p className="text-muted-foreground">
             Hikes and trips visitors can register interest in. Interest doesn&apos;t reserve a place.
           </p>

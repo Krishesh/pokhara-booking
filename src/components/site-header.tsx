@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -21,15 +22,15 @@ export function SiteHeaderView({ pathname }: { pathname: string }) {
 
   return (
     <header className="relative z-20 bg-background">
-      <Container className="flex h-16 items-center gap-4 sm:h-20">
+      <Container className="flex h-16 items-center gap-4">
         <Link
           href="/"
-          className="rounded-md text-lg font-extrabold tracking-tight whitespace-nowrap focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+          className="shrink-0 rounded-md focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
         >
-          Pokhara Booking
+          <Image src="/brand/logo.png" alt="Pokhara Booking" width={644} height={144} priority className="h-8 w-auto sm:h-9" />
         </Link>
         {!isAdmin && (
-          <nav aria-label="Main" className="ml-auto flex items-center gap-1 text-[15px]">
+          <nav aria-label="Main" className="ml-auto flex items-center gap-1 text-sm">
             {LINKS.map(({ href, label, short, match }) => {
               const active = match(pathname);
               return (
@@ -38,7 +39,7 @@ export function SiteHeaderView({ pathname }: { pathname: string }) {
                   href={href}
                   aria-current={active ? "page" : undefined}
                   className={cn(
-                    "rounded-full px-3.5 py-2 font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:px-4",
+                    "rounded-full px-3.5 py-1.5 font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:px-4",
                     active ? "bg-card text-foreground" : "text-muted-foreground hover:bg-card/70 hover:text-foreground",
                   )}
                 >

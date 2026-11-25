@@ -15,13 +15,13 @@ export default function AdminOverviewPage() {
   return (
     <section className="space-y-8">
       <div className="space-y-1">
-        <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Overview</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Overview</h1>
         <p className="text-muted-foreground">What visitors see, what needs checking, and who is waiting for a reply.</p>
       </div>
       <Suspense fallback={<OverviewSkeleton />}>
         <OverviewFigures />
       </Suspense>
-      <Suspense fallback={<Skeleton className="h-72 rounded-3xl" />}>
+      <Suspense fallback={<Skeleton className="h-72 rounded-2xl" />}>
         <PendingTriage />
       </Suspense>
     </section>
@@ -72,13 +72,13 @@ async function OverviewFigures() {
           <Link
             href={href}
             className={cn(
-              "group flex h-full flex-col gap-6 rounded-3xl p-6 border transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
+              "group flex h-full flex-col gap-4 rounded-2xl p-5 border transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
               urgent
                 ? "bg-ink border-ink text-white hover:bg-ink/90"
                 : "bg-card border-border hover:bg-white hover:border-primary/40",
             )}
           >
-            <span className="flex items-center justify-between text-[15px] font-semibold">
+            <span className="flex items-center justify-between text-sm font-semibold">
               {title}
               <ArrowRight
                 className={cn("size-4 transition-transform group-hover:translate-x-0.5", urgent ? "text-mist" : "text-primary")}
@@ -86,7 +86,7 @@ async function OverviewFigures() {
               />
             </span>
             <span className="mt-auto space-y-1">
-              <span className="block text-5xl font-extrabold tracking-tight tabular-nums">{value}</span>
+              <span className="block text-3xl font-bold tracking-tight tabular-nums">{value}</span>
               <span
                 className={cn(
                   "block text-sm",
@@ -109,10 +109,10 @@ async function PendingTriage() {
   const now = new Date();
 
   return (
-    <section aria-labelledby="triage-heading" className="rounded-3xl bg-card p-6 border border-border sm:p-8">
+    <section aria-labelledby="triage-heading" className="rounded-2xl border border-border bg-card p-5 sm:p-6">
       <div className="flex flex-wrap items-center justify-between gap-3 pb-4">
         <div>
-          <h2 id="triage-heading" className="text-xl font-bold tracking-tight">
+          <h2 id="triage-heading" className="text-lg font-semibold">
             Oldest pending requests
           </h2>
           <p className="text-sm text-muted-foreground">Reply to these first. Over 2 days old is marked.</p>
@@ -171,7 +171,7 @@ function OverviewSkeleton() {
   return (
     <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4" aria-busy="true" aria-label="Loading overview">
       {Array.from({ length: 4 }, (_, i) => (
-        <Skeleton key={i} className="h-44 rounded-3xl" />
+        <Skeleton key={i} className="h-32 rounded-2xl" />
       ))}
     </div>
   );

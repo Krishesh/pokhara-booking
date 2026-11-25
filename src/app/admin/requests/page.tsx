@@ -19,7 +19,7 @@ export default function AdminRequestsPage({ searchParams }: PageProps<"/admin/re
   return (
     <section className="space-y-6">
       <div className="space-y-1">
-        <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Booking requests</h1>
+        <h1 className="text-2xl font-bold tracking-tight">Booking requests</h1>
         <p className="text-muted-foreground">
           Requests from visitors. Check with the provider, contact the customer, then record the outcome.
         </p>

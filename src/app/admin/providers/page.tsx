@@ -16,7 +16,7 @@ export default function AdminProvidersPage() {
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Providers</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Providers</h1>
           <p className="text-muted-foreground">
             Companies that run activities. Visitors see the name and Google rating; contact details stay private.
           </p>
