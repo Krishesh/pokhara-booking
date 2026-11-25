@@ -66,3 +66,36 @@ export function sortOffers<T extends AvailableOffer>(offers: readonly T[]): T[] 
       (a.package_name ?? "").localeCompare(b.package_name ?? ""),
   );
 }
+
+export type OfferSummary = { count: number; fromPrice: number; fromCurrency: string };
+
+/**
+ * Per activity: how many offers can be shown and the lowest price to quote as "from".
+ * The lowest price is taken in the first currency of CURRENCIES that the activity has
+ * (NPR before USD), so prices in different currencies are never compared.
+ */
+export function summarizeOffers(
+  offers: readonly { activity_id: string; price: number; currency: string }[],
+): Map<string, OfferSummary> {
+  const rank = (c: string) => {
+    const i = (CURRENCIES as readonly string[]).indexOf(c);
+    return i === -1 ? CURRENCIES.length : i;
+  };
+  const result = new Map<string, OfferSummary>();
+  for (const o of offers) {
+    const current = result.get(o.activity_id);
+    if (!current) {
+      result.set(o.activity_id, { count: 1, fromPrice: o.price, fromCurrency: o.currency });
+      continue;
+    }
+    current.count += 1;
+    const better =
+      rank(o.currency) < rank(current.fromCurrency) ||
+      (o.currency === current.fromCurrency && o.price < current.fromPrice);
+    if (better) {
+      current.fromPrice = o.price;
+      current.fromCurrency = o.currency;
+    }
+  }
+  return result;
+}

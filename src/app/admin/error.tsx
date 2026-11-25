@@ -14,7 +14,7 @@ export default function AdminError({ error, retry }: { error: unknown; retry: ()
     <div role="alert" className="flex flex-col items-center gap-4 py-16 text-center">
       <AlertTriangle className="size-10 text-destructive" aria-hidden="true" />
       <div className="space-y-1">
-        <h1 className="text-xl font-semibold">Couldn&apos;t load this admin page</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight">Couldn&apos;t load this admin page</h1>
         <p className="text-muted-foreground">
           Check your connection and try again. If it keeps failing, check that SUPABASE_SERVICE_ROLE_KEY and
           ADMIN_PASSWORD are set.

@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={theme: {extend: {colors: {"on-surface": "#0f172a", "on-surface-variant": "#475569", "outline-variant": "#e2e8f0", outline: "#94a3b8", primary: "#088395", "primary-container": "#0a97ab", "on-primary": "#ffffff", "on-primary-container": "#ffffff", "primary-fixed": "#cffafe", "on-primary-fixed": "#083344", secondary: "#ea580c", "secondary-fixed": "#ffedd5", "on-secondary-fixed": "#7c2d12", error: "#dc2626", "error-container": "#fee2e2", "on-error-container": "#991b1b", background: "#eef6fb", surface: "#eef6fb", "surface-container": "#e0f2fe", "surface-container-low": "#f8fafc", "surface-container-lowest": "#ffffff", "surface-container-high": "#bae6fd", "surface-container-highest": "#7dd3fc"}, borderRadius: {DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px"}, spacing: {margin: "3rem", "space-lg": "1.5rem", "space-xs": "0.25rem", gutter: "1.5rem", "gutter-mobile": "1rem", "space-md": "1rem", "space-xl": "2.5rem", "margin-mobile": "1.25rem", "space-sm": "0.5rem"}, fontFamily: {"headline-sm": ["Space Grotesk", "sans-serif"], "label-lg": ["JetBrains Mono", "monospace"], "headline-xl-mobile": ["Plus Jakarta Sans", "sans-serif"], "title-sm": ["Plus Jakarta Sans", "sans-serif"], "body-sm": ["Plus Jakarta Sans", "sans-serif"], "label-sm": ["JetBrains Mono", "monospace"], "headline-lg": ["Space Grotesk", "sans-serif"], "title-md": ["Plus Jakarta Sans", "sans-serif"], "body-lg": ["Plus Jakarta Sans", "sans-serif"], "headline-md": ["Space Grotesk", "sans-serif"], "label-md": ["JetBrains Mono", "monospace"], "headline-lg-mobile": ["Space Grotesk", "sans-serif"], "body-md": ["Plus Jakarta Sans", "sans-serif"], "headline-xl": ["Plus Jakarta Sans", "sans-serif"], display: ["Space Grotesk", "sans-serif"]}}}}</script></head><body class="bg-[#EEF6FB] font-body-md text-[#0F172A]"><header class="fixed top-0 w-full z-50 bg-white border-b border-[#BAE6FD]/80 shadow-[0_2px_10px_rgba(8,131,149,0.06)]"><div class="h-16 max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-sm shrink-0" data-path="overview" href="#"><span class="material-symbols-outlined text-[#088395] text-[24px]">landscape</span><span class="font-title-sm text-title-sm text-[#0F172A] tracking-tight font-bold">Pokhara Booking <span class="font-label-md text-label-md text-[#088395] ml-1 px-2 py-0.5 rounded-full bg-[#E0F2FE]">Staff Admin</span></span></a><nav class="hidden md:flex items-center gap-space-xs"><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="overview" href="#">Overview</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="activities" href="#">Activities</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="offers" href="#">Offers</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors" data-path="providers" href="#">Providers</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-[#475569] hover:text-[#088395] hover:bg-[#E0F2FE]/50 transition-colors flex items-center gap-space-xs" data-path="outings" href="#">Outings<span class="px-2 py-0.5 rounded-full bg-[#FFEDD5] text-[#9A3412] font-label-sm text-label-sm font-semibold">Pending 4</span></a></nav></div><div class="flex items-center gap-space-lg shrink-0"><a class="font-label-lg text-label-lg text-[#088395] hover:text-[#0a97ab] font-semibold transition-colors flex items-center gap-1" href="#" rel="noopener noreferrer" target="_blank"><span>View site</span><span class="material-symbols-outlined text-[16px]">open_in_new</span></a><div class="w-9 h-9 rounded-full bg-[#088395] text-white flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-[20px]">person</span></div></div></div></header><main class="w-full pt-16 bg-[#EEF6FB] min-h-[calc(100vh-5rem)]"><div class="flex flex-col w-full">
+<div class="w-full max-w-[1320px] mx-auto px-margin-mobile lg:px-margin py-space-xl flex flex-col gap-space-xl">
+<!-- Top Action & Meta Bar -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-gutter">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Catalog &amp; Expeditions</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">Himalayan Portal Inventory</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Activities</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">
+          Manage Pokhara adventure listings, live visibility, and linked operator offers across valley, sky, and water corridors.
+        </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="group relative inline-flex items-center gap-space-xs px-space-lg py-3 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg shadow-md hover:bg-primary-container hover:shadow-lg transition-all active:scale-[0.98]" type="button">
+<span class="material-symbols-outlined text-[20px] transition-transform group-hover:rotate-90">add</span>
+<span>+ Add activity</span>
+</button>
+</div>
+</div>
+<!-- Filter & Search Bar with Telemetry -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md p-space-md bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex flex-wrap items-center gap-space-xs" id="status-filter-pills">
+<button class="filter-pill px-space-md py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md transition-all shadow-sm" data-filter="all" type="button">
+          All (5)
+        </button>
+<button class="filter-pill px-space-md py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-filter="live" type="button">
+          Live (4)
+        </button>
+<button class="filter-pill px-space-md py-2 rounded-full bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" data-filter="hidden" type="button">
+          Hidden (1)
+        </button>
+</div>
+<div class="flex items-center gap-space-sm w-full lg:w-96">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">search</span>
+<input class="w-full pl-10 pr-space-md py-2.5 rounded-lg bg-surface-container-low text-on-surface font-body-sm text-body-sm placeholder:text-outline focus:outline-none focus:bg-surface-container-lowest transition-colors shadow-inner" placeholder="Filter activities or slugs..." type="text"/>
+</div>
+<button class="p-2.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors" title="Refine Filters" type="button">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Activities Table Card -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/70">
+<th class="py-space-md px-space-lg font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase font-semibold" scope="col">Activity &amp; Slug</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase font-semibold" scope="col">Category</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase font-semibold" scope="col">Location</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase font-semibold text-center" scope="col">Linked Offers</th>
+<th class="py-space-md px-space-md font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase font-semibold" scope="col">Status</th>
+<th class="py-space-md px-space-lg font-label-sm text-label-sm text-on-surface-variant tracking-wider uppercase font-semibold text-right" scope="col">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y-0" id="activity-rows">
+<!-- Row 1: Sarangkot Tandem Paragliding -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md min-w-[280px]">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="High altitude view of vibrant tandem paraglider wing floating above the turquoise waters of Phewa Lake and Pokhara valley under clear bright sky with snow-capped Annapurna peaks in distance, aerial perspective, bright natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmt5pd4B6ZK5AniP8WPIljmDUIhopX4BkMSOyQRBbn1rkiDG2ZbWqK5edJPpZBS1Bq5SRuOvY34K65EBx1p4a841DSLcYITsPBeTpo--sKshifYqWMOTQBNuN0EIN18on9Or02_eBGpEEV6lo-Pnttf4_6AHyCB_kkuIfp0RELJerhE2Ut0SWHSZ-XA0YKp2lIgLLQpXysNW-YGyXErpwHBNrAY4yRGmS1VtM8H2ul"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Sarangkot Tandem Paragliding</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono truncate">/sarangkot-tandem-paragliding</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[14px]">paragliding</span>
+                  Aerial &amp; Flight
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span>Sarangkot Hill</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">
+                  3 offers
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full shadow-inner"></div>
+<span class="ml-2 font-label-sm text-label-sm text-primary font-bold">Live</span>
+</label>
+</td>
+<td class="py-space-md px-space-lg whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-space-xs">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span>View on site</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</a>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-colors" type="button">
+                    Edit
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 2: Annapurna Sunrise Ultralight -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md min-w-[280px]">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Lightweight two-seater ultralight airplane banking sharply over green Himalayan foothill ridges near Pokhara Airport at golden sunrise, clear azure skies, cinematic aerial photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP71mI_wzLEATo2esdtQHC81xqlp9e9CNGxhmWy4CB5PJ82QacqwavRarFMFEyOSrp92f1YGqOHjUPf-5f6myhmZyXL8EpDRV3peWAFdXNrIL-meEJv3P_IzHEDXvW0uP48zbKwdetx50DcZA_BlCQ1qChNy36Lww0rBAQmcgfHJOt33fb3OEPGXvuUPMepF5Of5K6AvH459hFc69Kob3sLsChrumG20T0GZN0s8Qk"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Annapurna Sunrise Ultralight</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono truncate">/annapurna-sunrise-ultralight</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[14px]">flight_takeoff</span>
+                  Aerial &amp; Flight
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span>Pokhara Airport</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">
+                  2 offers
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full shadow-inner"></div>
+<span class="ml-2 font-label-sm text-label-sm text-primary font-bold">Live</span>
+</label>
+</td>
+<td class="py-space-md px-space-lg whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-space-xs">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span>View on site</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</a>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-colors" type="button">
+                    Edit
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 3: Phewa Lake Wooden Doonga Boating -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md min-w-[280px]">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Traditional brightly painted wooden Nepalese doonga boats docked peacefully on calm reflective Phewa Lake shoreline, lush Rani Ban forest hill behind, gentle mountain ripples, early morning ambiance." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfjCCtKM4Gr13icNYXhZC_XKBPSLUUDwKQBMnFKq_ZzhVwkoPkCCq6vGNjqD2OvGX1NXiMC2qldrnGQNEkLI7eaclqr-vjZ5Dapwxu9xqiFgqdnxfsV97K3C5lLczt566NPdYvE2rUWby7Q48hhsyfrCqb-AYfWWiJbk6LXlL8VP0Z-m7yGl4K7cfD9c84WvyTCRqz23Eid9-P8zINoZUxEoTCarQcygjmKtX79YNg"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Phewa Lake Wooden Doonga Boating</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono truncate">/phewa-lake-wooden-doonga-boating</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[14px]">kayaking</span>
+                  Lake &amp; Water
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span>Lakeside Ghat 1</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">
+                  4 offers
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full shadow-inner"></div>
+<span class="ml-2 font-label-sm text-label-sm text-primary font-bold">Live</span>
+</label>
+</td>
+<td class="py-space-md px-space-lg whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-space-xs">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span>View on site</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</a>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-colors" type="button">
+                    Edit
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 4: Seti River White Water Rafting -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md min-w-[280px]">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" data-alt="Dynamic white water rafting raft navigating dramatic foaming white rapids in steep limestone gorge of Seti River, paddlers in safety helmets, water splash, thrilling outdoor adventure." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_IgarUeVGmWfyunN5ilym9oAPbuR0NvZ0xVwoF7q-BtYduBUjcEVJ-gZc2AiVYhpEbwkciO7NushqgjrzWBM8x1KItFNeFhL-kc42EmWJPED6hIWido_xy4IzB0lDkKk4_Cg8k06wwMAqAsJv_UVNTjN51HYGpd-1kugVL5cUZ2DSYlgumSF0N2r3cenmnsM4uunk5z4lFr8rU6m4NgQv8blziqs3qMmuwMd5pZR3"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Seti River White Water Rafting</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono truncate">/seti-river-white-water-rafting</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[14px]">waves</span>
+                  River Adventure
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span>Upper Seti Gorge</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container font-label-md text-label-md text-primary font-semibold">
+                  2 offers
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full shadow-inner"></div>
+<span class="ml-2 font-label-sm text-label-sm text-primary font-bold">Live</span>
+</label>
+</td>
+<td class="py-space-md px-space-lg whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-space-xs">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span>View on site</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</a>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-colors" type="button">
+                    Edit
+                  </button>
+</div>
+</td>
+</tr>
+<!-- Row 5: Zipflyer High-Speed Descent -->
+<tr class="group hover:bg-surface-container-low/50 transition-colors bg-surface-container-lowest/60">
+<td class="py-space-md px-space-lg">
+<div class="flex items-center gap-space-md min-w-[280px]">
+<div class="relative w-14 h-14 rounded-lg overflow-hidden shrink-0 bg-surface-container shadow-sm">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80" data-alt="Steep zipline cable descending at an extreme angle from high mountain cliff edge down towards Pokhara valley below, scenic high alpine landscape, misty peaks in background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoTaXu1SaOjHmXwiMwaHM6x0U4R2knVMbDDm9WWt2YyMCBoNz9gSCXHemHz2XPNnT5EqfQq8PK5XGbKV5p0P8cbiJQGJ0zfRaugSJac1BbktUOaudv-w9Wi53aozh98JpFNzjsq6azolPLrVgAprOc4OluT7z2C4HaGL-rq7P84n5f_qiUTYjEV7asLSIdx_SmbLI6-4EFfhvEs5jRnflKYqIM2-FmfAy-ojrnLvIu"/>
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-title-sm text-title-sm text-on-surface font-semibold truncate group-hover:text-primary transition-colors">Zipflyer High-Speed Descent</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono truncate">/zipflyer-high-speed-descent</span>
+</div>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-semibold">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                  Adrenaline
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<div class="flex items-center gap-1 font-body-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-outline text-[16px]">location_on</span>
+<span>Sarangkot Ridge</span>
+</div>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap text-center">
+<span class="inline-block px-2.5 py-0.5 rounded-full bg-surface-container font-label-md text-label-md text-on-surface-variant font-semibold">
+                  1 offer
+                </span>
+</td>
+<td class="py-space-md px-space-md whitespace-nowrap">
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full shadow-inner"></div>
+<span class="ml-2 font-label-sm text-label-sm text-outline font-bold">Hidden</span>
+</label>
+</td>
+<td class="py-space-md px-space-lg whitespace-nowrap text-right">
+<div class="inline-flex items-center gap-space-xs">
+<a class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant/60 hover:text-primary hover:bg-surface-container-low font-label-md text-label-md transition-colors" href="#">
+<span>View on site</span>
+<span class="material-symbols-outlined text-[15px]">arrow_outward</span>
+</a>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low text-primary hover:bg-primary hover:text-on-primary font-label-md text-label-md font-semibold transition-colors" type="button">
+                    Edit
+                  </button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Indicator -->
+<div class="px-space-lg py-space-sm bg-surface-container-low/40 flex items-center justify-between text-on-surface-variant font-label-sm text-label-sm">
+<span>Displaying 5 of 5 registered Pokhara adventure listings</span>
+<span class="text-primary font-semibold">All inventory synched</span>
+</div>
+</div>
+<!-- Active Editor Workspace: Sarangkot Tandem Paragliding -->
+<div class="w-full bg-surface-container-lowest rounded-xl shadow-md p-space-lg lg:p-space-xl flex flex-col gap-space-xl relative overflow-hidden">
+<!-- Top Subtle Glow Line -->
+<div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-primary-fixed-dim to-secondary-container"></div>
+<!-- Editor Header -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-fixed text-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[24px]">edit_note</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">Edit Activity: Sarangkot Tandem Paragliding</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-sm text-label-sm font-bold uppercase">
+                Editing Existing
+              </span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">ID: act_pok_sarangkot_tandem_01 • Last modified 4 hours ago</span>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-md py-2.5 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-on-surface font-label-md text-label-md font-semibold transition-colors" type="button">
+            Discard Changes
+          </button>
+<button class="inline-flex items-center gap-1.5 px-space-lg py-2.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-md text-label-md font-semibold shadow transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">save</span>
+<span>Save Activity</span>
+</button>
+</div>
+</div>
+<!-- Editor 2-Column Split Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+<!-- Left Column: Core Data, Warnings & Description (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Name Input -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-on-surface font-bold">Activity Name</label>
+<input class="w-full px-space-md py-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all shadow-inner" type="text" value="Sarangkot Tandem Paragliding"/>
+</div>
+<!-- Auto-slug Input with Visual Feedback -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface font-bold">URL Auto-Slug</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">pokharabooking.com/activities[slug]</span>
+</div>
+<div class="relative">
+<span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-outline font-mono text-body-sm font-semibold">/</span>
+<input class="w-full pl-8 pr-space-md py-3 rounded-lg bg-surface-container-low text-on-surface font-mono font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/20 transition-all shadow-inner" type="text" value="sarangkot-tandem-paragliding"/>
+</div>
+<!-- Warning Notice Stack -->
+<div class="flex flex-col gap-2 mt-1">
+<!-- Amber Slug Warning -->
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-secondary-fixed/50 text-on-secondary-fixed">
+<span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">warning</span>
+<span class="font-body-sm text-body-sm leading-tight">
+<strong class="font-semibold text-secondary">Warning:</strong> Changing the slug of a live activity will break existing links, partner feeds, and SEO rankings unless redirects are mapped.
+                </span>
+</div>
+<!-- Red Duplicate Warning Demo -->
+<div class="flex items-start gap-2.5 p-3 rounded-lg bg-error-container/60 text-on-error-container">
+<span class="material-symbols-outlined text-[18px] text-error shrink-0 mt-0.5">error</span>
+<span class="font-body-sm text-body-sm leading-tight">
+<strong class="font-semibold text-error">Conflict Notice:</strong> This slug is already used by <span class="underline font-medium">Sarangkot Tandem Paragliding</span> (Act-01). Unique path verified.
+                </span>
+</div>
+</div>
+</div>
+<!-- Category Selector Chips -->
+<div class="flex flex-col gap-2">
+<label class="font-label-lg text-label-lg text-on-surface font-bold">Activity Category</label>
+<div class="flex flex-wrap gap-2">
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md font-semibold shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">paragliding</span>
+                Aerial &amp; Flight
+              </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">kayaking</span>
+                Lake &amp; Water
+              </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">waves</span>
+                River Adventure
+              </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">bolt</span>
+                Adrenaline
+              </button>
+<button class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container text-on-surface-variant font-label-md text-label-md transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">hiking</span>
+                Trekking
+              </button>
+</div>
+</div>
+<!-- Location Input -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-on-surface font-bold">Launch / Departure Location</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">pin_drop</span>
+<input class="w-full pl-10 pr-space-md py-3 rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all shadow-inner" type="text" value="Sarangkot Hill"/>
+</div>
+</div>
+<!-- Description Textarea -->
+<div class="flex flex-col gap-1.5">
+<div class="flex items-center justify-between">
+<label class="font-label-lg text-label-lg text-on-surface font-bold">Activity Description</label>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Markdown supported</span>
+</div>
+<textarea class="w-full p-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-primary/20 transition-all resize-y shadow-inner" rows="5">Soar 1,592m above Phewa Lake with certified tandem pilots. Take off from Sarangkot ridge with panoramic 360-degree views of Annapurna South, Machapuchare (Fishtail), and the tranquil Pokhara basin. Includes transport from Lakeside and in-flight GoPro HD photography.</textarea>
+</div>
+</div>
+<!-- Right Column: Live Toast, Media Preview, Toggles & Save (5 Cols) -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg">
+<!-- Dynamic Toast Notification Pill -->
+<div class="flex items-center justify-between gap-3 p-3.5 rounded-xl bg-surface-container-high text-on-surface shadow-sm">
+<div class="flex items-center gap-2.5">
+<div class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[16px]">check</span>
+</div>
+<span class="font-label-md text-label-md font-semibold text-primary">Activity status updated to Live</span>
+</div>
+<button class="text-outline hover:text-on-surface" type="button">
+<span class="material-symbols-outlined text-[18px]">close</span>
+</button>
+</div>
+<!-- Photo URL & Credit -->
+<div class="flex flex-col gap-space-md p-space-md rounded-xl bg-surface-container-low/60">
+<div class="flex flex-col gap-1.5">
+<label class="font-label-lg text-label-lg text-on-surface font-bold">Cover Photo URL</label>
+<input class="w-full px-space-md py-2.5 rounded-lg bg-surface-container-lowest text-on-surface font-mono text-body-sm focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-inner" type="text" value="https://assets.pokharabooking.com/expeditions/sarangkot-paraglide-hero.jpg"/>
+</div>
+<!-- 16:9 Live Preview Card -->
+<div class="relative w-full aspect-[16/9] rounded-lg overflow-hidden shadow-md group">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Paraglider soaring gracefully over the blue surface of Phewa Lake in Pokhara, Nepal, with the magnificent white snow peaks of Annapurna range bathed in crisp morning light, sharp detail, high-altitude crispness." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg7pKEXzZ2vQxJHnYSzIIy4Y05c5-d18gV1Go0AbMD2C4p2wfTXvVYXk8Y2WgyDBK0RRh18zKaAzxorytDdP3fFPgQTjZMBxVD561YT_8EDWDHiDszSaNSsbG6YUufrvnec4KaTWWt1XNZbqZTSD_4dXYKiqyOUilX1LIsSMjGQF09zfVN0PA03F3J2JIIHBppGAqN8_HbdherEoYjblmxp0sicj2v_I29OGKO1taK"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"></div>
+<!-- Badges -->
+<div class="absolute top-2.5 left-2.5">
+<span class="px-2 py-0.5 rounded-full bg-black/60 backdrop-blur-md text-white font-label-sm text-label-sm font-semibold tracking-wide">
+                  16:9 Cover
+                </span>
+</div>
+<div class="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between text-white/90 font-label-sm text-label-sm">
+<span class="truncate">Previewing live viewport</span>
+<span class="material-symbols-outlined text-[16px]">aspect_ratio</span>
+</div>
+</div>
+<!-- Photo Credit -->
+<div class="flex flex-col gap-1.5">
+<label class="font-label-sm text-label-sm text-on-surface-variant font-bold">Photo Attribution / Credit</label>
+<input class="w-full px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface font-body-sm text-body-sm focus:outline-none focus:ring-2 focus:ring-primary/20 shadow-inner" type="text" value="Himalayan Sky Media / Pokhara"/>
+</div>
+</div>
+<!-- Live On Pokhara Booking Toggle Card -->
+<div class="p-space-md rounded-xl bg-surface-container-low/60 flex items-center justify-between gap-space-md">
+<div class="flex flex-col">
+<span class="font-title-sm text-title-sm text-on-surface font-bold">Live on Pokhara Booking</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Visible to travelers &amp; search engines globally.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer shrink-0">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-14 h-8 bg-surface-container rounded-full peer peer-checked:bg-primary after:content-[''] after:absolute after:top-[4px] after:left-[4px] after:bg-white after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:after:translate-x-6 shadow-inner"></div>
+</label>
+</div>
+<!-- Bottom Action Buttons -->
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<button class="w-full py-3.5 rounded-lg bg-primary text-on-primary hover:bg-primary-container font-label-lg text-label-lg font-bold shadow-md hover:shadow-lg transition-all text-center" type="button">
+              Save Activity
+            </button>
+<button class="w-full py-2.5 rounded-lg text-on-surface-variant hover:text-error font-label-md text-label-md font-semibold transition-colors text-center" type="button">
+              Archive this Activity
+            </button>
+</div>
+</div>
+</div>
+</div>
+<!-- UI State Variants Section (Staff Reference & Testing) -->
+<div class="w-full flex flex-col gap-space-lg pt-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-primary text-[20px]">layers</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">System UI State Variants</h3>
+</div>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-mono">Design System Spec #ACT-STATES</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl">
+<!-- Loading State Card -->
+<div class="flex flex-col gap-space-md p-space-lg bg-surface-container-lowest rounded-xl shadow-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface font-bold uppercase tracking-wider">Loading State (Skeleton)</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline font-mono">Fetching catalog...</span>
+</div>
+<!-- Skeleton Rows -->
+<div class="flex flex-col gap-space-sm animate-pulse">
+<!-- Row Skeleton 1 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm w-1/2">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest shrink-0"></div>
+<div class="flex flex-col gap-2 w-full">
+<div class="h-4 w-3/4 rounded bg-surface-container-highest"></div>
+<div class="h-3 w-1/2 rounded bg-surface-container-highest"></div>
+</div>
+</div>
+<div class="h-6 w-20 rounded-full bg-surface-container-highest hidden sm:block"></div>
+<div class="h-6 w-12 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Row Skeleton 2 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm w-1/2">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest shrink-0"></div>
+<div class="flex flex-col gap-2 w-full">
+<div class="h-4 w-2/3 rounded bg-surface-container-highest"></div>
+<div class="h-3 w-1/3 rounded bg-surface-container-highest"></div>
+</div>
+</div>
+<div class="h-6 w-20 rounded-full bg-surface-container-highest hidden sm:block"></div>
+<div class="h-6 w-12 rounded-full bg-surface-container-highest"></div>
+</div>
+<!-- Row Skeleton 3 -->
+<div class="p-space-md rounded-lg bg-surface-container-low flex items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm w-1/2">
+<div class="w-12 h-12 rounded-lg bg-surface-container-highest shrink-0"></div>
+<div class="flex flex-col gap-2 w-full">
+<div class="h-4 w-4/5 rounded bg-surface-container-highest"></div>
+<div class="h-3 w-2/5 rounded bg-surface-container-highest"></div>
+</div>
+</div>
+<div class="h-6 w-20 rounded-full bg-surface-container-highest hidden sm:block"></div>
+<div class="h-6 w-12 rounded-full bg-surface-container-highest"></div>
+</div>
+</div>
+</div>
+<!-- Empty State Card -->
+<div class="flex flex-col items-center justify-center p-space-xl bg-surface-container-lowest rounded-xl shadow-sm text-center min-h-[260px]">
+<div class="w-16 h-16 rounded-full bg-surface-container text-primary flex items-center justify-center mb-space-md shadow-sm">
+<span class="material-symbols-outlined text-[36px]">landscape</span>
+</div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-1">No activities listed yet</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-sm mb-space-lg">
+            Add your first Pokhara activity to initialize tour routes, pricing tiers, and guide assignments.
+          </p>
+<button class="inline-flex items-center gap-2 px-space-lg py-2.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md font-semibold shadow hover:bg-primary-container transition-all" type="button">
+<span class="material-symbols-outlined text-[18px]">add</span>
+<span>+ Add activity</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Pill filter micro-interaction
+    const filterPills = document.querySelectorAll('#status-filter-pills .filter-pill');
+    filterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach(p => {
+          p.classList.remove('bg-primary', 'text-on-primary', 'shadow-sm');
+          p.classList.add('bg-surface-container-low', 'text-on-surface-variant');
+        });
+        pill.classList.remove('bg-surface-container-low', 'text-on-surface-variant');
+        pill.classList.add('bg-primary', 'text-on-primary', 'shadow-sm');
+      });
+    });
+  });
+</script></main><footer class="w-full bg-white border-t border-[#BAE6FD] py-space-lg"><div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-[#475569]"><span>© 2025 Pokhara Booking. Staff Admin Portal.</span><span>Internal Operations &amp; Expedition Management</span></div></footer></body></html>

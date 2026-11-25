@@ -7,6 +7,7 @@ import {
   formatRating,
   isOfferAvailable,
   sortOffers,
+  summarizeOffers,
 } from "./offer-format";
 import type { AvailableOffer, Offer } from "./types";
 
@@ -136,5 +137,30 @@ describe("sortOffers", () => {
     const input = [a, c];
     sortOffers(input);
     expect(input.map((o) => o.id)).toEqual(["a", "c"]);
+  });
+});
+
+describe("summarizeOffers", () => {
+  it("counts offers and takes the lowest price per activity", () => {
+    const s = summarizeOffers([
+      { activity_id: "a", price: 9000, currency: "NPR" },
+      { activity_id: "a", price: 8500, currency: "NPR" },
+      { activity_id: "b", price: 40, currency: "USD" },
+    ]);
+    expect(s.get("a")).toEqual({ count: 2, fromPrice: 8500, fromCurrency: "NPR" });
+    expect(s.get("b")).toEqual({ count: 1, fromPrice: 40, fromCurrency: "USD" });
+  });
+
+  it("prefers NPR over a lower number in another currency", () => {
+    const s = summarizeOffers([
+      { activity_id: "a", price: 95, currency: "USD" },
+      { activity_id: "a", price: 8500, currency: "NPR" },
+      { activity_id: "a", price: 60, currency: "USD" },
+    ]);
+    expect(s.get("a")).toEqual({ count: 3, fromPrice: 8500, fromCurrency: "NPR" });
+  });
+
+  it("returns nothing for activities without offers", () => {
+    expect(summarizeOffers([]).size).toBe(0);
   });
 });

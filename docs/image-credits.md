@@ -26,3 +26,12 @@ Activity photos are freely licensed images from [Wikimedia Commons](https://comm
 No freely licensed photos of the Sarangkot zipline or a Pokhara ultralight were found on Commons, so those two use scenery of the same area. Replace them with the providers' own photos (with permission) when available.
 
 When adding photos through the admin, fill in **Photo credit** with the author and licence.
+
+## Site photos
+
+Stored in `public/images/` and credited in the site footer.
+
+| Used on | Photo | Author | Licence |
+|---|---|---|---|
+| Home page hero | [Phewa Lake in Pokhara (15715573565).jpg](https://commons.wikimedia.org/w/index.php?curid=40023981) | Jean-Marie Hullot | [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/) |
+| Group outings page | [Pokhara at dawn.jpg](https://commons.wikimedia.org/w/index.php?curid=135319957) | Prasan Shrestha | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |

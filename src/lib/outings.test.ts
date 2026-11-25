@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatOutingDate, isListed, outingState, sortOutings, validateInterestForm } from "./outings";
+import { formatOutingDate, isListed, outingDateParts, outingState, sortOutings, validateInterestForm } from "./outings";
 
 const TODAY = "2026-11-24";
 const OUTING_ID = "f0000000-0000-4000-8000-000000000001";
@@ -83,5 +83,16 @@ describe("validateInterestForm", () => {
   it("returns a form error for a bad outing id", () => {
     const result = validateInterestForm({ ...base, outingId: "nope" });
     expect(result.ok ? null : result.formError).toBeTruthy();
+  });
+});
+
+describe("outingDateParts", () => {
+  it("splits a date into calendar parts", () => {
+    expect(outingDateParts("2026-12-13")).toEqual({ day: "13", month: "Dec", weekday: "Sun", year: "2026" });
+  });
+
+  it("returns null for missing or invalid dates", () => {
+    expect(outingDateParts(null)).toBeNull();
+    expect(outingDateParts("not-a-date")).toBeNull();
   });
 });

@@ -24,7 +24,7 @@ export function PageTitle({
       </Link>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight">{title}</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">{title}</h1>
           {description && <p className="text-muted-foreground">{description}</p>}
         </div>
         {viewHref && (

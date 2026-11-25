@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+          "outline-variant": "#cfe2ee",
+          "on-secondary-container": "#682700",
+          "on-primary": "#ffffff",
+          "on-secondary-fixed": "#351000",
+          "on-tertiary": "#ffffff",
+          "on-background": "#0f172a",
+          "surface-container-high": "#e2edf5",
+          "primary-fixed-dim": "#76d4e7",
+          "tertiary-fixed": "#dae2fd",
+          "on-error-container": "#93000a",
+          "on-secondary-fixed-variant": "#7a2f00",
+          "primary": "#088395",
+          "secondary-container": "#ff8342",
+          "background": "#f3faff",
+          "on-primary-fixed-variant": "#004e5a",
+          "surface-container-lowest": "#ffffff",
+          "surface-tint": "#088395",
+          "secondary-fixed": "#ffdbcc",
+          "surface-bright": "#f3faff",
+          "surface-container": "#e8f2f8",
+          "on-primary-fixed": "#001f25",
+          "on-tertiary-fixed": "#131b2e",
+          "error-container": "#fee2e2",
+          "surface-dim": "#d1dce1",
+          "tertiary-fixed-dim": "#bec6e0",
+          "surface-container-highest": "#dae4ea",
+          "inverse-on-surface": "#f3faff",
+          "surface-container-low": "#f8fcff",
+          "primary-container": "#0d9488",
+          "on-secondary": "#ffffff",
+          "outline": "#94a3b8",
+          "secondary-fixed-dim": "#ffb694",
+          "tertiary": "#475569",
+          "surface": "#f3faff",
+          "tertiary-container": "#e2e8f0",
+          "primary-fixed": "#cffafe",
+          "on-error": "#ffffff",
+          "secondary": "#ea580c",
+          "on-tertiary-fixed-variant": "#334155",
+          "on-surface-variant": "#475569",
+          "on-primary-container": "#ffffff",
+          "inverse-surface": "#0f172a",
+          "error": "#dc2626",
+          "surface-variant": "#e2edf5",
+          "on-surface": "#0f172a",
+          "inverse-primary": "#76d4e7",
+          "on-tertiary-container": "#0f172a"
+        },
+        "borderRadius": {
+          "DEFAULT": "0.25rem",
+          "lg": "0.5rem",
+          "xl": "0.75rem",
+          "full": "9999px"
+        },
+        "spacing": {
+          "space-xs": "0.25rem",
+          "space-md": "1rem",
+          "space-lg": "1.5rem",
+          "margin": "3rem",
+          "space-sm": "0.5rem",
+          "space-xl": "2.5rem",
+          "margin-mobile": "1.25rem",
+          "gutter-mobile": "1rem",
+          "gutter": "1.5rem"
+        },
+        "fontFamily": {
+          "sans": ["Plus Jakarta Sans", "sans-serif"],
+          "headline-xl-mobile": ["Plus Jakarta Sans"],
+          "headline-lg-mobile": ["Plus Jakarta Sans"],
+          "headline-lg": ["Plus Jakarta Sans"],
+          "headline-sm": ["Plus Jakarta Sans"],
+          "label-lg": ["Plus Jakarta Sans"],
+          "title-sm": ["Plus Jakarta Sans"],
+          "headline-md": ["Plus Jakarta Sans"],
+          "body-sm": ["Plus Jakarta Sans"],
+          "headline-xl": ["Plus Jakarta Sans"],
+          "body-md": ["Plus Jakarta Sans"],
+          "title-md": ["Plus Jakarta Sans"],
+          "label-md": ["Plus Jakarta Sans"],
+          "label-sm": ["Plus Jakarta Sans"],
+          "body-lg": ["Plus Jakarta Sans"]
+        },
+        "fontSize": {
+          "headline-xl-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+          "headline-lg-mobile": ["26px", {"lineHeight": "34px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+          "headline-lg": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700"}],
+          "headline-sm": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+          "label-lg": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+          "title-sm": ["16px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "600"}],
+          "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "700"}],
+          "body-sm": ["13px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "400"}],
+          "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "800"}],
+          "body-md": ["15px", {"lineHeight": "24px", "letterSpacing": "0em", "fontWeight": "400"}],
+          "title-md": ["18px", {"lineHeight": "26px", "letterSpacing": "-0.005em", "fontWeight": "600"}],
+          "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.03em", "fontWeight": "600"}],
+          "label-sm": ["11px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700"}],
+          "body-lg": ["18px", {"lineHeight": "28px", "letterSpacing": "0em", "fontWeight": "400"}]
+        }
+      }
+    }
+  }
+</script></head><body class="bg-[#F3FAFF] font-body-md text-body-md text-on-surface antialiased"><header class="fixed top-0 w-full z-50 bg-white border-b border-[#CFE2EE] shadow-[0_2px_10px_rgba(8,131,149,0.04)]"><div class="h-16 max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-xl"><a class="flex items-center gap-space-sm shrink-0" data-path="overview" href="#"><span class="material-symbols-outlined text-primary text-[24px]">landscape</span><span class="font-title-sm text-title-sm text-[#0F172A] tracking-tight font-bold">Pokhara Booking <span class="font-label-md text-label-md text-primary ml-1 font-semibold">Staff Admin</span></span></a><nav class="hidden md:flex items-center gap-space-sm"><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-[#EEF6FB] transition-colors" data-path="overview" href="#">Overview</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-[#EEF6FB] transition-colors" data-path="activities" href="#">Activities</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-[#EEF6FB] transition-colors" data-path="offers" href="#">Offers</a><a class="px-space-md py-space-sm rounded-lg font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface hover:bg-[#EEF6FB] transition-colors" data-path="providers" href="#">Providers</a><a aria-current="page" class="px-space-md py-space-sm transition-colors flex items-center gap-space-xs bg-primary text-white font-bold rounded-lg shadow-sm" data-path="outings" href="#">Outings<span class="px-2 py-0.5 rounded-full bg-[#ffeed9] text-[#a14000] font-label-sm text-label-sm font-semibold">Pending 4</span></a></nav></div><div class="flex items-center gap-space-lg shrink-0"><a class="font-label-lg text-label-lg text-primary hover:text-primary-container font-semibold transition-colors" href="#" rel="noopener noreferrer" target="_blank">View site</a><div class="w-9 h-9 rounded-full bg-[#E2EDF5] text-primary flex items-center justify-center border border-[#CFE2EE]"><span class="material-symbols-outlined text-primary text-[20px]">person</span></div></div></div></header><main class="w-full pt-16 bg-[#F3FAFF] min-h-[calc(100vh-5rem)]"><div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin py-space-xl"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Page Header -->
+<div class="flex flex-col sm:flex-row sm:items-end justify-between gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-sm">
+<span class="font-label-sm text-label-sm uppercase tracking-widest text-primary font-bold">Expedition Operations</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant font-medium">4 Active / Upcoming</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-[#0F172A] tracking-tight">Group Outings</h1>
+</div>
+<button class="inline-flex items-center justify-center gap-space-sm h-11 px-space-lg rounded-xl bg-primary text-white font-label-lg text-label-lg shadow-sm hover:bg-primary-container hover:shadow-md transition-all cursor-pointer shrink-0 font-semibold" id="btn-create-outing" type="button">
+<span class="material-symbols-outlined text-[20px]">add</span>
+<span>Create outing</span>
+</button>
+</div>
+<!-- Outings Table Card -->
+<section class="w-full bg-white rounded-xl shadow-[0_2px_12px_rgba(8,131,149,0.06)] border border-[#CFE2EE] overflow-hidden">
+<div class="px-space-lg py-space-md bg-[#F8FCFF] border-b border-[#E2EDF5] flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-primary text-[22px]">hiking</span>
+<h2 class="font-title-md text-title-md text-[#0F172A] font-bold">All Scheduled Outings</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="px-3 py-1 rounded-full bg-[#E0F2FE] text-[#0369A1] font-label-sm text-label-sm font-semibold border border-[#BAE6FD]">2 Published</span>
+<span class="px-3 py-1 rounded-full bg-[#F1F5F9] text-[#475569] font-label-sm text-label-sm font-semibold border border-[#E2E8F0]">1 Draft</span>
+<span class="px-3 py-1 rounded-full bg-[#FEE2E2] text-[#B91C1C] font-label-sm text-label-sm font-semibold border border-[#FECACA]">1 Cancelled</span>
+</div>
+</div>
+<div class="w-full overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-[#F8FCFF] text-[#475569] border-b border-[#E2EDF5]">
+<th class="py-space-md px-space-lg font-label-md text-label-md uppercase tracking-wider text-[#1E293B] font-bold">Title</th>
+<th class="py-space-md px-space-md font-label-md text-label-md uppercase tracking-wider text-[#1E293B] font-bold">Destination · Organizer</th>
+<th class="py-space-md px-space-md font-label-md text-label-md uppercase tracking-wider text-[#1E293B] font-bold">Date</th>
+<th class="py-space-md px-space-md font-label-md text-label-md uppercase tracking-wider text-[#1E293B] font-bold">Status</th>
+<th class="py-space-md px-space-md font-label-md text-label-md uppercase tracking-wider text-[#1E293B] font-bold">Interested</th>
+<th class="py-space-md px-space-lg font-label-md text-label-md uppercase tracking-wider text-[#1E293B] font-bold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="font-body-md text-body-md text-[#0F172A] divide-y divide-[#E2EDF5]">
+<!-- Row 1 -->
+<tr class="bg-white hover:bg-[#F8FCFF] transition-colors">
+<td class="py-space-md px-space-lg font-title-sm text-title-sm text-[#0F172A] font-semibold">
+              Sarangkot Sunrise &amp; Naudanda Ridge Trek
+            </td>
+<td class="py-space-md px-space-md text-[#475569]">
+              Sarangkot Ridge · <span class="text-[#0F172A] font-medium">Pemba Sherpa</span>
+</td>
+<td class="py-space-md px-space-md text-[#475569] whitespace-nowrap">
+              Oct 24, 2025
+            </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E0F2FE] text-[#0369A1] font-label-sm text-label-sm font-semibold border border-[#BAE6FD]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Published
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg text-[#0F172A] font-medium whitespace-nowrap">
+              2 (4 people)
+            </td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-space-md">
+<button class="font-label-lg text-label-lg text-primary hover:text-primary-container font-semibold transition-colors cursor-pointer" onclick="selectOuting('sarangkot')" type="button">View</button>
+<button class="font-label-lg text-label-lg text-[#64748B] hover:text-[#0F172A] font-medium transition-colors cursor-pointer" onclick="selectOuting('sarangkot')" type="button">Edit</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="bg-white hover:bg-[#F8FCFF] transition-colors">
+<td class="py-space-md px-space-lg font-title-sm text-title-sm text-[#0F172A] font-semibold">
+              World Peace Pagoda Sunset Hike
+            </td>
+<td class="py-space-md px-space-md text-[#475569]">
+              Anadu Hill · <span class="text-[#0F172A] font-medium">Sita Gurung</span>
+</td>
+<td class="py-space-md px-space-md text-[#475569] whitespace-nowrap">
+              Oct 28, 2025
+            </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E0F2FE] text-[#0369A1] font-label-sm text-label-sm font-semibold border border-[#BAE6FD]">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                Published
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg text-[#0F172A] font-medium whitespace-nowrap">
+              3 (5 people)
+            </td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-space-md">
+<button class="font-label-lg text-label-lg text-primary hover:text-primary-container font-semibold transition-colors cursor-pointer" onclick="selectOuting('pagoda')" type="button">View</button>
+<button class="font-label-lg text-label-lg text-[#64748B] hover:text-[#0F172A] font-medium transition-colors cursor-pointer" onclick="selectOuting('pagoda')" type="button">Edit</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="bg-white hover:bg-[#F8FCFF] transition-colors">
+<td class="py-space-md px-space-lg font-title-sm text-title-sm text-[#0F172A] font-semibold">
+              Australian Camp 2-Day Trek
+            </td>
+<td class="py-space-md px-space-md text-[#475569]">
+              Kande to Dhampus · <span class="text-[#0F172A] font-medium">Rajan Thapa</span>
+</td>
+<td class="py-space-md px-space-md text-[#475569] whitespace-nowrap">
+              Nov 02, 2025
+            </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#FEE2E2] text-[#B91C1C] font-label-sm text-label-sm font-semibold border border-[#FECACA]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#DC2626]"></span>
+                Cancelled
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg text-[#475569] whitespace-nowrap">
+              1 (2 people)
+            </td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-space-md">
+<button class="font-label-lg text-label-lg text-primary hover:text-primary-container font-semibold transition-colors cursor-pointer" onclick="selectOuting('australian')" type="button">View</button>
+<button class="font-label-lg text-label-lg text-[#64748B] hover:text-[#0F172A] font-medium transition-colors cursor-pointer" onclick="selectOuting('australian')" type="button">Edit</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="bg-white hover:bg-[#F8FCFF] transition-colors">
+<td class="py-space-md px-space-lg font-title-sm text-title-sm text-[#0F172A] font-semibold">
+              Phewa Lake Kayaking &amp; Forest Walk
+            </td>
+<td class="py-space-md px-space-md text-[#475569]">
+              Phewa North Shore · <span class="text-[#0F172A] font-medium">Maya Pun</span>
+</td>
+<td class="py-space-md px-space-md text-[#475569] whitespace-nowrap">
+              Nov 08, 2025
+            </td>
+<td class="py-space-md px-space-md">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F1F5F9] text-[#475569] font-label-sm text-label-sm font-semibold border border-[#E2E8F0]">
+<span class="w-1.5 h-1.5 rounded-full bg-[#94A3B8]"></span>
+                Draft
+              </span>
+</td>
+<td class="py-space-md px-space-md font-label-lg text-label-lg text-[#475569] whitespace-nowrap">
+              0 (0 people)
+            </td>
+<td class="py-space-md px-space-lg text-right whitespace-nowrap">
+<div class="inline-flex items-center gap-space-md">
+<button class="font-label-lg text-label-lg text-primary hover:text-primary-container font-semibold transition-colors cursor-pointer" onclick="selectOuting('phewa')" type="button">View</button>
+<button class="font-label-lg text-label-lg text-[#64748B] hover:text-[#0F172A] font-medium transition-colors cursor-pointer" onclick="selectOuting('phewa')" type="button">Edit</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- Outing Detail / Edit View (Two-Column Layout) -->
+<section class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start" id="outing-detail-section">
+<!-- Left Column: Outing Form (7 cols on lg) -->
+<div class="lg:col-span-7 bg-white rounded-xl shadow-[0_2px_12px_rgba(8,131,149,0.06)] border border-[#CFE2EE] p-space-lg flex flex-col gap-space-lg">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-md border-b border-[#E2EDF5]">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Outing Editor</span>
+<h2 class="font-headline-sm text-headline-sm text-[#0F172A] font-bold" id="form-heading">Sarangkot Sunrise &amp; Naudanda Ridge Trek</h2>
+</div>
+<div class="flex items-center gap-space-sm">
+<label class="font-label-md text-label-md text-[#475569] font-medium" for="outing-status">Status:</label>
+<select class="h-10 px-space-md rounded-lg bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-label-lg text-label-lg focus:outline-none focus:border-primary cursor-pointer" id="outing-status">
+<option value="draft">Draft</option>
+<option selected="" value="published">Published</option>
+<option value="cancelled">Cancelled</option>
+</select>
+</div>
+</div>
+<form class="flex flex-col gap-space-md" id="outing-form" onsubmit="event.preventDefault(); showToast('Outing changes saved');">
+<!-- Title + Auto-slug -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-title">Title</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-title" type="text" value="Sarangkot Sunrise &amp; Naudanda Ridge Trek"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#475569] font-semibold" for="outing-slug">Auto-slug</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F1F5F9] border border-[#E2E8F0] text-[#64748B] font-body-sm text-body-sm focus:outline-none transition-colors" id="outing-slug" readonly="" type="text" value="sarangkot-sunrise-naudanda-ridge-trek"/>
+</div>
+</div>
+<!-- Destination + Date -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-destination">Destination</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-destination" type="text" value="Sarangkot Ridge, Pokhara"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-date">Date</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-date" type="date" value="2025-10-24"/>
+</div>
+</div>
+<!-- Description -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-description">Description</label>
+<textarea class="p-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary focus:bg-white transition-colors resize-y" id="outing-description" rows="3">Early morning ridge hike from Sarangkot viewpoint to Naudanda with panoramic views of Machapuchare and the Annapurna massif. Includes tea stop at a local ridge teahouse.</textarea>
+</div>
+<!-- Meeting point + Cost -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-meeting">Meeting point</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-meeting" type="text" value="Lakeside Hallan Chowk Taxi Stand (05:15 AM)"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-cost">Cost</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-cost" type="text" value="NPR 2,500 / person (incl. jeep)"/>
+</div>
+</div>
+<!-- Organizer Name (Public) vs Staff-only Contact -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md p-space-md rounded-xl bg-[#F8FCFF] border border-[#E2EDF5]">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold flex items-center gap-1.5" for="outing-organizer">
+<span>Organizer name</span>
+<span class="px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0369A1] font-label-sm text-label-sm font-semibold border border-[#BAE6FD]">Public</span>
+</label>
+<input class="h-11 px-space-md rounded-xl bg-white border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary" id="outing-organizer" type="text" value="Pemba Sherpa"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold flex items-center gap-1.5" for="outing-organizer-contact">
+<span>Organizer contact</span>
+<span class="px-2 py-0.5 rounded-full bg-[#ffeed9] text-[#a14000] font-label-sm text-label-sm font-semibold border border-[#fed7aa]">Staff-only</span>
+</label>
+<input class="h-11 px-space-md rounded-xl bg-white border border-[#CFE2EE] text-[#0F172A] font-body-md text-body-md focus:outline-none focus:border-primary" id="outing-organizer-contact" type="text" value="+977 984-6021190 · pemba@pokharabooking.com"/>
+</div>
+</div>
+<!-- Photo URL with Live Preview + Credit -->
+<div class="flex flex-col gap-space-sm">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-photo-url">Photo URL</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-sm text-body-sm focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-photo-url" type="url" value="https://pokharabooking.com/media/sarangkot-ridge.jpg"/>
+</div>
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-lg text-label-lg text-[#0F172A] font-semibold" for="outing-photo-credit">Photo credit</label>
+<input class="h-11 px-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] text-[#0F172A] font-body-sm text-body-sm focus:outline-none focus:border-primary focus:bg-white transition-colors" id="outing-photo-credit" type="text" value="Photo by A. Gurung / Pokhara Media"/>
+</div>
+</div>
+<div class="relative w-full h-48 rounded-xl overflow-hidden bg-[#E2EDF5] border border-[#CFE2EE]">
+<img class="w-full h-full object-cover" data-alt="Golden sunrise breaking over the snow-capped Annapurna and Machapuchare Himalayan peaks viewed from Sarangkot ridge in Pokhara, Nepal. Crisp morning alpine air, soft ice-blue sky, warm amber sunlight hitting the mountain faces, modern Scandinavian outdoor photography aesthetic." id="outing-photo-preview" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNmaZYlqcgP-PyJ4J66GawPL0LxL_i4QIHMRt9j_Wf3aeLIyEWN2hQc-5h2uxedhF5ZZxQTosTfe_JBQOeKQHYGPgyGkKUXyqoNYTavXjCs7ZRA_5dztSXSRKUFyl6IXjN2CCUKp46DES4lZ4v9BaIMS87EYm8vbEtpBGF9Z1hh7J59QUHIuhFUuPONlDsmGlQDAOQqEi3xtL57QC5InMkSrNhvD-4UlL3Gb1SGDD-"/>
+<div class="absolute bottom-3 right-3 px-3 py-1 rounded-full bg-[#0F172A]/80 backdrop-blur-sm text-white font-label-sm text-label-sm" id="photo-credit-badge">
+              Photo by A. Gurung / Pokhara Media
+            </div>
+</div>
+</div>
+<!-- Form Actions -->
+<div class="flex items-center justify-end gap-space-md pt-space-sm">
+<button class="h-11 px-space-lg rounded-xl bg-[#F1F5F9] border border-[#E2E8F0] text-[#475569] font-label-lg text-label-lg hover:bg-[#E2E8F0] hover:text-[#0F172A] transition-colors cursor-pointer font-semibold" onclick="selectOuting('sarangkot')" type="button">
+            Reset
+          </button>
+<button class="h-11 px-space-lg rounded-xl bg-primary text-white font-label-lg text-label-lg shadow-sm hover:bg-primary-container hover:shadow-md transition-all cursor-pointer font-semibold" type="submit">
+            Save outing
+          </button>
+</div>
+</form>
+</div>
+<!-- Right Column: Interested People & Quick Message Templates (5 cols on lg) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Interested People Panel -->
+<div class="bg-white rounded-xl shadow-[0_2px_12px_rgba(8,131,149,0.06)] border border-[#CFE2EE] p-space-lg flex flex-col gap-space-md">
+<div class="flex items-start justify-between gap-space-sm pb-space-sm border-b border-[#E2EDF5]">
+<div>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Visitor Roster</span>
+<h3 class="font-headline-sm text-headline-sm text-[#0F172A] font-bold" id="interested-heading">Interested People (2 entries · 4 people)</h3>
+</div>
+<button class="inline-flex items-center gap-1.5 h-9 px-3 rounded-lg bg-[#E0F2FE] text-primary border border-[#BAE6FD] font-label-md text-label-md hover:bg-primary hover:text-white transition-colors cursor-pointer shrink-0 font-semibold" id="btn-copy-all" onclick="copyAllContacts()" type="button">
+<span class="material-symbols-outlined text-[16px]">content_copy</span>
+<span>Copy all contacts</span>
+</button>
+</div>
+<div class="flex flex-col gap-space-sm" id="interested-list">
+<!-- Visitor 1 -->
+<div class="p-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-sm">
+<span class="font-title-sm text-title-sm text-[#0F172A] font-bold">Elena Rostova</span>
+<span class="px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0369A1] font-label-sm text-label-sm font-semibold border border-[#BAE6FD]">2 people</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] mt-0.5">Registered Oct 19, 2025</p>
+</div>
+<div class="flex items-center gap-1.5">
+<a class="w-9 h-9 rounded-lg bg-white border border-[#CFE2EE] text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm" href="tel:+9779812345678" title="Call">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-white border border-[#CFE2EE] text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm" href="https://wa.me/9779812345678" rel="noopener noreferrer" target="_blank" title="WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-white border border-[#CFE2EE] text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm" href="mailto:elena.rostova@example.com" title="Email">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-[#0F172A] flex flex-wrap gap-x-space-md gap-y-1">
+<span class="font-medium">+977 981-2345678</span>
+<span class="text-[#475569]">elena.rostova@example.com</span>
+</div>
+</div>
+<!-- Visitor 2 -->
+<div class="p-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] flex flex-col gap-space-sm">
+<div class="flex items-start justify-between gap-space-sm">
+<div>
+<div class="flex items-center gap-space-sm">
+<span class="font-title-sm text-title-sm text-[#0F172A] font-bold">Marcus Chen</span>
+<span class="px-2 py-0.5 rounded-full bg-[#E0F2FE] text-[#0369A1] font-label-sm text-label-sm font-semibold border border-[#BAE6FD]">2 people</span>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] mt-0.5">Registered Oct 20, 2025</p>
+</div>
+<div class="flex items-center gap-1.5">
+<a class="w-9 h-9 rounded-lg bg-white border border-[#CFE2EE] text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm" href="tel:+9779809876543" title="Call">
+<span class="material-symbols-outlined text-[18px]">call</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-white border border-[#CFE2EE] text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm" href="https://wa.me/9779809876543" rel="noopener noreferrer" target="_blank" title="WhatsApp">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+</a>
+<a class="w-9 h-9 rounded-lg bg-white border border-[#CFE2EE] text-primary flex items-center justify-center hover:bg-primary hover:text-white transition-colors shadow-sm" href="mailto:m.chen@example.com" title="Email">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+</a>
+</div>
+</div>
+<div class="font-body-sm text-body-sm text-[#0F172A] flex flex-wrap gap-x-space-md gap-y-1">
+<span class="font-medium">+977 980-9876543</span>
+<span class="text-[#475569]">m.chen@example.com</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Message Templates -->
+<div class="bg-white rounded-xl shadow-[0_2px_12px_rgba(8,131,149,0.06)] border border-[#CFE2EE] p-space-lg flex flex-col gap-space-md">
+<div class="pb-space-sm border-b border-[#E2EDF5]">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-primary font-bold">Staff Shortcuts</span>
+<h3 class="font-headline-sm text-headline-sm text-[#0F172A] font-bold">Quick Message Templates</h3>
+</div>
+<div class="flex flex-col gap-space-sm">
+<!-- Template 1 -->
+<div class="p-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-label-lg text-label-lg text-[#0F172A] font-bold">Thanks for your interest</span>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-[#CFE2EE] text-primary font-label-sm text-label-sm hover:bg-primary hover:text-white transition-colors cursor-pointer shadow-sm font-semibold" onclick="copyTemplate('Thanks for your interest in our Pokhara group outing! We have noted your request and will confirm the final group size and meeting details 24 hours before departure.')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] line-clamp-2">
+              Thanks for your interest in our Pokhara group outing! We have noted your request and will confirm the final group size and meeting details 24 hours before departure.
+            </p>
+</div>
+<!-- Template 2 -->
+<div class="p-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-label-lg text-label-lg text-[#0F172A] font-bold">Details confirmed</span>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-[#CFE2EE] text-primary font-label-sm text-label-sm hover:bg-primary hover:text-white transition-colors cursor-pointer shadow-sm font-semibold" onclick="copyTemplate('Your group outing is confirmed! Please meet at Lakeside Hallan Chowk Taxi Stand at 05:15 AM. Bring water, a light windbreaker, and comfortable walking shoes.')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] line-clamp-2">
+              Your group outing is confirmed! Please meet at Lakeside Hallan Chowk Taxi Stand at 05:15 AM. Bring water, a light windbreaker, and comfortable walking shoes.
+            </p>
+</div>
+<!-- Template 3 -->
+<div class="p-space-md rounded-xl bg-[#F8FCFF] border border-[#CFE2EE] flex flex-col gap-space-xs">
+<div class="flex items-center justify-between gap-space-sm">
+<span class="font-label-lg text-label-lg text-[#0F172A] font-bold">Outing cancelled</span>
+<button class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-[#CFE2EE] text-primary font-label-sm text-label-sm hover:bg-primary hover:text-white transition-colors cursor-pointer shadow-sm font-semibold" onclick="copyTemplate('We are sorry to let you know that this group outing has been cancelled due to weather/minimum group size. Let us know if you would like to join our next scheduled trek!')" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span>Copy</span>
+</button>
+</div>
+<p class="font-body-sm text-body-sm text-[#475569] line-clamp-2">
+              We are sorry to let you know that this group outing has been cancelled due to weather/minimum group size. Let us know if you would like to join our next scheduled trek!
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Toast -->
+<div class="fixed bottom-6 right-6 z-50 px-space-lg py-space-sm rounded-xl bg-[#0F172A] text-white font-label-lg text-label-lg shadow-xl opacity-0 pointer-events-none transition-opacity duration-200 flex items-center gap-space-sm" id="admin-toast">
+<span class="material-symbols-outlined text-primary-fixed text-[18px]">check_circle</span>
+<span id="admin-toast-text">Copied to clipboard</span>
+</div>
+</div>
+<script>
+  const outingsData = {
+    sarangkot: {
+      title: 'Sarangkot Sunrise & Naudanda Ridge Trek',
+      slug: 'sarangkot-sunrise-naudanda-ridge-trek',
+      destination: 'Sarangkot Ridge, Pokhara',
+      date: '2025-10-24',
+      description: 'Early morning ridge hike from Sarangkot viewpoint to Naudanda with panoramic views of Machapuchare and the Annapurna massif. Includes tea stop at a local ridge teahouse.',
+      meeting: 'Lakeside Hallan Chowk Taxi Stand (05:15 AM)',
+      cost: 'NPR 2,500 / person (incl. jeep)',
+      organizer: 'Pemba Sherpa',
+      contact: '+977 984-6021190 · pemba@pokharabooking.com',
+      photoUrl: 'https://pokharabooking.com/media/sarangkot-ridge.jpg',
+      credit: 'Photo by A. Gurung / Pokhara Media',
+      status: 'published',
+      interestedLabel: 'Interested People (2 entries · 4 people)',
+      contactsCopy: 'Elena Rostova (+977 981-2345678, elena.rostova@example.com); Marcus Chen (+977 980-9876543, m.chen@example.com)'
+    },
+    pagoda: {
+      title: 'World Peace Pagoda Sunset Hike',
+      slug: 'world-peace-pagoda-sunset-hike',
+      destination: 'Anadu Hill, Pokhara',
+      date: '2025-10-28',
+      description: 'Afternoon boat crossing across Phewa Lake followed by a forested uphill hike to the World Peace Stupa for golden hour views over Pokhara Valley.',
+      meeting: 'Barahi Ghat Boat Dock (02:30 PM)',
+      cost: 'NPR 1,800 / person (incl. boat)',
+      organizer: 'Sita Gurung',
+      contact: '+977 985-6014422 · sita@pokharabooking.com',
+      photoUrl: 'https://pokharabooking.com/media/peace-pagoda.jpg',
+      credit: 'Photo by S. Gurung / Pokhara Media',
+      status: 'published',
+      interestedLabel: 'Interested People (3 entries · 5 people)',
+      contactsCopy: 'Liam Vance (+977 981-1122334, liam@example.com); Priya Nair (+977 980-4455667, priya@example.com)'
+    },
+    australian: {
+      title: 'Australian Camp 2-Day Trek',
+      slug: 'australian-camp-2-day-trek',
+      destination: 'Kande to Dhampus',
+      date: '2025-11-02',
+      description: 'Overnight beginner-friendly ridge trek through rhododendron forests with lodge stay at Australian Camp and descent via Dhampus village.',
+      meeting: 'Pokhara Baglung Bus Park (07:30 AM)',
+      cost: 'NPR 6,500 / person',
+      organizer: 'Rajan Thapa',
+      contact: '+977 984-6098871 · rajan@pokharabooking.com',
+      photoUrl: 'https://pokharabooking.com/media/australian-camp.jpg',
+      credit: 'Photo by R. Thapa / Pokhara Media',
+      status: 'cancelled',
+      interestedLabel: 'Interested People (1 entry · 2 people)',
+      contactsCopy: 'Hannah Kim (+977 981-7788990, hannah.kim@example.com)'
+    },
+    phewa: {
+      title: 'Phewa Lake Kayaking & Forest Walk',
+      slug: 'phewa-lake-kayaking-forest-walk',
+      destination: 'Phewa North Shore',
+      date: '2025-11-08',
+      description: 'Calm morning paddle across the northern inlets of Phewa Lake followed by a guided birdwatching walk along Rani Ban forest.',
+      meeting: 'Khahare Lakeside Pier (07:00 AM)',
+      cost: 'NPR 2,200 / person',
+      organizer: 'Maya Pun',
+      contact: '+977 984-6055321 · maya@pokharabooking.com',
+      photoUrl: 'https://pokharabooking.com/media/phewa-kayak.jpg',
+      credit: 'Photo by M. Pun / Pokhara Media',
+      status: 'draft',
+      interestedLabel: 'Interested People (0 entries · 0 people)',
+      contactsCopy: ''
+    }
+  };
+
+  let currentContactsText = outingsData.sarangkot.contactsCopy;
+
+  function slugify(text) {
+    return text.toLowerCase().trim().replace(/[^a-z0-9\s-]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+  }
+
+  document.getElementById('outing-title').addEventListener('input', function (e) {
+    document.getElementById('outing-slug').value = slugify(e.target.value);
+    document.getElementById('form-heading').textContent = e.target.value || 'New Group Outing';
+  });
+
+  document.getElementById('outing-photo-credit').addEventListener('input', function (e) {
+    document.getElementById('photo-credit-badge').textContent = e.target.value || 'Photo credit';
+  });
+
+  document.getElementById('btn-create-outing').addEventListener('click', function () {
+    document.getElementById('form-heading').textContent = 'New Group Outing';
+    document.getElementById('outing-title').value = '';
+    document.getElementById('outing-slug').value = '';
+    document.getElementById('outing-destination').value = '';
+    document.getElementById('outing-date').value = '';
+    document.getElementById('outing-description').value = '';
+    document.getElementById('outing-meeting').value = '';
+    document.getElementById('outing-cost').value = '';
+    document.getElementById('outing-organizer').value = '';
+    document.getElementById('outing-organizer-contact').value = '';
+    document.getElementById('outing-photo-url').value = '';
+    document.getElementById('outing-photo-credit').value = '';
+    document.getElementById('outing-status').value = 'draft';
+    document.getElementById('interested-heading').textContent = 'Interested People (0 entries · 0 people)';
+    currentContactsText = '';
+    document.getElementById('outing-detail-section').scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('outing-title').focus();
+  });
+
+  function selectOuting(key) {
+    const data = outingsData[key];
+    if (!data) return;
+    document.getElementById('form-heading').textContent = data.title;
+    document.getElementById('outing-title').value = data.title;
+    document.getElementById('outing-slug').value = data.slug;
+    document.getElementById('outing-destination').value = data.destination;
+    document.getElementById('outing-date').value = data.date;
+    document.getElementById('outing-description').value = data.description;
+    document.getElementById('outing-meeting').value = data.meeting;
+    document.getElementById('outing-cost').value = data.cost;
+    document.getElementById('outing-organizer').value = data.organizer;
+    document.getElementById('outing-organizer-contact').value = data.contact;
+    document.getElementById('outing-photo-url').value = data.photoUrl;
+    document.getElementById('outing-photo-credit').value = data.credit;
+    document.getElementById('photo-credit-badge').textContent = data.credit;
+    document.getElementById('outing-status').value = data.status;
+    document.getElementById('interested-heading').textContent = data.interestedLabel;
+    currentContactsText = data.contactsCopy;
+    document.getElementById('outing-detail-section').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function copyAllContacts() {
+    if (!currentContactsText) {
+      showToast('No contacts to copy');
+      return;
+    }
+    navigator.clipboard.writeText(currentContactsText).then(() => {
+      showToast('All contacts copied to clipboard');
+    });
+  }
+
+  function copyTemplate(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast('Message template copied');
+    });
+  }
+
+  function showToast(message) {
+    const toast = document.getElementById('admin-toast');
+    document.getElementById('admin-toast-text').textContent = message;
+    toast.classList.remove('opacity-0');
+    toast.classList.add('opacity-100');
+    setTimeout(() => {
+      toast.classList.remove('opacity-100');
+      toast.classList.add('opacity-0');
+    }, 2200);
+  }
+</script></div></main><footer class="w-full bg-white border-t border-[#CFE2EE] py-space-lg"><div class="max-w-[1320px] mx-auto px-margin-mobile lg:px-margin flex flex-col sm:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-[#64748B]"><span>© 2025 Pokhara Booking. Staff Admin Portal.</span><span class="font-medium">Internal Operations &amp; Expedition Management</span></div></footer></body></html>

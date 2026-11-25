@@ -21,7 +21,7 @@ export default function AdminOffersPage({ searchParams }: PageProps<"/admin/offe
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-bold tracking-tight">Offers</h1>
+          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Offers</h1>
           <p className="text-muted-foreground">
             Prices from providers. An offer shows on the website when it has a price, isn&apos;t outdated, and its
             activity is live.
@@ -64,11 +64,11 @@ async function OffersSection({ searchParams }: { searchParams: Promise<Record<st
       <OfferFilters activities={activities} activityId={activityParam} status={statusParam} />
 
       {offers.length === 0 ? (
-        <p className="rounded-xl border border-dashed p-10 text-center text-muted-foreground">
+        <p className="rounded-2xl border-2 border-dashed border-input bg-card/60 p-10 text-center text-muted-foreground">
           {filtered ? "No offers match these filters." : "No offers yet. Click New offer to add the first price."}
         </p>
       ) : (
-        <div className="rounded-xl border">
+        <div className="overflow-hidden rounded-2xl bg-card border border-border">
           <Table>
             <TableHeader>
               <TableRow>
