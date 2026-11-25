@@ -3,7 +3,7 @@ import "server-only";
 import { todayInTimeZone } from "../booking";
 import type { OfferSnapshot } from "../booking";
 import type { Currency } from "../types";
-import { flaggedOffers, pendingSummary, requestsPerDay, type OfferFlag } from "./dashboard";
+import { flaggedOffers, offerFlag, pendingSummary, requestsPerDay, type OfferFlag } from "./dashboard";
 import { requireAdmin } from "./guard";
 
 // One read for the admin overview. Uses the service-role client via requireAdmin().
@@ -47,6 +47,10 @@ export type Dashboard = {
   };
 };
 
+const PENDING_LIST_LIMIT = 5;
+// Enough rows to sort the most serious five; the counts come from the light query above.
+const FLAGGED_FETCH_LIMIT = 50;
+
 function fail(what: string, error: { message: string }): never {
   console.error(`admin: failed to load ${what}`, error);
   throw new Error(`Failed to load ${what}`);
@@ -57,17 +61,26 @@ export async function getDashboard(now: Date = new Date()): Promise<Dashboard> {
   const today = todayInTimeZone(now);
   const weekAgo = new Date(now.getTime() - 7 * 24 * 3_600_000).toISOString();
 
-  const [activities, offers, providers, pending, recent, outings, interests] = await Promise.all([
+  const [activities, offers, flaggedRows, providers, pendingTimes, pending, recent, outings, interests] = await Promise.all([
     supabase.from("activities").select("is_published"),
+    // Light columns only, for the counts.
+    supabase.from("price_listings").select("provider_id, price, currency, verification_status"),
+    // Only offers that need attention, with names for the list. Sorted and cut to five below.
     supabase
       .from("price_listings")
-      .select("id, provider_id, package_name, price, currency, verification_status, retrieved_at, activity:activities(name), provider:providers(name)"),
+      .select("id, package_name, price, currency, verification_status, retrieved_at, activity:activities(name), provider:providers(name)")
+      .or("verification_status.neq.verified,price.is.null,currency.is.null")
+      .order("retrieved_at", { ascending: true, nullsFirst: true })
+      .limit(FLAGGED_FETCH_LIMIT),
     supabase.from("providers").select("id", { count: "exact", head: true }),
+    // Timestamps only, for the pending count, overdue count and oldest wait.
+    supabase.from("booking_requests").select("created_at").eq("status", "pending"),
     supabase
       .from("booking_requests")
       .select("id, reference, customer_name, requested_date, participant_count, total_price, currency, created_at, offer_snapshot")
       .eq("status", "pending")
-      .order("created_at", { ascending: true }),
+      .order("created_at", { ascending: true })
+      .limit(PENDING_LIST_LIMIT),
     supabase.from("booking_requests").select("status, created_at").gte("created_at", weekAgo),
     supabase.from("group_outings").select("id, title, outing_date, status"),
     supabase.from("group_interests").select("id", { count: "exact", head: true }).gte("created_at", weekAgo),
@@ -75,7 +88,9 @@ export async function getDashboard(now: Date = new Date()): Promise<Dashboard> {
   for (const [what, res] of [
     ["activities", activities],
     ["offers", offers],
+    ["flagged offers", flaggedRows],
     ["providers", providers],
+    ["pending request times", pendingTimes],
     ["pending requests", pending],
     ["recent requests", recent],
     ["outings", outings],
@@ -84,9 +99,8 @@ export async function getDashboard(now: Date = new Date()): Promise<Dashboard> {
     if (res.error) fail(what, res.error);
   }
 
-  type OfferRow = {
+  type FlaggedRow = {
     id: string;
-    provider_id: string | null;
     package_name: string | null;
     price: number | string | null;
     currency: string | null;
@@ -95,15 +109,22 @@ export async function getDashboard(now: Date = new Date()): Promise<Dashboard> {
     activity: { name: string } | null;
     provider: { name: string } | null;
   };
-  const offerRows = ((offers.data ?? []) as unknown as OfferRow[]).map((o) => ({
+  const toNumber = <T extends { price: number | string | null }>(o: T) => ({
     ...o,
     price: o.price === null ? null : Number(o.price),
-  }));
-  const flagged = flaggedOffers(offerRows);
+  });
+  const offerRows = (
+    (offers.data ?? []) as { provider_id: string | null; price: number | string | null; currency: string | null; verification_status: string }[]
+  ).map(toNumber);
   const counts: Record<OfferFlag, number> = { no_price: 0, outdated: 0, unverified: 0 };
-  for (const o of flagged) counts[o.flag] += 1;
+  for (const o of offerRows) {
+    const flag = offerFlag(o);
+    if (flag) counts[flag] += 1;
+  }
+  const flagged = flaggedOffers(((flaggedRows.data ?? []) as unknown as FlaggedRow[]).map(toNumber));
 
   const pendingRows = (pending.data ?? []) as unknown as (DashboardPendingRequest & { total_price: number | string })[];
+  const pendingCreatedAt = (pendingTimes.data ?? []) as { created_at: string }[];
   const recentRows = (recent.data ?? []) as { status: string; created_at: string }[];
   const outingRows = (outings.data ?? []) as { id: string; title: string; outing_date: string | null; status: string }[];
   const upcoming = outingRows
@@ -132,8 +153,8 @@ export async function getDashboard(now: Date = new Date()): Promise<Dashboard> {
       withOffers: new Set(offerRows.map((o) => o.provider_id).filter(Boolean)).size,
     },
     requests: {
-      pending: pendingSummary(pendingRows, now),
-      latestPending: pendingRows.slice(0, 5).map((r) => ({ ...r, total_price: Number(r.total_price) })),
+      pending: pendingSummary(pendingCreatedAt, now),
+      latestPending: pendingRows.map((r) => ({ ...r, total_price: Number(r.total_price) })),
       perDay: requestsPerDay(
         recentRows.map((r) => r.created_at),
         today,
