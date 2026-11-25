@@ -4,26 +4,18 @@ import Link from "next/link";
 import { connection } from "next/server";
 import {
   ArrowDownAZ,
-  ArrowDownToLine,
   ArrowRight,
-  Cable,
   CalendarDays,
-  Footprints,
   MapPin,
   MessageCircle,
   Mountain,
-  Plane,
-  Sailboat,
   Search,
   ShieldCheck,
   Tags,
-  Tent,
-  Waves,
-  Wind,
-  type LucideIcon,
 } from "lucide-react";
 
 import { ActivityImage } from "@/components/activity-image";
+import { categoryIcon, sentenceCase } from "@/components/category-icon";
 import { Container } from "@/components/container";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -120,17 +112,6 @@ function Hero() {
   );
 }
 
-const CATEGORY_ICONS: Record<string, LucideIcon> = {
-  paragliding: Wind,
-  boating: Sailboat,
-  zipline: Cable,
-  ultralight: Plane,
-  hiking: Footprints,
-  bungee: ArrowDownToLine,
-  rafting: Waves,
-  camping: Tent,
-};
-
 async function Activities() {
   const [activities, summaries] = await Promise.all([getPublishedActivities(), getOfferSummaries()]);
   const offerCount = [...summaries.values()].reduce((sum, s) => sum + s.count, 0);
@@ -187,7 +168,7 @@ async function Activities() {
         <ul className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {activities.map((activity, i) => {
             const summary = summaries.get(activity.id);
-            const Icon = CATEGORY_ICONS[activity.category.toLowerCase()] ?? Mountain;
+            const Icon = categoryIcon(activity.category);
             return (
               <li key={activity.id}>
                 <Link
@@ -396,6 +377,3 @@ function HowItWorks() {
   );
 }
 
-function sentenceCase(text: string) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
-}

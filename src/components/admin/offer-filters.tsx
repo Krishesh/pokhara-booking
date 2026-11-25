@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
 import type { Option } from "@/lib/admin/data";
 
+/** Activity picker for the offers list; keeps the status filter in the URL. */
 export function OfferFilters({
   activities,
   activityId,
@@ -18,37 +19,27 @@ export function OfferFilters({
   const router = useRouter();
   const pathname = usePathname();
 
-  const update = (key: "activity" | "status", value: string) => {
+  const update = (value: string) => {
     const params = new URLSearchParams();
-    const next = { activity: activityId, status, [key]: value };
-    if (next.activity) params.set("activity", next.activity);
-    if (next.status) params.set("status", next.status);
+    if (value) params.set("activity", value);
+    if (status) params.set("status", status);
     const qs = params.toString();
     router.push(qs ? `${pathname}?${qs}` : pathname);
   };
 
   return (
-    <div className="flex flex-wrap items-end gap-4">
-      <div className="grid gap-1.5">
-        <Label htmlFor="filter-activity">Activity</Label>
-        <NativeSelect id="filter-activity" value={activityId} onChange={(e) => update("activity", e.target.value)}>
-          <NativeSelectOption value="">All activities</NativeSelectOption>
-          {activities.map((a) => (
-            <NativeSelectOption key={a.id} value={a.id}>
-              {a.name}
-            </NativeSelectOption>
-          ))}
-        </NativeSelect>
-      </div>
-      <div className="grid gap-1.5">
-        <Label htmlFor="filter-status">Status</Label>
-        <NativeSelect id="filter-status" value={status} onChange={(e) => update("status", e.target.value)}>
-          <NativeSelectOption value="">All statuses</NativeSelectOption>
-          <NativeSelectOption value="verified">Verified</NativeSelectOption>
-          <NativeSelectOption value="unverified">Unverified</NativeSelectOption>
-          <NativeSelectOption value="outdated">Outdated</NativeSelectOption>
-        </NativeSelect>
-      </div>
+    <div className="flex items-center gap-2">
+      <Label htmlFor="filter-activity" className="shrink-0 text-sm text-muted-foreground">
+        Activity
+      </Label>
+      <NativeSelect id="filter-activity" value={activityId} onChange={(e) => update(e.target.value)} className="w-full sm:w-64">
+        <NativeSelectOption value="">All activities</NativeSelectOption>
+        {activities.map((a) => (
+          <NativeSelectOption key={a.id} value={a.id}>
+            {a.name}
+          </NativeSelectOption>
+        ))}
+      </NativeSelect>
     </div>
   );
 }
