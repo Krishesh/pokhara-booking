@@ -4,6 +4,7 @@ import Link from "next/link";
 import { connection } from "next/server";
 import { Eye, EyeOff, Pencil, Plus, Tags, X } from "lucide-react";
 
+import { FilterTabs } from "@/components/admin/filter-tabs";
 import { OfferFilters } from "@/components/admin/offer-filters";
 import { OfferStatusActions } from "@/components/admin/offer-status-actions";
 import { TableSkeleton } from "@/components/admin/table-skeleton";
@@ -100,29 +101,16 @@ async function OffersSection({ searchParams }: { searchParams: Promise<Record<st
       </div>
 
       <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-2.5 lg:flex-row lg:items-center lg:justify-between">
-        <nav aria-label="Filter by status" className="flex flex-wrap gap-1">
-          {(["", "verified", "unverified", "outdated"] as StatusTab[]).map((s) => {
-            const active = s === statusParam;
-            return (
-              <Link
-                key={s || "all"}
-                href={href(s)}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-                  active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-mist hover:text-foreground",
-                )}
-              >
-                {s ? STATUS_STYLE[s].label : "All"}
-                <span
-                  className={cn("rounded-full px-1.5 text-xs tabular-nums", active ? "bg-white/20" : "bg-muted text-muted-foreground")}
-                >
-                  {statusCounts[s]}
-                </span>
-              </Link>
-            );
-          })}
-        </nav>
+        <FilterTabs
+          label="Filter by status"
+          active={statusParam || "all"}
+          tabs={(["", "verified", "unverified", "outdated"] as StatusTab[]).map((st) => ({
+            key: st || "all",
+            label: st ? STATUS_STYLE[st].label : "All",
+            count: statusCounts[st],
+            href: href(st),
+          }))}
+        />
         <div className="flex items-center gap-2 px-1.5 lg:px-0">
           <OfferFilters activities={activities} activityId={activityParam} status={statusParam} />
           {(activityParam || statusParam) && (

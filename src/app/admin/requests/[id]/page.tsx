@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
-import { AlertTriangle, ArrowLeft, Mail, MessageCircle, Phone } from "lucide-react";
+import { AlertTriangle, ArrowLeft, Lock, Mail, MessageCircle, Phone } from "lucide-react";
 
 import { CopyButton } from "@/components/admin/copy-button";
 import { FormSkeleton } from "@/components/admin/form-skeleton";
@@ -11,7 +11,6 @@ import { MessageTemplates } from "@/components/admin/message-templates";
 import { RequestStatusBadge } from "@/components/admin/request-status-badge";
 import { RequestStatusForm } from "@/components/admin/request-status-form";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { contactLinks, messageTemplates, offerChanges, requestAge } from "@/lib/admin/requests";
 import { getAdminRequest } from "@/lib/admin/requests-data";
 import { isUuid } from "@/lib/admin/validation";
@@ -22,7 +21,10 @@ export const metadata: Metadata = { title: "Booking request" };
 export default function AdminRequestPage({ params }: PageProps<"/admin/requests/[id]">) {
   return (
     <section className="space-y-6">
-      <Link href="/admin/requests" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
+      <Link
+        href="/admin/requests"
+        className="inline-flex items-center gap-1.5 rounded-full py-1 pr-2 text-sm font-medium text-muted-foreground hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+      >
         <ArrowLeft className="size-4" aria-hidden="true" />
         Booking requests
       </Link>
@@ -72,63 +74,81 @@ async function RequestDetail({ params }: { params: Promise<{ id: string }> }) {
           </div>
           <p className="text-muted-foreground">
             Received {received} ({age.label.toLowerCase() === "today" ? "today" : `${age.label} ago`})
-            {age.overdue && <span className="font-medium text-destructive"> · waiting over 2 days</span>}
+            {age.overdue && <span className="font-semibold text-sunrise">, waiting over 2 days</span>}
           </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {links.map(({ label, href }) => {
+            const Icon = CONTACT_ICONS[label as keyof typeof CONTACT_ICONS];
+            return (
+              <Button
+                key={label}
+                variant={label === "WhatsApp" ? "default" : "outline"}
+                size="sm"
+                nativeButton={false}
+                render={<a href={href} target={label === "WhatsApp" ? "_blank" : undefined} rel="noreferrer" />}
+              >
+                <Icon aria-hidden="true" />
+                {label}
+              </Button>
+            );
+          })}
         </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-[1fr_22rem]">
         <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Customer</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
-              <dl className="grid grid-cols-[8rem_1fr] gap-x-4 gap-y-2 text-sm">
-                <dt className="text-muted-foreground">Name</dt>
-                <dd className="font-medium">{r.customer_name}</dd>
-                <dt className="text-muted-foreground">{r.contact_type === "phone" ? "Phone" : "Email"}</dt>
-                <dd className="flex flex-wrap items-center gap-2">
-                  <span className="font-mono">{r.contact_value}</span>
-                  <CopyButton text={r.contact_value} label="Copy contact" copiedMessage="Contact copied" size="icon-sm" variant="ghost" />
-                </dd>
-                <dt className="text-muted-foreground">Date</dt>
-                <dd>{formatCheckedDate(r.requested_date)}</dd>
-                <dt className="text-muted-foreground">People</dt>
-                <dd>{r.participant_count}</dd>
-                <dt className="text-muted-foreground">Estimated total</dt>
-                <dd className="font-medium">{formatPrice(r.total_price, r.currency)}</dd>
-              </dl>
-              <div className="flex flex-wrap gap-2">
-                {links.map(({ label, href }) => {
-                  const Icon = CONTACT_ICONS[label as keyof typeof CONTACT_ICONS];
-                  return (
-                    <Button
-                      key={label}
-                      variant="outline"
-                      size="sm"
-                      nativeButton={false}
-                      render={<a href={href} target={label === "WhatsApp" ? "_blank" : undefined} rel="noreferrer" />}
-                    >
-                      <Icon aria-hidden="true" />
-                      {label}
-                    </Button>
-                  );
-                })}
+          <section aria-labelledby="customer-heading" className="rounded-2xl border border-border bg-card p-5 sm:p-6">
+            <h2 id="customer-heading" className="sr-only">
+              Customer
+            </h2>
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-center gap-4">
+                <span
+                  aria-hidden="true"
+                  className="grid size-12 shrink-0 place-items-center rounded-full bg-accent text-base font-bold text-accent-foreground"
+                >
+                  {initials(r.customer_name)}
+                </span>
+                <div className="min-w-0">
+                  <p className="text-lg font-semibold">{r.customer_name}</p>
+                  <p className="flex flex-wrap items-center gap-1 text-sm text-muted-foreground">
+                    {r.contact_type === "phone" ? <Phone className="size-3.5" aria-hidden="true" /> : <Mail className="size-3.5" aria-hidden="true" />}
+                    <span className="tabular-nums">{r.contact_value}</span>
+                    <CopyButton text={r.contact_value} label="Copy contact" copiedMessage="Contact copied" size="icon-sm" variant="ghost" />
+                  </p>
+                </div>
               </div>
-            </CardContent>
-          </Card>
+              <dl className="grid grid-cols-3 gap-2 text-center sm:min-w-80">
+                <div className="flex flex-col-reverse rounded-xl bg-mist px-3 py-2">
+                  <dt className="text-xs text-muted-foreground">Date</dt>
+                  <dd className="text-sm font-semibold">{formatCheckedDate(r.requested_date)}</dd>
+                </div>
+                <div className="flex flex-col-reverse rounded-xl bg-mist px-3 py-2">
+                  <dt className="text-xs text-muted-foreground">People</dt>
+                  <dd className="text-sm font-semibold tabular-nums">{r.participant_count}</dd>
+                </div>
+                <div className="flex flex-col-reverse rounded-xl bg-mist px-3 py-2">
+                  <dt className="text-xs text-muted-foreground">Total</dt>
+                  <dd className="text-sm font-semibold text-sunrise tabular-nums">{formatPrice(r.total_price, r.currency)}</dd>
+                </div>
+              </dl>
+            </div>
+          </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Offer as the customer saw it</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4 text-sm">
+          <section aria-labelledby="offer-heading" className="space-y-4 rounded-2xl border border-border bg-card p-5 text-sm sm:p-6">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 id="offer-heading" className="flex items-center gap-2 text-lg font-semibold">
+                <Lock className="size-4 text-primary" aria-hidden="true" />
+                Offer as the customer saw it
+              </h2>
+              <span className="text-xs text-muted-foreground">Saved when the request was sent</span>
+            </div>
               {changes.length > 0 && (
-                <div role="note" className="flex gap-2 rounded-lg border border-destructive/30 bg-destructive/10 p-3">
-                  <AlertTriangle className="mt-0.5 size-4 shrink-0 text-destructive" aria-hidden="true" />
+                <div role="note" className="flex gap-2.5 rounded-xl border border-sunrise/30 bg-sunrise-soft/60 p-4">
+                  <AlertTriangle className="mt-0.5 size-4 shrink-0 text-sunrise" aria-hidden="true" />
                   <div>
-                    <p className="font-medium">The offer has changed since this request</p>
+                    <p className="font-semibold text-sunrise">The offer has changed since this request</p>
                     <ul className="list-disc pl-4">
                       {changes.map((c) => (
                         <li key={c}>{c}</li>
@@ -140,7 +160,7 @@ async function RequestDetail({ params }: { params: Promise<{ id: string }> }) {
                   </div>
                 </div>
               )}
-              <dl className="grid grid-cols-[8rem_1fr] gap-x-4 gap-y-2">
+              <dl className="grid grid-cols-[8rem_1fr] gap-x-4 gap-y-2 rounded-xl bg-mist p-4">
                 <dt className="text-muted-foreground">Activity</dt>
                 <dd>{snap.activity.name}</dd>
                 <dt className="text-muted-foreground">Provider</dt>
@@ -173,47 +193,55 @@ async function RequestDetail({ params }: { params: Promise<{ id: string }> }) {
                   </>
                 )}
               </dl>
+              <div className="flex items-center justify-between gap-3 rounded-xl border border-border px-4 py-3">
+                <span className="text-muted-foreground">
+                  {formatPrice(snap.price, snap.currency)}
+                  {snap.pricing_unit === "per_person" && ` × ${r.participant_count}`}
+                </span>
+                <span className="text-base font-bold text-sunrise tabular-nums">{formatPrice(r.total_price, r.currency)}</span>
+              </div>
               {r.price_listing_id && (
-                <Link href={`/admin/offers/${r.price_listing_id}`} className="inline-block text-sm text-muted-foreground underline hover:text-foreground">
+                <Link href={`/admin/offers/${r.price_listing_id}`} className="inline-block text-sm font-semibold text-primary hover:underline">
                   Open the current offer
                 </Link>
               )}
-            </CardContent>
-          </Card>
+          </section>
 
-          <Card>
-            <CardHeader>
-              <CardTitle>Message the customer</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <MessageTemplates
-                templates={templates}
-                initialKey={r.status === "pending" ? "received" : r.status}
-              />
-            </CardContent>
-          </Card>
+          <section aria-labelledby="message-heading" className="space-y-4 rounded-2xl border border-border bg-card p-5 sm:p-6">
+            <h2 id="message-heading" className="text-lg font-semibold">
+              Message the customer
+            </h2>
+            <MessageTemplates templates={templates} initialKey={r.status === "pending" ? "received" : r.status} />
+          </section>
         </div>
 
         <div className="space-y-6">
-          <Card>
-            <CardHeader>
-              <CardTitle>Record the outcome</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
+          <section aria-labelledby="outcome-heading" className="space-y-4 rounded-2xl border-2 border-primary/25 bg-card p-5 sm:p-6 lg:sticky lg:top-6">
+            <h2 id="outcome-heading" className="text-lg font-semibold">
+              Record the outcome
+            </h2>
               {(r.staff_note || r.updated_by) && (
-                <div className="space-y-1 rounded-lg bg-muted/50 p-3 text-sm">
+                <div className="space-y-1 rounded-xl bg-mist p-3 text-sm">
                   {r.staff_note && <p className="whitespace-pre-line">“{r.staff_note}”</p>}
                   <p className="text-xs text-muted-foreground">
                     {r.updated_by ? `Last updated by ${r.updated_by}` : "Last updated"}
-                    {updated && ` · ${updated}`}
+                    {updated && `, ${updated}`}
                   </p>
                 </div>
               )}
               <RequestStatusForm key={r.status} id={r.id} reference={r.reference} status={r.status} />
-            </CardContent>
-          </Card>
+          </section>
         </div>
       </div>
     </div>
   );
+}
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0]!.toUpperCase())
+    .join("");
 }

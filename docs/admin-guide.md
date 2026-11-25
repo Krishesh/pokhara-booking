@@ -147,9 +147,11 @@ If you pick a slug that's already used, the form tells you which activity has it
 
 ![Providers table](images/admin/providers.png)
 
-A provider is a company that runs activities (a paragliding company, a boat station…). The table shows each one's Google rating, phone and how many offers it has.
+A provider is a company that runs activities (a paragliding company, a boat station…). The table shows each one's website, Google rating, phone and how many offers it has (**No offers** in orange means none are listed yet). Click the phone number to call from a phone.
 
-Click **New provider**, or a provider's name, to edit. The form has two parts:
+Use the **search box** to find a provider by name, website, phone or address.
+
+Click **Add provider**, or a provider's name or **Edit**, to change it. The form has two parts:
 
 **Shown to visitors**
 
@@ -252,10 +254,11 @@ When a visitor clicks **Request booking** on an offer, the request lands here. *
 
 ![Booking requests list](images/admin/requests.png)
 
-- **Tabs:** Pending (opens first) · Confirmed · Rejected · Cancelled · All, each with a count.
-- **Pending requests show oldest first**, so the longest-waiting customer is at the top. A request still pending after **2 days** turns red with a ⚠ icon. Reply to these first.
+- **Tabs:** Pending (opens first), Confirmed, Rejected, Cancelled and All, each with a count.
+- Each request is a card with its reference, status, how long ago it arrived, the customer, activity, date, group size, company and total.
+- **Pending requests show oldest first**, so the longest-waiting customer is at the top. A request still pending after **2 days** gets an orange border and "waiting over 2 days" above the list. Reply to these first.
 - **Search** by reference (`PKR-7EV5GB`), customer name, phone number (spaces are fine: `980 111 2222`) or email. Use it when a customer calls quoting their reference.
-- Click a reference to open the request.
+- Click a card to open the request. At the top of a request, **Call**, **WhatsApp** or **Email** contacts the customer directly.
 
 ### One request
 
@@ -325,7 +328,9 @@ Visitors find outings through **Group outings** in the website header.
 
 ![Group outings table](images/admin/outings.png)
 
-Each row shows the date ("Date to be confirmed" if empty), the status and **Interested**: how many registrations, and how many people in total when people registered for more than one (e.g. *2 (4 people)*). ↗ opens the public page; ✎ edits.
+Use the tabs above the table (**All**, **Published**, **Drafts**, **Cancelled**, **Took place**) to narrow the list; tabs with no outings are hidden.
+
+Each row shows the photo, destination and organizer, the date ("Date to be confirmed" if empty), the status and **Interested**: how many registrations and how many people in total (e.g. *2 entries, 4 people*). Click it to jump to the list of interested people. ↗ opens the public page; ✎ edits.
 
 ### Statuses
 

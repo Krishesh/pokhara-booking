@@ -2,12 +2,11 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { connection } from "next/server";
-import { AlertCircle, ChevronRight } from "lucide-react";
+import { CalendarDays, ChevronRight, Clock, Inbox, Users } from "lucide-react";
 
 import { RequestFilters } from "@/components/admin/request-filters";
 import { RequestStatusBadge } from "@/components/admin/request-status-badge";
-import { TableSkeleton } from "@/components/admin/table-skeleton";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Skeleton } from "@/components/ui/skeleton";
 import { isRequestStatus, requestAge, STATUS_LABELS, type RequestStatus } from "@/lib/admin/requests";
 import { countRequestsByStatus, listAdminRequests } from "@/lib/admin/requests-data";
 import { formatCheckedDate, formatPrice } from "@/lib/offer-format";
@@ -20,11 +19,11 @@ export default function AdminRequestsPage({ searchParams }: PageProps<"/admin/re
     <section className="space-y-6">
       <div className="space-y-1">
         <h1 className="text-2xl font-bold tracking-tight">Booking requests</h1>
-        <p className="text-muted-foreground">
-          Requests from visitors. Check with the provider, contact the customer, then record the outcome.
+        <p className="max-w-2xl text-muted-foreground">
+          Requests from visitors. Check the date with the company, contact the customer, then record the outcome.
         </p>
       </div>
-      <Suspense fallback={<TableSkeleton />}>
+      <Suspense fallback={<RequestsSkeleton />}>
         <RequestsSection searchParams={searchParams} />
       </Suspense>
     </section>
@@ -42,80 +41,113 @@ async function RequestsSection({ searchParams }: { searchParams: Promise<Record<
 
   const [requests, counts] = await Promise.all([listAdminRequests({ status, q }), countRequestsByStatus()]);
   const now = new Date();
+  const overdue = requests.filter((r) => requestAge(r.created_at, r.status, now).overdue).length;
 
   return (
     <div className="space-y-4">
       <RequestFilters status={status} q={q} counts={counts} />
 
       {requests.length === 0 ? (
-        <p className="rounded-2xl border-2 border-dashed border-input bg-card/60 p-10 text-center text-muted-foreground">
-          {q
-            ? `No requests match “${q}”.`
-            : status === "pending"
-              ? "No pending requests. You're all caught up."
-              : status === "all"
-                ? "No booking requests yet."
-                : `No ${STATUS_LABELS[status].toLowerCase()} requests.`}
-        </p>
-      ) : (
-        <div className="overflow-hidden rounded-2xl bg-card border border-border">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Request</TableHead>
-                <TableHead>Customer</TableHead>
-                <TableHead className="hidden md:table-cell">Date · people</TableHead>
-                <TableHead className="hidden sm:table-cell">Total</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Received</TableHead>
-                <TableHead>
-                  <span className="sr-only">Open</span>
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {requests.map((r) => {
-                const age = requestAge(r.created_at, r.status, now);
-                return (
-                  <TableRow key={r.id} className={cn(age.overdue && "bg-sunrise-soft/60")}>
-                    <TableCell className="max-w-64 whitespace-normal">
-                      <Link href={`/admin/requests/${r.id}`} className="font-semibold tracking-wide text-primary tabular-nums hover:underline">
-                        {r.reference}
-                      </Link>
-                      <div className="text-xs text-muted-foreground">
-                        {r.offer_snapshot.activity.name} · {r.offer_snapshot.vendor}
-                      </div>
-                    </TableCell>
-                    <TableCell>{r.customer_name}</TableCell>
-                    <TableCell className="hidden md:table-cell">
-                      {formatCheckedDate(r.requested_date)} · {r.participant_count}
-                    </TableCell>
-                    <TableCell className="hidden tabular-nums sm:table-cell">{formatPrice(r.total_price, r.currency)}</TableCell>
-                    <TableCell>
-                      <RequestStatusBadge status={r.status} />
-                    </TableCell>
-                    <TableCell>
-                      <span className={cn("flex items-center gap-1 text-sm", age.overdue ? "font-medium" : "text-muted-foreground")}>
-                        {age.overdue && <AlertCircle className="size-4 text-destructive" aria-label="Waiting over 2 days" />}
-                        {age.label}
-                      </span>
-                    </TableCell>
-                    <TableCell>
-                      <Link
-                        href={`/admin/requests/${r.id}`}
-                        className="flex justify-end text-muted-foreground hover:text-foreground"
-                        aria-label={`Open ${r.reference}`}
-                      >
-                        <ChevronRight className="size-4" aria-hidden="true" />
-                      </Link>
-                    </TableCell>
-                  </TableRow>
-                );
-              })}
-            </TableBody>
-          </Table>
+        <div className="flex flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-input bg-card/60 px-6 py-14 text-center">
+          <span className="grid size-12 place-items-center rounded-full bg-accent text-primary">
+            <Inbox className="size-6" aria-hidden="true" />
+          </span>
+          <p className="font-semibold">
+            {q
+              ? `No requests match “${q}”`
+              : status === "pending"
+                ? "No pending requests"
+                : status === "all"
+                  ? "No booking requests yet"
+                  : `No ${STATUS_LABELS[status].toLowerCase()} requests`}
+          </p>
+          <p className="max-w-[44ch] text-sm text-muted-foreground">
+            {status === "pending" && !q
+              ? "You're all caught up. New requests from the website will show here."
+              : "Try another tab or clear the search."}
+          </p>
         </div>
+      ) : (
+        <>
+          <p className="flex flex-wrap items-center justify-between gap-2 px-1 text-sm text-muted-foreground">
+            <span>
+              {requests.length} {requests.length === 1 ? "request" : "requests"}
+              {status === "pending" ? ", oldest first" : ", newest first"}
+            </span>
+            {overdue > 0 && (
+              <span className="flex items-center gap-1.5 font-semibold text-sunrise">
+                <Clock className="size-4" aria-hidden="true" />
+                {overdue} waiting over 2 days
+              </span>
+            )}
+          </p>
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-3">
+            {requests.map((r) => {
+              const age = requestAge(r.created_at, r.status, now);
+              return (
+                <li key={r.id}>
+                  <Link
+                    href={`/admin/requests/${r.id}`}
+                    className={cn(
+                      "group grid gap-3 rounded-2xl border bg-card p-4 transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:p-5",
+                      age.overdue ? "border-sunrise/40 hover:border-sunrise/70" : "border-border hover:border-primary/40",
+                    )}
+                  >
+                    <div className="min-w-0 space-y-1.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-sm font-bold tracking-wide text-primary tabular-nums">{r.reference}</span>
+                        <RequestStatusBadge status={r.status} />
+                        <span
+                          className={cn(
+                            "flex items-center gap-1 text-xs",
+                            age.overdue ? "font-semibold text-sunrise" : "text-muted-foreground",
+                          )}
+                        >
+                          <Clock className="size-3.5" aria-hidden="true" />
+                          {age.label === "Today" ? "Received today" : `${age.label} ago`}
+                        </span>
+                      </div>
+                      <p className="truncate font-semibold">
+                        {r.customer_name}
+                        <span className="font-normal text-muted-foreground">, {r.offer_snapshot.activity.name}</span>
+                      </p>
+                      <p className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-muted-foreground">
+                        <span className="flex items-center gap-1.5">
+                          <CalendarDays className="size-3.5" aria-hidden="true" />
+                          For {formatCheckedDate(r.requested_date)}
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                          <Users className="size-3.5" aria-hidden="true" />
+                          {r.participant_count} {r.participant_count === 1 ? "person" : "people"}
+                        </span>
+                        <span className="truncate">{r.offer_snapshot.vendor}</span>
+                      </p>
+                    </div>
+                    <div className="flex items-center justify-between gap-4 border-t border-border pt-3 sm:justify-end sm:border-0 sm:pt-0">
+                      <span className="text-base font-bold tabular-nums">{formatPrice(r.total_price, r.currency)}</span>
+                      <ChevronRight
+                        className="size-5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary"
+                        aria-hidden="true"
+                      />
+                    </div>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </>
       )}
+    </div>
+  );
+}
+
+function RequestsSkeleton() {
+  return (
+    <div className="space-y-4" aria-busy="true" aria-label="Loading requests">
+      <Skeleton className="h-14 rounded-2xl" />
+      {Array.from({ length: 4 }, (_, i) => (
+        <Skeleton key={i} className="h-28 rounded-2xl" />
+      ))}
     </div>
   );
 }

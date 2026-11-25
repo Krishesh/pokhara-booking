@@ -5,6 +5,7 @@ import { connection } from "next/server";
 import { ExternalLink, MapPin, Mountain, Pencil, Plus, Search, X } from "lucide-react";
 
 import { ActivityImage } from "@/components/activity-image";
+import { FilterTabs } from "@/components/admin/filter-tabs";
 import { PublishSwitch } from "@/components/admin/publish-switch";
 import { TableSkeleton } from "@/components/admin/table-skeleton";
 import { categoryIcon, sentenceCase } from "@/components/category-icon";
@@ -62,32 +63,16 @@ async function ActivitiesSection({ searchParams }: { searchParams: Promise<Recor
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-2.5 sm:flex-row sm:items-center sm:justify-between">
-        <nav aria-label="Filter activities" className="flex gap-1">
-          {(Object.keys(TAB_LABELS) as ActivityTab[]).map((t) => {
-            const active = t === tab;
-            return (
-              <Link
-                key={t}
-                href={href(t)}
-                aria-current={active ? "page" : undefined}
-                className={cn(
-                  "flex items-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium transition-colors focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-                  active ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-mist hover:text-foreground",
-                )}
-              >
-                {TAB_LABELS[t]}
-                <span
-                  className={cn(
-                    "rounded-full px-1.5 text-xs tabular-nums",
-                    active ? "bg-white/20" : "bg-muted text-muted-foreground",
-                  )}
-                >
-                  {counts[t]}
-                </span>
-              </Link>
-            );
-          })}
-        </nav>
+        <FilterTabs
+          label="Filter activities"
+          active={tab}
+          tabs={(Object.keys(TAB_LABELS) as ActivityTab[]).map((t) => ({
+            key: t,
+            label: TAB_LABELS[t],
+            count: counts[t],
+            href: href(t),
+          }))}
+        />
         <form role="search" action="/admin/activities" className="flex gap-2 sm:w-80">
           {tab !== "all" && <input type="hidden" name="show" value={tab} />}
           <label htmlFor="activity-search" className="sr-only">
