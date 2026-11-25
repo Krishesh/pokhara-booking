@@ -65,41 +65,6 @@ function fail(what: string, error: { message: string }): never {
 const num = (value: unknown) => (value === null || value === undefined ? null : Number(value));
 const countOf = (rel: unknown) => (Array.isArray(rel) && rel[0] ? Number((rel[0] as { count: number }).count) : 0);
 
-export async function getAdminOverview() {
-  const supabase = await requireAdmin();
-  const [activities, offers, providers, pending] = await Promise.all([
-    supabase.from("activities").select("is_published"),
-    supabase.from("price_listings").select("verification_status, price, currency"),
-    supabase.from("providers").select("id", { count: "exact", head: true }),
-    supabase.from("booking_requests").select("id", { count: "exact", head: true }).eq("status", "pending"),
-  ]);
-  for (const [what, res] of [
-    ["activities", activities],
-    ["offers", offers],
-    ["providers", providers],
-    ["booking requests", pending],
-  ] as const) {
-    if (res.error) fail(what, res.error);
-  }
-
-  const offerRows = offers.data ?? [];
-  return {
-    activities: {
-      total: activities.data?.length ?? 0,
-      published: (activities.data ?? []).filter((a) => a.is_published).length,
-    },
-    offers: {
-      total: offerRows.length,
-      outdated: offerRows.filter((o) => o.verification_status === "outdated").length,
-      unpriced: offerRows.filter((o) => o.verification_status !== "outdated" && (o.price === null || o.currency === null))
-        .length,
-      unverified: offerRows.filter((o) => o.verification_status === "unverified").length,
-    },
-    providers: providers.count ?? 0,
-    pendingRequests: pending.count ?? 0,
-  };
-}
-
 export async function listAdminActivities(): Promise<AdminActivity[]> {
   const supabase = await requireAdmin();
   const { data, error } = await supabase

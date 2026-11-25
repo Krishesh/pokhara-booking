@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ExternalLink } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -24,11 +23,8 @@ export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string;
   return (
     <nav
       aria-label="Admin"
-      className="flex items-center gap-1 overflow-x-auto rounded-2xl bg-card p-1.5 border border-border"
+      className="relative flex items-center gap-1 overflow-x-auto rounded-2xl [scrollbar-width:none] border border-border bg-card p-1.5"
     >
-      <span className="mr-1 hidden shrink-0 rounded-xl bg-ink px-3 py-2 text-sm font-semibold text-white sm:block">
-        Staff admin
-      </span>
       {LINKS.map(({ href, label, exact }) => {
         const active = exact ? pathname === href : pathname.startsWith(href);
         return (
@@ -38,12 +34,17 @@ export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string;
             aria-current={active ? "page" : undefined}
             className={cn(
               "flex shrink-0 items-center rounded-xl px-3.5 py-2 text-sm font-medium transition-colors hover:bg-mist focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-              active ? "bg-muted font-semibold text-foreground" : "text-muted-foreground",
+              active ? "bg-primary font-semibold text-primary-foreground hover:bg-primary" : "text-muted-foreground hover:text-foreground",
             )}
           >
             {label}
             {href === "/admin/requests" && pendingCount > 0 && (
-              <span className="ml-2 rounded-full bg-sunrise-soft px-2 py-0.5 text-xs font-bold text-sunrise tabular-nums">
+              <span
+                className={cn(
+                  "ml-2 rounded-full px-2 py-0.5 text-xs font-bold tabular-nums",
+                  active ? "bg-white/20 text-white" : "bg-sunrise-soft text-sunrise",
+                )}
+              >
                 <span className="sr-only">, pending: </span>
                 {pendingCount}
               </span>
@@ -51,14 +52,6 @@ export function AdminNavView({ pathname, pendingCount = 0 }: { pathname: string;
           </Link>
         );
       })}
-      <Link
-        href="/"
-        target="_blank"
-        className="ml-auto flex shrink-0 items-center gap-1.5 rounded-xl px-3.5 py-2 text-sm font-medium text-primary hover:bg-mist focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
-      >
-        View site
-        <ExternalLink className="size-3.5" aria-hidden="true" />
-      </Link>
     </nav>
   );
 }

@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { formatOutingDate, isListed, outingDateParts, outingState, sortOutings, validateInterestForm } from "./outings";
+import { formatOutingDate, groupOutingsByMonth, isListed, outingDateParts, outingState, sortOutings, validateInterestForm } from "./outings";
 
 const TODAY = "2026-11-24";
 const OUTING_ID = "f0000000-0000-4000-8000-000000000001";
@@ -94,5 +94,25 @@ describe("outingDateParts", () => {
   it("returns null for missing or invalid dates", () => {
     expect(outingDateParts(null)).toBeNull();
     expect(outingDateParts("not-a-date")).toBeNull();
+  });
+});
+
+describe("groupOutingsByMonth", () => {
+  it("groups by month in order and puts undated outings last", () => {
+    const groups = groupOutingsByMonth([
+      { id: "a", outing_date: "2026-12-05" },
+      { id: "b", outing_date: "2026-12-20" },
+      { id: "c", outing_date: "2027-01-09" },
+      { id: "d", outing_date: null },
+    ]);
+    expect(groups.map((g) => [g.key, g.label, g.outings.map((o) => o.id)])).toEqual([
+      ["2026-12", "December 2026", ["a", "b"]],
+      ["2027-01", "January 2027", ["c"]],
+      ["tbc", "Date to be confirmed", ["d"]],
+    ]);
+  });
+
+  it("returns no groups for no outings", () => {
+    expect(groupOutingsByMonth([])).toEqual([]);
   });
 });

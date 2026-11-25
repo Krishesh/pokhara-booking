@@ -42,10 +42,29 @@ Every admin page has the same menu at the top: **Overview · Activities · Offer
 
 ## 2. The overview
 
-![Admin overview with four summary cards](images/admin/overview.png)
+![Admin overview with summary cards, pending requests and offers to check](images/admin/overview.png)
+
+The top row has four cards. Each one links to its section.
 
 | Card | What it tells you |
 |---|---|
+| **Activities** | How many are live on the website, out of all you've added, and how many are hidden. |
+| **Offers** | All prices, with how many are unverified, outdated or missing a price. |
+| **Providers** | How many companies you've added, and how many have at least one offer. |
+| **Pending requests** | Requests waiting for a reply. Shows **Action needed** when any has waited over 2 days. |
+
+Below the cards:
+
+| Panel | What it shows |
+|---|---|
+| **Oldest pending requests** | Up to five requests, oldest first. Ones waiting over 2 days are orange. **Open** goes to the request. |
+| **Requests, last 7 days** | How many arrived, and how many of those you confirmed or rejected, with a bar for each day. |
+| **Offers to check** | Offers missing a price first, then outdated, then unverified. Click one to edit it. |
+| **Group outings** | Upcoming published outings, drafts, interests registered this week, and the next outing. |
+
+"Updated at" is the time the page was loaded. Reload to refresh.
+
+---|---|
 | **Activities** | How many are live on the website, out of all you've added. |
 | **Offers** | All prices, with how many are unverified, outdated or missing a price. |
 | **Providers** | How many companies you've added. |

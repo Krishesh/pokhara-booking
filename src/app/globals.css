@@ -44,8 +44,6 @@
   --color-sunrise: var(--sunrise);
   --color-sunrise-soft: var(--sunrise-soft);
   --color-teal-soft: var(--teal-soft);
-  --animate-drift: drift 24s ease-out both;
-  --animate-rise: rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -56,44 +54,44 @@
 }
 
 :root {
-  /* Alpine Horizon: glacial mist ground, slate ink, glacial teal action, sunrise for prices. */
-  --background: #ebf5fb;
-  --foreground: #0f172a;
-  --ink: #0f172a;
-  --mist: #ebf5fb;
-  --sunrise: #a14000;
-  --sunrise-soft: #ffe9dc;
-  --teal-soft: #d5eef2;
+  /* Taken from the logo: forest-green pin, sunrise orange, on a light green-grey ground. */
+  --background: #f4f7f5;
+  --foreground: #0f241c;
+  --ink: #0f241c;
+  --mist: #f4f7f5;
+  --sunrise: #b4530f;
+  --sunrise-soft: #fdeadb;
+  --teal-soft: #dcefe5;
   --card: #ffffff;
-  --card-foreground: #0f172a;
+  --card-foreground: #0f241c;
   --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #006574;
+  --popover-foreground: #0f241c;
+  --primary: #0a5640;
   --primary-foreground: #ffffff;
-  --secondary: #dcebf3;
-  --secondary-foreground: #0f172a;
-  --muted: #dcebf3;
-  --muted-foreground: #3e494b;
-  --accent: #d5eef2;
-  --accent-foreground: #004e5a;
+  --secondary: #e4ece7;
+  --secondary-foreground: #0f241c;
+  --muted: #e4ece7;
+  --muted-foreground: #46544d;
+  --accent: #dcefe5;
+  --accent-foreground: #063d2e;
   --destructive: #ba1a1a;
-  --border: #cfe2ee;
-  --input: #bdd3e0;
-  --ring: #006574;
-  --chart-1: #006574;
-  --chart-2: #a14000;
-  --chart-3: #545c72;
-  --chart-4: #76d4e7;
-  --chart-5: #ffb694;
+  --border: #d5e1da;
+  --input: #bfd0c6;
+  --ring: #0a5640;
+  --chart-1: #0a5640;
+  --chart-2: #b4530f;
+  --chart-3: #46544d;
+  --chart-4: #7fc4a6;
+  --chart-5: #f2a66b;
   --radius: 1rem;
   --sidebar: #ffffff;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #006574;
+  --sidebar-foreground: #0f241c;
+  --sidebar-primary: #0a5640;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #dcebf3;
-  --sidebar-accent-foreground: #0f172a;
-  --sidebar-border: #cfe2ee;
-  --sidebar-ring: #006574;
+  --sidebar-accent: #e4ece7;
+  --sidebar-accent-foreground: #0f241c;
+  --sidebar-border: #d5e1da;
+  --sidebar-ring: #0a5640;
 }
 
 .dark {
@@ -144,14 +142,4 @@
   ::selection {
     @apply bg-primary text-primary-foreground;
   }
-}
-
-@keyframes drift {
-  from { transform: scale(1.08); }
-  to { transform: scale(1); }
-}
-
-@keyframes rise {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
 }

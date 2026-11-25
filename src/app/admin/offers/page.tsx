@@ -21,7 +21,7 @@ export default function AdminOffersPage({ searchParams }: PageProps<"/admin/offe
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Offers</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Offers</h1>
           <p className="text-muted-foreground">
             Prices from providers. An offer shows on the website when it has a price, isn&apos;t outdated, and its
             activity is live.

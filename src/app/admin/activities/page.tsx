@@ -17,7 +17,7 @@ export default function AdminActivitiesPage() {
     <section className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="space-y-1">
-          <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Activities</h1>
+          <h1 className="text-2xl font-bold tracking-tight">Activities</h1>
           <p className="text-muted-foreground">Only activities switched to Live appear on the website.</p>
         </div>
         <Button nativeButton={false} render={<Link href="/admin/activities/new" />}>

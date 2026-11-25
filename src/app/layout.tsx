@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
@@ -19,6 +19,17 @@ export const metadata: Metadata = {
     template: "%s · Pokhara Booking",
   },
   description: "Compare and request adventure activities in Pokhara, Nepal.",
+  applicationName: "Pokhara Booking",
+  openGraph: {
+    type: "website",
+    siteName: "Pokhara Booking",
+    title: "Pokhara Booking",
+    description: "Compare paragliding, boating, ziplines and hikes from local companies in Pokhara, Nepal.",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a5640",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

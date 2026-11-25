@@ -13,7 +13,6 @@ import { todayInTimeZone } from "@/lib/booking";
 import { formatOutingDate, outingState } from "@/lib/outings";
 import { getPublicOutingBySlug, listPublicOutings } from "@/lib/outings-data";
 import { MoreStrip } from "@/components/more-strip";
-import { Reveal } from "@/components/reveal";
 
 export async function generateMetadata({ params }: PageProps<"/outings/[slug]">): Promise<Metadata> {
   const { slug } = await params;
@@ -45,57 +44,52 @@ export default async function OutingPage({ params }: PageProps<"/outings/[slug]"
       <Container>
         <BackLink href="/outings" label="All group outings" />
 
-        <figure className="pt-4">
-          <div className="relative isolate overflow-hidden rounded-[2rem] bg-ink text-white">
-            <ActivityImage
-              src={outing.image_url}
-              alt={outing.title}
-              priority
-              sizes="(min-width: 1280px) 1216px, 100vw"
-              aspect="none"
-              className="-z-10 h-[58svh] max-h-[680px] min-h-[400px] motion-safe:[&_img]:animate-drift"
-            />
-            <div aria-hidden="true" className="absolute inset-0 bg-black/30" />
-            <div className="absolute inset-x-0 bottom-0 space-y-3 p-6 sm:p-10">
-              <h1 className="max-w-[20ch] text-[clamp(2.5rem,6vw,5.5rem)] leading-[0.95] font-extrabold tracking-[-0.04em] motion-safe:animate-rise">
-                {outing.title}
-              </h1>
-              <p className="flex max-w-[52ch] flex-wrap items-center gap-x-3 gap-y-2 text-lg font-medium text-white motion-safe:animate-rise motion-safe:[animation-delay:100ms] sm:text-xl">
-                <span>
-                  A group outing to {outing.destination}, {outing.outing_date ? `on ${formatOutingDate(outing.outing_date)}` : "date to be confirmed"}.
-                </span>
-                <OutingStateBadge state={state} />
-              </p>
-            </div>
+        <header className="space-y-2 pt-4 pb-6">
+          <div className="flex flex-wrap items-center gap-3">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">{outing.title}</h1>
+            <OutingStateBadge state={state} />
           </div>
+          <p className="text-base text-muted-foreground">
+            A group outing to {outing.destination},{" "}
+            {outing.outing_date ? `on ${formatOutingDate(outing.outing_date)}` : "date to be confirmed"}.
+          </p>
+        </header>
+
+        <figure>
+          <ActivityImage
+            src={outing.image_url}
+            alt={outing.title}
+            priority
+            sizes="(min-width: 1280px) 1216px, 100vw"
+            aspect="none"
+            className="aspect-[16/9] max-h-[480px] rounded-2xl"
+          />
           {outing.image_url && outing.image_credit && (
-            <figcaption className="px-2 pt-3 text-[13px] text-muted-foreground">Photo: {outing.image_credit}</figcaption>
+            <figcaption className="pt-2 text-xs text-muted-foreground">{outing.image_credit}</figcaption>
           )}
         </figure>
 
-        <dl className="mt-6 grid gap-2 rounded-3xl bg-card p-2 sm:grid-cols-2 lg:grid-cols-4">
+        <dl className="mt-6 grid gap-1 rounded-2xl border border-border bg-card p-2 sm:grid-cols-2 lg:grid-cols-4">
           {facts.map(({ icon: Icon, label, value }) => (
-            <div key={label} className="flex gap-3 rounded-2xl p-4">
-              <span className="grid size-10 shrink-0 place-items-center rounded-full bg-teal-soft text-primary">
-                <Icon className="size-5" aria-hidden="true" />
-              </span>
+            <div key={label} className="flex gap-3 rounded-xl p-3">
+              <Icon className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
               <div>
-                <dt className="text-sm text-muted-foreground">{label}</dt>
-                <dd className="text-base font-semibold">{value}</dd>
+                <dt className="text-xs text-muted-foreground">{label}</dt>
+                <dd className="text-sm font-medium">{value}</dd>
               </div>
             </div>
           ))}
         </dl>
 
         {state === "cancelled" && (
-          <p role="alert" className="mt-6 flex gap-3 rounded-2xl bg-destructive/10 p-5 text-base">
-            <Info className="mt-0.5 size-5 shrink-0 text-destructive" aria-hidden="true" />
+          <p role="alert" className="mt-4 flex gap-3 rounded-xl bg-destructive/10 p-4 text-sm">
+            <Info className="mt-0.5 size-4 shrink-0 text-destructive" aria-hidden="true" />
             This outing has been cancelled. People who registered interest will be contacted.
           </p>
         )}
         {state === "past" && (
-          <p className="mt-6 flex gap-3 rounded-2xl bg-card p-5 text-base">
-            <Info className="mt-0.5 size-5 shrink-0 text-primary" aria-hidden="true" />
+          <p className="mt-4 flex gap-3 rounded-xl bg-card p-4 text-sm">
+            <Info className="mt-0.5 size-4 shrink-0 text-primary" aria-hidden="true" />
             <span>
               This outing has already taken place.{" "}
               <Link href="/outings" className="font-semibold text-primary underline underline-offset-4">
@@ -105,31 +99,31 @@ export default async function OutingPage({ params }: PageProps<"/outings/[slug]"
           </p>
         )}
 
-        <div className="grid gap-12 pt-14 sm:pt-20 lg:grid-cols-12">
-          <div className="space-y-12 lg:col-span-7">
-            <Reveal as="section" className="space-y-5">
-              <h2 id="about-heading" className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+        <div className="grid gap-8 pt-10 lg:grid-cols-12">
+          <div className="space-y-8 lg:col-span-7">
+            <section aria-labelledby="about-heading" className="space-y-3">
+              <h2 id="about-heading" className="text-xl font-semibold tracking-tight sm:text-2xl">
                 About this outing
               </h2>
               {paragraphs.length > 0 ? (
                 paragraphs.map((p) => (
-                  <p key={p} className="max-w-[62ch] text-lg leading-relaxed">
+                  <p key={p} className="max-w-[65ch] text-base leading-relaxed">
                     {p}
                   </p>
                 ))
               ) : (
-                <p className="text-lg text-muted-foreground">The organizer will share the plan with people who register.</p>
+                <p className="text-muted-foreground">The organizer will share the plan with people who register.</p>
               )}
-            </Reveal>
+            </section>
 
-            <Reveal as="section" delay={1} className="space-y-3">
-              <h2 id="meeting-heading" className="text-2xl font-bold tracking-tight">
+            <section aria-labelledby="meeting-heading" className="space-y-2">
+              <h2 id="meeting-heading" className="text-lg font-semibold">
                 Meeting point
               </h2>
-              <p className="max-w-[62ch] text-lg leading-relaxed whitespace-pre-line">
+              <p className="max-w-[65ch] text-base leading-relaxed whitespace-pre-line">
                 {outing.meeting_details ?? "To be confirmed. The organizer will share it with people who registered."}
               </p>
-            </Reveal>
+            </section>
           </div>
 
           <div className="lg:col-span-5 lg:col-start-8 xl:col-span-4 xl:col-start-9">
@@ -137,7 +131,7 @@ export default async function OutingPage({ params }: PageProps<"/outings/[slug]"
               {state === "open" ? (
                 <InterestForm outingId={outing.id} />
               ) : (
-                <p className="rounded-3xl bg-card p-6 text-base text-muted-foreground">
+                <p className="rounded-2xl bg-card p-6 text-sm text-muted-foreground">
                   {state === "cancelled"
                     ? "This outing isn't taking interest any more."
                     : "Registration is closed for this outing."}
