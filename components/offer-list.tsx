@@ -34,7 +34,7 @@ export function OfferList({ offers, activityName }: OfferListProps) {
           </p>
         </div>
         {fromOffer ? (
-          <p className="rounded-lg border border-border bg-card px-3 py-2 text-sm text-muted-foreground">
+          <p className="rounded-full border border-border bg-card px-3 py-1.5 text-sm text-muted-foreground">
             {offers.length} offers from{" "}
             <span className="font-bold text-primary tabular-nums">
               {formatPrice(fromOffer.price, fromOffer.currency)}
@@ -84,7 +84,7 @@ export function OfferListSkeleton() {
               <Skeleton className="h-6 w-56" />
               <Skeleton className="h-24 w-full rounded-lg" />
             </div>
-            <div className="space-y-3 border-t border-border bg-muted/40 p-5 lg:border-t-0 lg:border-l">
+            <div className="space-y-3 border-t border-border bg-mist p-5 lg:border-t-0 lg:border-l">
               <Skeleton className="h-8 w-32" />
               <Skeleton className="h-6 w-28 rounded-lg" />
               <Skeleton className="h-10 w-full" />

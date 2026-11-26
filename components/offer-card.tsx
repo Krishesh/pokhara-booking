@@ -40,7 +40,7 @@ export function OfferCard({ offer, activityName }: OfferCardProps) {
 
   return (
     <li>
-      <article className="grid gap-0 overflow-hidden rounded-xl border border-border bg-card lg:grid-cols-[1fr_14rem]">
+      <article className="grid gap-0 overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-[border-color,box-shadow] duration-300 hover:border-primary/40 hover:shadow-card">
         <div className="min-w-0 space-y-4 p-5 sm:p-6">
           <div className="space-y-1">
             <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
@@ -55,7 +55,7 @@ export function OfferCard({ offer, activityName }: OfferCardProps) {
                 </span>
               ) : null}
             </p>
-            <h3 className="text-lg font-semibold tracking-tight">
+            <h3 className="font-heading text-lg font-semibold tracking-tight">
               {packageTitle}
             </h3>
             {offer.duration ? (
@@ -97,7 +97,7 @@ export function OfferCard({ offer, activityName }: OfferCardProps) {
           ) : null}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-border bg-muted/40 p-5 lg:border-t-0 lg:border-l">
+        <div className="flex flex-col gap-3 border-t border-border bg-mist p-5 lg:border-t-0 lg:border-l">
           <p>
             <span className="block text-2xl leading-none font-bold tracking-tight text-primary tabular-nums">
               {formatPrice(offer.price, offer.currency)}

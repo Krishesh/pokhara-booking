@@ -115,15 +115,15 @@ export default async function OutingDetailPage({ params }: OutingPageProps) {
         All group outings
       </Link>
 
-      <div className="mt-4 grid gap-5 lg:grid-cols-[1fr_1.1fr]">
-        <div className="flex flex-col justify-center space-y-4 rounded-xl border border-border bg-card p-6 sm:p-8">
+      <div className="mt-4 grid gap-6 lg:grid-cols-[1fr_1.1fr]">
+        <div className="flex flex-col justify-center space-y-4 rounded-2xl border border-border bg-card p-6 shadow-sm sm:p-8">
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
               Group outing
             </p>
             {cancelled ? <Badge variant="destructive">Cancelled</Badge> : null}
           </div>
-          <h1 className="text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
+          <h1 className="text-balance text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
             {outing.title}
           </h1>
           <p className="text-base leading-relaxed text-muted-foreground">
@@ -131,26 +131,26 @@ export default async function OutingDetailPage({ params }: OutingPageProps) {
             {outing.date ? `on ${outing.dateLabel}` : "date to be confirmed"}.
           </p>
           <div className="flex flex-wrap gap-2 text-sm">
-            <span className="rounded-lg bg-muted px-3 py-2 font-medium">
+            <span className="rounded-full border border-border bg-mist px-3 py-1.5 font-medium text-muted-foreground">
               {outing.organizer}
             </span>
-            <span className="rounded-lg bg-muted px-3 py-2 font-medium">
+            <span className="rounded-full border border-border bg-mist px-3 py-1.5 font-medium text-muted-foreground">
               {cancelled ? "Not taking interest" : outing.cost}
             </span>
           </div>
         </div>
 
-        <figure className="relative aspect-[4/3] overflow-hidden rounded-xl bg-muted lg:aspect-auto lg:min-h-[360px]">
+        <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-muted shadow-sm lg:aspect-auto lg:min-h-[360px]">
           <OutingPhoto outing={outing} />
           {outing.credit ? (
-            <figcaption className="absolute right-0 bottom-0 left-0 bg-ink/70 px-3 py-2 text-xs text-white">
+            <figcaption className="absolute right-0 bottom-0 left-0 bg-ink px-3 py-2 text-xs text-mist">
               {outing.credit}
             </figcaption>
           ) : null}
         </figure>
       </div>
 
-      <dl className="mt-6 grid gap-px overflow-hidden rounded-xl border border-border bg-border sm:grid-cols-2 lg:grid-cols-4">
+      <dl className="mt-6 grid gap-px overflow-hidden rounded-xl border border-border bg-border shadow-sm sm:grid-cols-2 lg:grid-cols-4">
         <Detail icon={CalendarDays} label="Date" value={outing.dateLabel} />
         <Detail icon={MapPin} label="Destination" value={outing.destination} />
         <Detail icon={Users} label="Organizer" value={outing.organizer} />
@@ -176,7 +176,7 @@ export default async function OutingDetailPage({ params }: OutingPageProps) {
           <section aria-labelledby="about-heading" className="space-y-3">
             <h2
               id="about-heading"
-              className="text-2xl font-bold tracking-tight sm:text-3xl"
+              className="text-balance text-2xl font-bold tracking-tight sm:text-3xl"
             >
               About this outing
             </h2>
@@ -213,7 +213,7 @@ export default async function OutingDetailPage({ params }: OutingPageProps) {
         </div>
       </div>
 
-      <section aria-labelledby="more-heading" className="pt-16">
+      <section aria-labelledby="more-heading" className="pt-16 sm:pt-20">
         <h2
           id="more-heading"
           className="pb-4 text-2xl font-bold tracking-tight sm:text-3xl"

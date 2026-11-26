@@ -155,12 +155,12 @@ export function BookingDialog({ offer, activityName }: BookingDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogTrigger render={<Button className="w-full" />}>
+      <DialogTrigger render={<Button className="h-11 w-full" />}>
         Request booking
         <ArrowRight aria-hidden="true" />
       </DialogTrigger>
 
-      <DialogContent className="max-h-[92dvh] overflow-y-auto sm:max-w-lg">
+      <DialogContent className="max-h-[92dvh] overflow-y-auto shadow-lifted sm:max-w-lg">
         {confirmation ? (
           <>
             <DialogHeader className="items-start pr-10">
@@ -174,12 +174,12 @@ export function BookingDialog({ offer, activityName }: BookingDialogProps) {
               </DialogDescription>
             </DialogHeader>
 
-            <div className="rounded-lg bg-ink p-4 text-center text-white">
-              <p className="text-sm text-mist/80">Your reference</p>
+            <div className="rounded-lg bg-ink p-4 text-center text-mist">
+              <p className="text-sm text-mist/70">Your reference</p>
               <p className="pt-1 text-2xl font-bold tracking-[0.1em] tabular-nums">
                 {confirmation.reference}
               </p>
-              <p className="mt-1 text-sm text-mist/80">
+              <p className="mt-1 text-sm text-mist/70">
                 Quote it when we contact you.
               </p>
             </div>

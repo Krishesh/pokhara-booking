@@ -76,7 +76,7 @@ export function OutingInterestForm({
     return (
       <section
         aria-live="polite"
-        className="grid gap-4 rounded-xl border border-border bg-card p-6"
+        className="grid gap-4 rounded-xl border border-border bg-card p-6 shadow-sm"
       >
         <span className="grid size-10 place-items-center rounded-lg bg-accent text-accent-foreground">
           <CircleCheck className="size-6" aria-hidden="true" />
@@ -101,7 +101,7 @@ export function OutingInterestForm({
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-5 rounded-xl border border-border bg-card p-6"
+      className="grid gap-5 rounded-xl border border-border bg-card p-6 shadow-sm"
       noValidate
     >
       <div className="space-y-1">
@@ -231,7 +231,7 @@ export function OutingInterestForm({
       <div>
         <Button
           type="submit"
-          className="h-10 w-full rounded-lg text-sm font-semibold"
+          className="h-11 w-full rounded-lg text-sm font-semibold"
         >
           Register interest
         </Button>

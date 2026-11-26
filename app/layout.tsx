@@ -4,7 +4,6 @@ import { Suspense } from "react"
 
 import { SiteFooter } from "@/components/site-footer"
 import { SiteHeader } from "@/components/site-header"
-import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/sonner"
 import { cn } from "@/lib/utils"
 
@@ -54,22 +53,20 @@ export default function RootLayout({
       className={cn("h-full antialiased", inter.variable, sora.variable)}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <ThemeProvider forcedTheme="light">
-          <a
-            href="#main"
-            className="sr-only z-50 rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
-          >
-            Skip to content
-          </a>
-          <Suspense fallback={<div className="h-16 bg-background" />}>
-            <SiteHeader />
-          </Suspense>
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <SiteFooter />
-          <Toaster position="top-center" richColors />
-        </ThemeProvider>
+        <a
+          href="#main"
+          className="sr-only z-50 rounded-lg bg-primary px-4 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+        >
+          Skip to content
+        </a>
+        <Suspense fallback={<div className="h-16 bg-ink" />}>
+          <SiteHeader />
+        </Suspense>
+        <main id="main" className="flex-1">
+          {children}
+        </main>
+        <SiteFooter />
+        <Toaster position="top-center" richColors />
       </body>
     </html>
   )

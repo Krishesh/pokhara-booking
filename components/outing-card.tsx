@@ -40,7 +40,7 @@ export function OutingImage({ outing, priority, sizes }: OutingImageProps) {
       fill
       priority={priority}
       sizes={sizes}
-      className="object-cover"
+      className="object-cover transition-transform duration-500 motion-safe:group-hover:scale-[1.04] motion-reduce:transition-none"
     />
   )
 }
@@ -58,17 +58,17 @@ export function OutingDateBadge({ outing, className }: OutingDateBadgeProps) {
   return (
     <span
       className={cn(
-        "flex w-14 flex-col items-center rounded-lg bg-ink px-2 py-1.5 text-white",
+        "flex w-14 flex-col items-center rounded-lg bg-ink px-2 py-1.5 text-mist shadow-md",
         className
       )}
     >
-      <span className="text-xs leading-none font-semibold text-white/70 uppercase">
+      <span className="text-xs leading-none font-semibold text-mist/70 uppercase">
         {outing.monthShort}
       </span>
       <span className="text-xl leading-tight font-bold tabular-nums">
         {outing.day}
       </span>
-      <span className="text-xs leading-none font-medium text-white/60">
+      <span className="text-xs leading-none font-medium text-mist/60">
         {outing.weekday}
       </span>
     </span>
@@ -102,12 +102,12 @@ export function OutingCard({ outing }: { outing: DemoOuting }) {
   const cancelled = outing.status === "cancelled"
 
   return (
-    <li>
+    <li className="h-full">
       <Link
         href={`/outings/${outing.slug}`}
         className={cn(
-          "group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none",
-          cancelled ? "opacity-75" : "hover:border-primary/60"
+          "group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-[border-color,box-shadow,transform] duration-300 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none",
+          cancelled ? "opacity-75" : "hover:border-primary/40 hover:shadow-lifted"
         )}
       >
         <div className="relative">
@@ -132,7 +132,7 @@ export function OutingCard({ outing }: { outing: DemoOuting }) {
 
         <div className="flex flex-1 flex-col gap-4 p-5">
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold tracking-tight">
+            <h3 className="font-heading text-lg font-semibold tracking-tight">
               {outing.title}
             </h3>
             <p className="flex items-center gap-1.5 text-sm text-muted-foreground">
@@ -174,14 +174,16 @@ export function NextOutingCard({ outing }: { outing: DemoOuting }) {
   return (
     <Link
       href={`/outings/${outing.slug}`}
-      className="group grid overflow-hidden rounded-xl border border-border bg-card hover:border-primary/60 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none lg:grid-cols-[1.1fr_0.9fr]"
+      className="group grid overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-[border-color,box-shadow,transform] duration-300 hover:border-primary/40 hover:shadow-lifted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none lg:grid-cols-[1.1fr_0.9fr]"
     >
       <div className="flex flex-col gap-5 p-6 sm:p-8">
-        <div className="space-y-2">
+        <div className="space-y-3">
           <p className="text-xs font-semibold tracking-[0.2em] text-primary uppercase">
             Register your interest
           </p>
-          <h3 className="text-2xl font-bold tracking-tight">{outing.title}</h3>
+          <h3 className="text-balance text-2xl font-bold tracking-tight">
+            {outing.title}
+          </h3>
           <p className="line-clamp-3 text-base leading-relaxed text-muted-foreground">
             {outing.summary}
           </p>
@@ -198,7 +200,7 @@ export function NextOutingCard({ outing }: { outing: DemoOuting }) {
           <Detail icon={Wallet} label="Cost" value={outing.cost} />
         </dl>
 
-        <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-colors group-hover:bg-accent-foreground">
+        <span className="mt-auto inline-flex w-fit items-center gap-2 rounded-lg bg-primary px-4 py-2.5 text-sm font-semibold text-primary-foreground transition-colors group-hover:bg-primary/90">
           See details and register
           <ArrowUpRight className="size-4" aria-hidden="true" />
         </span>
@@ -218,16 +220,16 @@ export function NextOutingCard({ outing }: { outing: DemoOuting }) {
 
 export function RelatedOutingCard({ outing }: { outing: DemoOuting }) {
   return (
-    <li>
+    <li className="h-full">
       <Link
         href={`/outings/${outing.slug}`}
-        className="group block overflow-hidden rounded-xl border border-border bg-card hover:border-primary/60 focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none"
+        className="group flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-[border-color,box-shadow,transform] duration-300 hover:border-primary/40 hover:shadow-lifted focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none motion-safe:hover:-translate-y-0.5 motion-reduce:transition-none"
       >
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-muted">
           <OutingImage outing={outing} sizes="(min-width: 640px) 33vw, 100vw" />
         </div>
         <div className="space-y-1 p-4">
-          <h3 className="font-semibold">{outing.title}</h3>
+          <h3 className="font-heading font-semibold">{outing.title}</h3>
           <p className="text-sm text-muted-foreground">
             {outing.dateLabel}, {outing.destination}
           </p>
