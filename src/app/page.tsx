@@ -6,6 +6,7 @@ import {
   ArrowDownAZ,
   ArrowRight,
   CalendarDays,
+  ExternalLink,
   MapPin,
   MessageCircle,
   Mountain,
@@ -86,6 +87,17 @@ function Hero() {
                 className="border-white/60 bg-transparent text-white hover:bg-white/15 hover:text-white"
               >
                 Group outings
+              </Button>
+              <Button
+                size="lg"
+                variant="outline"
+                nativeButton={false}
+                render={<a href="https://machhapuchhre.ai.studio/" target="_blank" rel="noopener noreferrer" />}
+                className="border-white/60 bg-transparent text-white hover:bg-white/15 hover:text-white"
+              >
+                View Machhapuchhre from Pokhara
+                <ExternalLink data-icon="inline-end" aria-hidden="true" />
+                <span className="sr-only">(opens in a new tab)</span>
               </Button>
             </div>
           </div>
