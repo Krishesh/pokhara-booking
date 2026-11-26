@@ -1,6 +1,5 @@
 -- Pokhara Booking schema
 -- Source of truth for table and column names. Read this before writing queries or types.
--- Mirrors the live Supabase project as of 2026-11-24.
 
 create extension if not exists pgcrypto;
 
@@ -28,7 +27,6 @@ create table if not exists public.activities (
   description  text,
   location     text,
   image_url    text,
-  image_credit text,  -- photographer and licence, shown under the photo (e.g. "Photo: Jane Doe, CC BY-SA 4.0")
   is_published boolean not null default false,  -- only published rows are shown publicly
   created_at   timestamptz default now()
 );
@@ -71,7 +69,7 @@ create table if not exists public.booking_requests (
   status            text not null default 'pending'
                     check (status in ('pending', 'confirmed', 'rejected', 'cancelled')),
   staff_note        text check (char_length(staff_note) <= 1000),
-  updated_by        text check (char_length(updated_by) <= 80),  -- staff name typed on the status form (no accounts)
+  updated_by        text check (char_length(updated_by) <= 80),
   created_at        timestamptz not null default now(),
   updated_at        timestamptz not null default now()
 );
@@ -79,40 +77,9 @@ create table if not exists public.booking_requests (
 create index if not exists booking_requests_status_created_idx
   on public.booking_requests (status, created_at);
 
--- Hiking / travel group outings (task 06). Interest only: no seats, bookings or payments.
-create table if not exists public.group_outings (
-  id                uuid primary key default gen_random_uuid(),
-  slug              text not null unique check (slug ~ '^[a-z0-9]+(-[a-z0-9]+)*$'),
-  title             text not null check (char_length(title) between 2 and 120),
-  destination       text not null check (char_length(destination) between 2 and 120),
-  organizer_name    text not null check (char_length(organizer_name) between 2 and 120),
-  organizer_contact text,          -- staff only, never shown publicly
-  description       text,
-  outing_date       date,          -- null = date to be confirmed
-  meeting_details   text,
-  cost_info         text,          -- descriptive only, not a price; null = to be confirmed
-  image_url         text,
-  image_credit      text,
-  status            text not null default 'draft' check (status in ('draft', 'published', 'cancelled')),
-  created_at        timestamptz not null default now(),
-  updated_at        timestamptz not null default now()
-);
-
--- A visitor's interest in an outing. Contact details: service role only.
-create table if not exists public.group_interests (
-  id                uuid primary key default gen_random_uuid(),
-  outing_id         uuid not null references public.group_outings (id) on delete restrict,
-  customer_name     text not null check (char_length(customer_name) between 2 and 100),
-  contact_type      text not null check (contact_type in ('phone', 'email')),
-  contact_value     text not null check (char_length(contact_value) between 3 and 254),
-  participant_count integer not null default 1 check (participant_count between 1 and 20),
-  created_at        timestamptz not null default now(),
-  unique (outing_id, contact_value)
-);
-
 -- Row Level Security
 -- Public visitors use the anon (publishable) key and may only READ what the site shows.
--- All writes (admin, task 04) go through server code using the service-role key, which bypasses RLS.
+-- All writes (admin) go through server code using the service-role key, which bypasses RLS.
 alter table public.providers      enable row level security;
 alter table public.activities     enable row level security;
 alter table public.price_listings enable row level security;
@@ -120,10 +87,11 @@ alter table public.price_listings enable row level security;
 -- Table privileges: anon is read-only
 grant usage on schema public to anon;
 revoke insert, update, delete, truncate on public.providers, public.activities, public.price_listings from anon;
+
 -- Column-level SELECT: anon reads only what the public site shows.
 -- Private columns (providers contact details and notes, price_listings source/booking URLs and notes) are not granted.
 revoke select on public.providers, public.activities, public.price_listings from anon;
-grant select (id, name, slug, category, description, location, image_url, image_credit, is_published, created_at)
+grant select (id, name, slug, category, description, location, image_url, is_published, created_at)
   on public.activities to anon;
 grant select (id, activity_id, provider_id, package_name, price, currency, pricing_unit, duration,
               inclusions, booking_conditions, verification_status, retrieved_at, source_domain)
@@ -172,18 +140,3 @@ create policy "anon reads providers with public offers" on public.providers
 -- Only the service role (server code) reads and writes them. RLS on with no policies = deny all.
 alter table public.booking_requests enable row level security;
 revoke all on public.booking_requests from anon, authenticated;
-
--- Group outings: anon reads published and cancelled outings, public columns only (not organizer_contact).
-alter table public.group_outings   enable row level security;
-alter table public.group_interests enable row level security;
-revoke all on public.group_outings from anon, authenticated;
-grant select (id, slug, title, destination, organizer_name, description, outing_date, meeting_details,
-              cost_info, image_url, image_credit, status, created_at)
-  on public.group_outings to anon;
-drop policy if exists "anon reads public outings" on public.group_outings;
-create policy "anon reads public outings" on public.group_outings
-  for select to anon
-  using (status in ('published', 'cancelled'));
-
--- Group interests hold contact details: no access for anon or authenticated (server code only).
-revoke all on public.group_interests from anon, authenticated;

@@ -1,18 +1,21 @@
--- Demo data for task 01 (activity catalogue).
--- Run once in the Supabase SQL editor. Safe to run again: existing slugs are skipped.
-
--- Schema change from task 01 (also recorded in schema.sql)
+-- Ensure catalogue columns exist when upgrading an earlier table
 alter table public.activities add column if not exists is_published boolean not null default false;
-alter table public.activities add column if not exists image_credit text;
+alter table public.activities add column if not exists slug text;
+alter table public.activities add column if not exists category text;
+alter table public.activities add column if not exists location text;
 
-insert into public.activities (name, slug, category, location, description, is_published)
+create unique index if not exists activities_slug_key on public.activities (slug);
+
+-- Seed Pokhara adventure activities (idempotent)
+insert into public.activities (name, slug, category, location, description, image_url, is_published)
 values
   (
     'Paragliding at Sarangkot',
     'paragliding-sarangkot',
     'paragliding',
     'Sarangkot',
-    E'Tandem paragliding flight launching from Sarangkot hill with a trained pilot.\nOn clear days the flight looks out over Phewa Lake and the Annapurna range before landing near Lakeside.',
+    'Launch from the Sarangkot ridge above Pokhara for a tandem flight over the valley and Phewa Lake. On clear days, the route offers wide views of the Annapurna range and Machapuchare before landing near Lakeside.',
+    null,
     true
   ),
   (
@@ -20,7 +23,8 @@ values
     'boating-phewa-lake',
     'boating',
     'Lakeside',
-    E'Rowing or paddle boat trip on Phewa Lake, Pokhara''s largest lake.\nA common stop is the Tal Barahi temple on its small island.',
+    'Paddle or ride a traditional wooden boat across the calm waters of Phewa Lake from the Lakeside docks. Visitors often combine the trip with a short crossing to Tal Barahi Temple on the small island in the middle of the lake.',
+    null,
     true
   ),
   (
@@ -28,7 +32,8 @@ values
     'zipline-sarangkot',
     'zipline',
     'Sarangkot',
-    E'Long, steep zipline descending from the Sarangkot ridge toward the valley floor.\nRiders are harnessed in and travel at high speed over forest and fields.',
+    'Ride a steep cable line descending from the hills of Sarangkot toward the valley floor near Hemja. The descent runs above forested slopes and terraced fields with views of the surrounding Himalayan foothills.',
+    null,
     true
   ),
   (
@@ -36,7 +41,8 @@ values
     'ultralight-flight',
     'ultralight',
     'Pokhara Airport',
-    E'Short scenic flight in a two-seat ultralight aircraft, flown by a licensed pilot.\nThe route circles the Pokhara valley with close views of the surrounding hills and mountains.',
+    'Take off from Pokhara in a two-seat open-cockpit ultralight aircraft piloted by a certified flyer. Routes follow the Seti River valley and circle high above Phewa Lake with close-up views of the Annapurna massif.',
+    null,
     true
   ),
   (
@@ -44,7 +50,8 @@ values
     'world-peace-pagoda-hike',
     'hiking',
     'Anadu Hill',
-    E'Hike up Anadu Hill to the white World Peace Pagoda above the south shore of Phewa Lake.\nThe trail climbs through forest and can be combined with a boat crossing back to Lakeside.',
+    'Follow forested hillside trails up to the white stupa atop Anadu Hill on the southern shore of Phewa Lake. The hilltop terrace looks back across the water toward Pokhara city and the snow-capped peaks beyond.',
+    null,
     true
   ),
   (
@@ -52,24 +59,8 @@ values
     'bungee-jump-hemja',
     'bungee',
     'Hemja',
-    E'Bungee jump from a tower above a river gorge at Hemja, north of Pokhara.\nUnpublished on purpose: used to check that hidden activities stay off the site.',
+    'Jump from an elevated steel tower overlooking the riverside cliffs in the Hemja area north of Pokhara. Harnessed leaps drop toward the valley below before rebounding above the riverbed.',
+    null,
     false
   )
 on conflict (slug) do nothing;
-
--- Photos (task 04). Freely licensed images from Wikimedia Commons; credits in docs/image-credits.md.
-update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Sarangkot_pokhara.jpg',
-  image_credit = 'Photo: Thoplo.1, CC BY-SA 4.0, via Wikimedia Commons'
-where slug = 'paragliding-sarangkot' and image_url is null;
-update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Phewa_Lake_2602.jpg/1280px-Phewa_Lake_2602.jpg',
-  image_credit = 'Photo: Bijay Chaurasia, CC BY-SA 4.0, via Wikimedia Commons'
-where slug = 'boating-phewa-lake' and image_url is null;
-update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Sarangkot%2C_Nepal-WLV-1689.jpg/1280px-Sarangkot%2C_Nepal-WLV-1689.jpg',
-  image_credit = 'Photo: Sarangkot hillside by Bijay Chaurasia, CC BY-SA 4.0, via Wikimedia Commons'
-where slug = 'zipline-sarangkot' and image_url is null;
-update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Sarangkot%2C_Nepal-WLV-1691.jpg/1280px-Sarangkot%2C_Nepal-WLV-1691.jpg',
-  image_credit = 'Photo: Pokhara and Phewa Lake from above by Bijay Chaurasia, CC BY-SA 4.0, via Wikimedia Commons'
-where slug = 'ultralight-flight' and image_url is null;
-update public.activities set image_url = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/World_Peace_Pagoda%2C_Pokhara_by_Y7.jpg/1280px-World_Peace_Pagoda%2C_Pokhara_by_Y7.jpg',
-  image_credit = 'Photo: Yallu007, CC BY-SA 4.0, via Wikimedia Commons'
-where slug = 'world-peace-pagoda-hike' and image_url is null;

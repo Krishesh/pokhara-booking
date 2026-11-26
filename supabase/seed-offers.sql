@@ -1,74 +1,316 @@
--- Demo providers and offers for task 02 (vendor offers).
--- All names, prices and URLs are fictional demo data, not real vendors.
--- Requires seed.sql (activities) first. Safe to run again: fixed ids, existing rows are skipped.
---
--- Cases covered:
---   paragliding-sarangkot   3 visible offers (2 NPR, 1 USD) + 1 outdated (hidden)
---   boating-phewa-lake      1 per_group offer
---   zipline-sarangkot       1 offer with no provider ("Listed on ...")
---   ultralight-flight       1 per_flight offer + 1 with no price (hidden)
---   world-peace-pagoda-hike no offers (empty state)
---   bungee-jump-hemja       1 offer on an unpublished activity (hidden by RLS)
+-- Fictional demo providers and offers for task 02 (idempotent, fixed ids)
+-- Run supabase/schema.sql and supabase/seed.sql first.
 
-insert into public.providers (id, name, website_url, google_rating, google_review_count, google_retrieved_at, notes)
+insert into public.providers (
+  id,
+  name,
+  website_url,
+  phone,
+  address,
+  google_maps_url,
+  google_rating,
+  google_review_count,
+  google_retrieved_at,
+  notes
+)
 values
-  ('d0000000-0000-4000-8000-000000000001', 'Demo Paragliding Co.', 'https://demo-paragliding.example.com', 4.8, 512, '2026-11-10', 'Demo data, not a real vendor.'),
-  ('d0000000-0000-4000-8000-000000000002', 'Demo Sky Adventures',  'https://demo-sky.example.com',         4.5, 128, '2026-11-10', 'Demo data, not a real vendor.'),
-  ('d0000000-0000-4000-8000-000000000003', 'Demo Lakeside Boats',  null,                                   4.2, null, '2026-11-10', 'Demo data, not a real vendor.'),
-  ('d0000000-0000-4000-8000-000000000004', 'Demo Bungee Nepal',    null,                                   null, null, null,        'Demo data, not a real vendor.')
+  (
+    '11111111-1111-4111-8111-111111111101',
+    'Demo Sunrise Paragliding',
+    'https://sunrise-paragliding.example.com',
+    '+977-61-555001',
+    'Lakeside Road 6, Pokhara',
+    'https://maps.example.com/demo-sunrise-paragliding',
+    4.7,
+    312,
+    '2026-11-10',
+    'Demo data — private operator note'
+  ),
+  (
+    '11111111-1111-4111-8111-111111111102',
+    'Demo Annapurna Air Sports',
+    'https://annapurna-air.example.com',
+    '+977-61-555002',
+    'Sarangkot Hill Road, Pokhara',
+    'https://maps.example.com/demo-annapurna-air',
+    4.5,
+    84,
+    '2026-11-08',
+    'Demo data — private operator note'
+  ),
+  (
+    '11111111-1111-4111-8111-111111111103',
+    'Demo Phewa Boat Association',
+    'https://phewa-boats.example.com',
+    '+977-61-555003',
+    'Barahi Ghat, Lakeside, Pokhara',
+    'https://maps.example.com/demo-phewa-boats',
+    4.2,
+    null,
+    '2026-11-12',
+    'Demo data — private operator note'
+  ),
+  (
+    '11111111-1111-4111-8111-111111111104',
+    'Demo Pokhara Ultralight',
+    'https://pokhara-ultralight.example.com',
+    '+977-61-555004',
+    'Pokhara Airport Gate, Pokhara',
+    'https://maps.example.com/demo-pokhara-ultralight',
+    4.8,
+    140,
+    '2026-11-11',
+    'Demo data — private operator note'
+  ),
+  (
+    '11111111-1111-4111-8111-111111111105',
+    'Demo Hemja Adventure',
+    'https://hemja-adventure.example.com',
+    '+977-61-555005',
+    'Hemja Highway, Pokhara',
+    'https://maps.example.com/demo-hemja-adventure',
+    4.6,
+    52,
+    '2026-11-09',
+    'Demo data — private operator note'
+  )
+on conflict (id) do nothing;
+
+-- Paragliding at Sarangkot: NPR 8,500 (verified), NPR 11,000, USD 95, plus 1 outdated
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222201',
+  a.id,
+  '11111111-1111-4111-8111-111111111101',
+  'Standard Tandem Flight',
+  8500,
+  'NPR',
+  'per_person',
+  '25–30 minutes',
+  E'Certified tandem pilot\nHotel pickup within Lakeside\nHelmet and safety harness',
+  E'Weather dependent; morning wind windows preferred.\nArrive 30 minutes before launch.',
+  'sunrise-paragliding.example.com',
+  'https://sunrise-paragliding.example.com/tandem',
+  'https://sunrise-paragliding.example.com/book',
+  '2026-11-10',
+  'verified',
+  'Demo data — private listing note'
+from public.activities a
+where a.slug = 'paragliding-sarangkot'
 on conflict (id) do nothing;
 
 insert into public.price_listings (
-  id, activity_id, provider_id, package_name, price, currency, pricing_unit, duration,
-  inclusions, booking_conditions, source_domain, source_url, retrieved_at, verification_status, notes
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
 )
-select v.id::uuid, a.id, v.provider_id::uuid, v.package_name, v.price, v.currency, v.pricing_unit, v.duration,
-       v.inclusions, v.booking_conditions, v.source_domain, v.source_url, v.retrieved_at::date,
-       v.verification_status, 'Demo data, not a real price.'
-from (values
-  ('e0000000-0000-4000-8000-000000000001', 'paragliding-sarangkot', 'd0000000-0000-4000-8000-000000000001',
-   'Standard tandem flight', 8500.00, 'NPR', 'per_person', '20–30 minutes',
-   E'Certified tandem pilot\nFlight insurance\nPick-up and drop-off from Lakeside',
-   E'Weather dependent; rescheduled or refunded if the flight is cancelled.\nMaximum weight 100 kg.',
-   'demo-paragliding.example.com', 'https://demo-paragliding.example.com/tandem', '2026-11-10', 'verified'),
-  ('e0000000-0000-4000-8000-000000000002', 'paragliding-sarangkot', 'd0000000-0000-4000-8000-000000000002',
-   'Tandem flight with photos and video', 11000.00, 'NPR', 'per_person', '30 minutes',
-   E'Certified tandem pilot\nGoPro photos and video\nPick-up from Lakeside',
-   null,
-   'demo-sky.example.com', 'https://demo-sky.example.com/paragliding', '2026-11-08', 'unverified'),
-  ('e0000000-0000-4000-8000-000000000003', 'paragliding-sarangkot', 'd0000000-0000-4000-8000-000000000002',
-   'Cross-country flight', 95.00, 'USD', 'per_person', '1 hour',
-   E'Experienced cross-country pilot\nFlight insurance',
-   E'Only offered October to April.',
-   'demo-sky.example.com', 'https://demo-sky.example.com/cross-country', '2026-11-08', 'unverified'),
-  ('e0000000-0000-4000-8000-000000000004', 'paragliding-sarangkot', 'd0000000-0000-4000-8000-000000000001',
-   'Sunrise flight (old price)', 7000.00, 'NPR', 'per_person', '20 minutes',
-   null, null,
-   'demo-paragliding.example.com', 'https://demo-paragliding.example.com/sunrise', '2025-03-01', 'outdated'),
-  ('e0000000-0000-4000-8000-000000000005', 'boating-phewa-lake', 'd0000000-0000-4000-8000-000000000003',
-   'Rowing boat, up to 4 people', 1500.00, 'NPR', 'per_group', '1 hour',
-   E'Boat and life jackets\nBoatman',
-   E'Pay at the boat station on the day.',
-   'demo-boats.example.com', 'https://demo-boats.example.com/rowing', '2026-11-12', 'verified'),
-  ('e0000000-0000-4000-8000-000000000006', 'zipline-sarangkot', null,
-   'Zipline ride', 6000.00, 'NPR', 'per_person', '2 minutes ride, 2 hours total',
-   E'Transport from Lakeside\nSafety gear',
-   null,
-   'demo-listings.example.com', 'https://demo-listings.example.com/zipline', '2026-10-30', 'unverified'),
-  ('e0000000-0000-4000-8000-000000000007', 'ultralight-flight', 'd0000000-0000-4000-8000-000000000002',
-   '15-minute ultralight flight', 13000.00, 'NPR', 'per_flight', '15 minutes',
-   E'Licensed pilot\nAirport transfer',
-   E'Morning flights only.',
-   'demo-sky.example.com', 'https://demo-sky.example.com/ultralight', '2026-11-08', 'verified'),
-  ('e0000000-0000-4000-8000-000000000008', 'ultralight-flight', 'd0000000-0000-4000-8000-000000000002',
-   '30-minute ultralight flight (price on request)', null, null, null, '30 minutes',
-   null, null,
-   'demo-sky.example.com', 'https://demo-sky.example.com/ultralight', '2026-11-08', 'unverified'),
-  ('e0000000-0000-4000-8000-000000000009', 'bungee-jump-hemja', 'd0000000-0000-4000-8000-000000000004',
-   'Bungee jump', 9000.00, 'NPR', 'per_person', '1 jump',
-   null, null,
-   'demo-bungee.example.com', 'https://demo-bungee.example.com/jump', '2026-11-01', 'verified')
-) as v(id, activity_slug, provider_id, package_name, price, currency, pricing_unit, duration,
-       inclusions, booking_conditions, source_domain, source_url, retrieved_at, verification_status)
-join public.activities a on a.slug = v.activity_slug
+select
+  '22222222-2222-4222-8222-222222222202',
+  a.id,
+  '11111111-1111-4111-8111-111111111102',
+  'Cross-Country Tandem',
+  11000,
+  'NPR',
+  'per_person',
+  '45–60 minutes',
+  E'Extended thermal flight\nPhotos and GoPro video included',
+  'Subject to midday thermal conditions.',
+  'annapurna-air.example.com',
+  'https://annapurna-air.example.com/xc',
+  'https://annapurna-air.example.com/book',
+  '2026-11-08',
+  'unverified',
+  'Demo data — private listing note'
+from public.activities a
+where a.slug = 'paragliding-sarangkot'
+on conflict (id) do nothing;
+
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222203',
+  a.id,
+  '11111111-1111-4111-8111-111111111102',
+  'International Tandem Package',
+  95,
+  'USD',
+  'per_person',
+  '30 minutes',
+  E'English-speaking tandem pilot\nLakeside hotel transfer',
+  'Minimum age 12 with guardian consent.',
+  'annapurna-air.example.com',
+  'https://annapurna-air.example.com/intl',
+  'https://annapurna-air.example.com/book-intl',
+  '2026-11-05',
+  'unverified',
+  'Demo data — private listing note'
+from public.activities a
+where a.slug = 'paragliding-sarangkot'
+on conflict (id) do nothing;
+
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222204',
+  a.id,
+  '11111111-1111-4111-8111-111111111101',
+  'Outdated Sunrise Offer',
+  7500,
+  'NPR',
+  'per_person',
+  '25 minutes',
+  'Morning flight',
+  null,
+  'sunrise-paragliding.example.com',
+  'https://sunrise-paragliding.example.com/sunrise-old',
+  null,
+  '2026-09-01',
+  'outdated',
+  'Demo data — outdated offer should stay hidden'
+from public.activities a
+where a.slug = 'paragliding-sarangkot'
+on conflict (id) do nothing;
+
+-- Boating on Phewa Lake: NPR 1,500 per group, rating without count
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222205',
+  a.id,
+  '11111111-1111-4111-8111-111111111103',
+  '1-Hour Wooden Boat Hire',
+  1500,
+  'NPR',
+  'per_group',
+  '1 hour',
+  E'Wooden rowboat for up to 4 people\nLife jackets for all passengers',
+  'Life jackets must be worn while on the lake.',
+  'phewa-boats.example.com',
+  'https://phewa-boats.example.com/hourly',
+  null,
+  '2026-11-12',
+  'verified',
+  'Demo data — private listing note'
+from public.activities a
+where a.slug = 'boating-phewa-lake'
+on conflict (id) do nothing;
+
+-- Zipline at Sarangkot: NPR 6,000, no provider ("Listed on demo-listings.example.com")
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222206',
+  a.id,
+  null,
+  'Single Zip Ride',
+  6000,
+  'NPR',
+  'per_person',
+  '1 hour total',
+  E'Shuttle from Lakeside to Sarangkot launch\nHarness and safety briefing',
+  'Weight limit 35–125 kg.',
+  'demo-listings.example.com',
+  'https://demo-listings.example.com/zipline',
+  null,
+  '2026-11-09',
+  'unverified',
+  'Demo data — private listing note'
+from public.activities a
+where a.slug = 'zipline-sarangkot'
+on conflict (id) do nothing;
+
+-- Ultralight Flight: NPR 13,000 per flight, plus 1 with no price
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222207',
+  a.id,
+  '11111111-1111-4111-8111-111111111104',
+  '15-Minute Valley Flight',
+  13000,
+  'NPR',
+  'per_flight',
+  '15 minutes',
+  E'Certified pilot\nFlight suit and intercom headset',
+  'Maximum passenger weight 95 kg.',
+  'pokhara-ultralight.example.com',
+  'https://pokhara-ultralight.example.com/15min',
+  'https://pokhara-ultralight.example.com/book',
+  '2026-11-11',
+  'verified',
+  'Demo data — private listing note'
+from public.activities a
+where a.slug = 'ultralight-flight'
+on conflict (id) do nothing;
+
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222208',
+  a.id,
+  '11111111-1111-4111-8111-111111111104',
+  '60-Minute Himalayan Tour',
+  null,
+  null,
+  'per_flight',
+  '60 minutes',
+  'Extended mountain route',
+  null,
+  'pokhara-ultralight.example.com',
+  'https://pokhara-ultralight.example.com/60min',
+  null,
+  '2026-11-11',
+  'unverified',
+  'Demo data — unpriced offer should stay hidden'
+from public.activities a
+where a.slug = 'ultralight-flight'
+on conflict (id) do nothing;
+
+-- Bungee Jump at Hemja (unpublished activity): hidden by RLS
+insert into public.price_listings (
+  id, activity_id, provider_id, package_name, price, currency, pricing_unit,
+  duration, inclusions, booking_conditions, source_domain, source_url,
+  booking_url, retrieved_at, verification_status, notes
+)
+select
+  '22222222-2222-4222-8222-222222222209',
+  a.id,
+  '11111111-1111-4111-8111-111111111105',
+  'Tower Bungee Jump',
+  9000,
+  'NPR',
+  'per_person',
+  '30 minutes',
+  'Jump harness and safety briefing',
+  null,
+  'hemja-adventure.example.com',
+  'https://hemja-adventure.example.com/bungee',
+  null,
+  '2026-11-09',
+  'verified',
+  'Demo data — hidden because parent activity is unpublished'
+from public.activities a
+where a.slug = 'bungee-jump-hemja'
 on conflict (id) do nothing;
